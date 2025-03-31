@@ -1,0 +1,12 @@
+[
+    {
+        "id": 26998,
+        "param": {
+            "idParam": 3,
+            "paramCode": "PM10",
+            "paramFormula": "PM10",
+            "paramName": "pył zawieszony PM10"
+        },
+        "stationId": 16495
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "id": 5162,
+        "param": {
+            "idParam": 6,
+            "paramCode": "NO2",
+            "paramFormula": "NO2",
+            "paramName": "dwutlenek azotu"
+        },
+        "stationId": 789
+    },
+    {
+        "id": 5164,
+        "param": {
+            "idParam": 5,
+            "paramCode": "O3",
+            "paramFormula": "O3",
+            "paramName": "ozon"
+        },
+        "stationId": 789
+    },
+    {
+        "id": 5167,
+        "param": {
+            "idParam": 3,
+            "paramCode": "PM10",
+            "paramFormula": "PM10",
+            "paramName": "pył zawieszony PM10"
+        },
+        "stationId": 789
+    },
+    {
+        "id": 5171,
+        "param": {
+            "idParam": 1,
+            "paramCode": "SO2",
+            "paramFormula": "SO2",
+            "paramName": "dwutlenek siarki"
+        },
+        "stationId": 789
+    }
+]

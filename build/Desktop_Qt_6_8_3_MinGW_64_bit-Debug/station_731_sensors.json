@@ -1,0 +1,42 @@
+[
+    {
+        "id": 4703,
+        "param": {
+            "idParam": 6,
+            "paramCode": "NO2",
+            "paramFormula": "NO2",
+            "paramName": "dwutlenek azotu"
+        },
+        "stationId": 731
+    },
+    {
+        "id": 4706,
+        "param": {
+            "idParam": 3,
+            "paramCode": "PM10",
+            "paramFormula": "PM10",
+            "paramName": "pył zawieszony PM10"
+        },
+        "stationId": 731
+    },
+    {
+        "id": 4707,
+        "param": {
+            "idParam": 1,
+            "paramCode": "SO2",
+            "paramFormula": "SO2",
+            "paramName": "dwutlenek siarki"
+        },
+        "stationId": 731
+    },
+    {
+        "id": 27667,
+        "param": {
+            "idParam": 69,
+            "paramCode": "PM2.5",
+            "paramFormula": "PM2.5",
+            "paramName": "pył zawieszony PM2.5"
+        },
+        "stationId": 731
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "id": 21223,
+        "param": {
+            "idParam": 10,
+            "paramCode": "C6H6",
+            "paramFormula": "C6H6",
+            "paramName": "benzen"
+        },
+        "stationId": 11814
+    },
+    {
+        "id": 28731,
+        "param": {
+            "idParam": 8,
+            "paramCode": "CO",
+            "paramFormula": "CO",
+            "paramName": "tlenek węgla"
+        },
+        "stationId": 11814
+    },
+    {
+        "id": 26323,
+        "param": {
+            "idParam": 69,
+            "paramCode": "PM2.5",
+            "paramFormula": "PM2.5",
+            "paramName": "pył zawieszony PM2.5"
+        },
+        "stationId": 11814
+    },
+    {
+        "id": 21243,
+        "param": {
+            "idParam": 3,
+            "paramCode": "PM10",
+            "paramFormula": "PM10",
+            "paramName": "pył zawieszony PM10"
+        },
+        "stationId": 11814
+    },
+    {
+        "id": 21244,
+        "param": {
+            "idParam": 6,
+            "paramCode": "NO2",
+            "paramFormula": "NO2",
+            "paramName": "dwutlenek azotu"
+        },
+        "stationId": 11814
+    }
+]

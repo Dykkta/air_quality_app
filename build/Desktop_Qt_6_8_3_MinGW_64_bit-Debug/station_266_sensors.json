@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1888,
+        "param": {
+            "idParam": 8,
+            "paramCode": "CO",
+            "paramFormula": "CO",
+            "paramName": "tlenek węgla"
+        },
+        "stationId": 266
+    },
+    {
+        "id": 1895,
+        "param": {
+            "idParam": 6,
+            "paramCode": "NO2",
+            "paramFormula": "NO2",
+            "paramName": "dwutlenek azotu"
+        },
+        "stationId": 266
+    },
+    {
+        "id": 1897,
+        "param": {
+            "idParam": 5,
+            "paramCode": "O3",
+            "paramFormula": "O3",
+            "paramName": "ozon"
+        },
+        "stationId": 266
+    },
+    {
+        "id": 1900,
+        "param": {
+            "idParam": 3,
+            "paramCode": "PM10",
+            "paramFormula": "PM10",
+            "paramName": "pył zawieszony PM10"
+        },
+        "stationId": 266
+    },
+    {
+        "id": 1902,
+        "param": {
+            "idParam": 1,
+            "paramCode": "SO2",
+            "paramFormula": "SO2",
+            "paramName": "dwutlenek siarki"
+        },
+        "stationId": 266
+    },
+    {
+        "id": 1885,
+        "param": {
+            "idParam": 10,
+            "paramCode": "C6H6",
+            "paramFormula": "C6H6",
+            "paramName": "benzen"
+        },
+        "stationId": 266
+    },
+    {
+        "id": 16472,
+        "param": {
+            "idParam": 69,
+            "paramCode": "PM2.5",
+            "paramFormula": "PM2.5",
+            "paramName": "pył zawieszony PM2.5"
+        },
+        "stationId": 266
+    }
+]

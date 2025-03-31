@@ -1,0 +1,42 @@
+[
+    {
+        "id": 5899,
+        "param": {
+            "idParam": 6,
+            "paramCode": "NO2",
+            "paramFormula": "NO2",
+            "paramName": "dwutlenek azotu"
+        },
+        "stationId": 902
+    },
+    {
+        "id": 5902,
+        "param": {
+            "idParam": 5,
+            "paramCode": "O3",
+            "paramFormula": "O3",
+            "paramName": "ozon"
+        },
+        "stationId": 902
+    },
+    {
+        "id": 5904,
+        "param": {
+            "idParam": 3,
+            "paramCode": "PM10",
+            "paramFormula": "PM10",
+            "paramName": "pył zawieszony PM10"
+        },
+        "stationId": 902
+    },
+    {
+        "id": 28811,
+        "param": {
+            "idParam": 10,
+            "paramCode": "C6H6",
+            "paramFormula": "C6H6",
+            "paramName": "benzen"
+        },
+        "stationId": 902
+    }
+]
