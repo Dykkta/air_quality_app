@@ -9,21 +9,21 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chartmanager.cpp \
     dataanalyzer.cpp \
     database.cpp \
     httpclient.cpp \
     jsonhandler.cpp \
     main.cpp \
-    mainwindow.cpp \
-    stationmanager.cpp
+    mainwindow.cpp
 
 HEADERS += \
+    chartmanager.h \
     dataanalyzer.h \
     database.h \
     httpclient.h \
     jsonhandler.h \
-    mainwindow.h \
-    stationmanager.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui

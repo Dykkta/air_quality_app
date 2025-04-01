@@ -18,28 +18,11 @@
 #include <QInputDialog>
 #include <exception>
 
-void MainWindow::initializeUI() {
-    // Ustawienie okna na pełny ekran
-    showMaximized();
-
-    // Dodanie placeholder tekstów dla mapy (można będzie usunąć po implementacji mapy)
-    ui->mapPlaceholderLabel->setStyleSheet("QLabel { background-color: #f0f0f0; border: 1px solid #cccccc; }");
-
-    // Ustawienie elastyczności paneli
-    ui->leftPanel->setMinimumWidth(300); // Minimalna szerokość dla lewego panelu
-
-    // Inicjalizacja dat
-    QDateTime currentDateTime = QDateTime::currentDateTime();
-    ui->startDateTimeEdit->setDateTime(currentDateTime.addDays(-7)); // Domyślnie ostatni tydzień
-    ui->endDateTimeEdit->setDateTime(currentDateTime);
-
-    // Połączenie kontrolek dat z funkcją odświeżania wykresu
-    connect(ui->startDateTimeEdit, &QDateTimeEdit::dateTimeChanged, this, &MainWindow::refreshChart);
-    connect(ui->endDateTimeEdit, &QDateTimeEdit::dateTimeChanged, this, &MainWindow::refreshChart);
-}
-
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+
+    m_chartManager = new ChartManager(this);
+    m_chartManager->connectParamCheckList(ui->paramCheckList);
 
     initializeUI();
     // Dodaj przycisk "Znajdź najbliższą stację" obok ComboBoxa ze stacjami
@@ -68,6 +51,26 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Połączenie zmiany stacji z aktualizacją listy czujników
     connect(ui->stationComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &MainWindow::onStationChanged);
+}
+
+void MainWindow::initializeUI() {
+    // Ustawienie okna na pełny ekran
+    showMaximized();
+
+    // Dodanie placeholder tekstów dla mapy (można będzie usunąć po implementacji mapy)
+    ui->mapPlaceholderLabel->setStyleSheet("QLabel { background-color: #f0f0f0; border: 1px solid #cccccc; }");
+
+    // Ustawienie elastyczności paneli
+    ui->leftPanel->setMinimumWidth(300); // Minimalna szerokość dla lewego panelu
+
+    // Inicjalizacja dat
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    ui->startDateTimeEdit->setDateTime(currentDateTime.addDays(-7)); // Domyślnie ostatni tydzień
+    ui->endDateTimeEdit->setDateTime(currentDateTime);
+
+    // Połączenie kontrolek dat z funkcją odświeżania wykresu
+    connect(ui->startDateTimeEdit, &QDateTimeEdit::dateTimeChanged, this, &MainWindow::refreshChart);
+    connect(ui->endDateTimeEdit, &QDateTimeEdit::dateTimeChanged, this, &MainWindow::refreshChart);
 }
 
 MainWindow::~MainWindow() {
@@ -153,6 +156,23 @@ void MainWindow::onStationChanged(int index) {
     // Pobierz ID stacji z danych elementu comboBox
     int stationId = ui->stationComboBox->itemData(index).toInt();
 
+    //reset listy parametrów
+    ui->paramCheckList->clear();
+
+    // Wyczyść dane w ChartManager
+    m_chartManager->clearData();
+
+    // Wyczyść obszar wykresu (jeśli istnieje)
+    if (ui->chartLayout->count() > 0) {
+        QLayoutItem *child;
+        while ((child = ui->chartLayout->takeAt(0)) != nullptr) {
+            if (child->widget()) {
+                delete child->widget();
+            }
+            delete child;
+        }
+    }
+
     // Generuj nazwę pliku dla tej stacji
     QString stationFileName = QString("station_%1_sensors.json").arg(stationId);
 
@@ -183,6 +203,8 @@ void MainWindow::onStationChanged(int index) {
         // Aktualizacja UI (wybór czujników)
         updateSensorList(data);
 
+        fetchDataForAllSensors();
+
         ui->statusbar->showMessage(QString("Pomyślnie pobrano dane o czujnikach dla stacji %1").arg(ui->stationComboBox->currentText()), 5000);
 
     } catch (const std::exception& e) {
@@ -194,10 +216,86 @@ void MainWindow::onStationChanged(int index) {
 
         if (!offlineData.empty() && offlineData.is_array()) {
             updateSensorList(offlineData);
+            fetchDataForAllSensors(); //pobranie danych dla wszystkich czujnikow tez offline
             ui->statusbar->showMessage(QString("Wczytano offline dane o czujnikach dla stacji %1").arg(ui->stationComboBox->currentText()), 5000);
         } else {
             QMessageBox::critical(this, "Błąd", "Brak zapisanych danych o czujnikach dla wybranej stacji.");
         }
+    }
+}
+
+void MainWindow::fetchDataForAllSensors() {
+    // Sprawdź czy lista czujników zawiera elementy
+    if (ui->sensorComboBox->count() <= 0) {
+        return;
+    }
+
+    // Dla każdego czujnika pobierz dane
+    for (int i = 0; i < ui->sensorComboBox->count(); i++) {
+        int sensorId = ui->sensorComboBox->itemData(i).toInt();
+        QString paramName = ui->sensorComboBox->itemText(i);
+
+        try {
+            HttpClient client;
+            std::string url = "https://api.gios.gov.pl/pjp-api/rest/data/getData/" + std::to_string(sensorId);
+            std::string jsonData = client.getRequest(url);
+
+            // Parsowanie JSON
+            JsonHandler jsonHandler;
+            nlohmann::json data = jsonHandler.parseJson(jsonData);
+
+            if (data.empty() || !data.is_object()) {
+                throw std::runtime_error("Nie udało się pobrać danych z API lub dane są w nieprawidłowym formacie.");
+            }
+
+            // Zapis do lokalnej bazy danych z nazwą zawierającą ID czujnika
+            QString fileName = QString("sensor_%1_data.json").arg(sensorId);
+            Database::saveToFile(fileName.toStdString(), data);
+
+            // Przeprowadzenie analizy danych i dodanie do ChartManager
+            DataAnalyzer analyzer;
+            analyzer.analyzeData(data);
+            const auto& results = analyzer.getResults();
+
+            // Dodaj dane do ChartManager, aby były dostępne dla wykresów
+            m_chartManager->addParameterData(paramName.toStdString(), results);
+
+            // Aktualizuj listę dostępnych parametrów w UI
+            m_chartManager->updateParamCheckList(ui->paramCheckList, paramName);
+
+            // Status dla pierwszego parametru (opcjonalnie)
+            if (i == 0) {
+                ui->statusbar->showMessage(QString("Pobrano dane dla parametrów stacji %1").arg(ui->stationComboBox->currentText()), 5000);
+            }
+
+        } catch (const std::exception& e) {
+            // W przypadku błędu spróbuj wczytać dane z lokalnej bazy
+            QString fileName = QString("sensor_%1_data.json").arg(sensorId);
+            nlohmann::json offlineData = Database::loadFromFile(fileName.toStdString());
+
+            if (!offlineData.empty() && offlineData.is_object()) {
+                // Przeprowadzenie analizy danych i dodanie do ChartManager
+                DataAnalyzer analyzer;
+                analyzer.analyzeData(offlineData);
+                const auto& results = analyzer.getResults();
+
+                // Dodaj dane do ChartManager, aby były dostępne dla wykresów
+                m_chartManager->addParameterData(paramName.toStdString(), results);
+
+                // Aktualizuj listę dostępnych parametrów w UI
+                m_chartManager->updateParamCheckList(ui->paramCheckList, paramName);
+            }
+        }
+    }
+
+    // Po załadowaniu wszystkich danych, podłącz listę parametrów do ChartManager
+    m_chartManager->connectParamCheckList(ui->paramCheckList);
+
+    // Wyświetl wykres, jeśli mamy jakieś dane
+    if (m_chartManager->getAvailableParams().size() > 0) {
+        // Tutaj możesz dodać kod do automatycznego wyświetlenia wykresu
+        // np. przy użyciu danych z pierwszego czujnika lub wszystkich czujników razem
+        // W zależności od tego, jak zdefiniowana jest funkcja displayMultiParamChart
     }
 }
 
@@ -361,259 +459,61 @@ void MainWindow::processAndDisplayData(const nlohmann::json& data, const QString
     // Wyświetlanie statystyk
     displayStatistics(analyzer);
 }
-
 void MainWindow::displayAnalysisResults(const std::map<std::string, double>& results, const QString& paramName) {
-    // Zapisujemy wyniki w globalnej mapie danych
-    m_allResults[paramName.toStdString()] = results;
+    // Add the data to the ChartManager
+    m_chartManager->addParameterData(paramName.toStdString(), results);
 
-    // Aktualizujemy listę dostępnych parametrów
-    m_availableParams.insert(paramName.toStdString());
+    // Update the parameter check list
+    m_chartManager->updateParamCheckList(ui->paramCheckList, paramName);
 
-    // Inicjalizacja lub aktualizacja listy kontrolnej parametrów
-    if (ui->paramCheckList->count() == 0) {
-        // Pierwszy parametr - inicjujemy listę kontrolną
-        for (const auto& param : m_availableParams) {
-            QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(param), ui->paramCheckList);
-            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            item->setCheckState(Qt::Checked); // Domyślnie zaznaczamy nowy parametr
-        }
-
-        // Łączymy sygnał zmiany z aktualizacją wykresu (tylko raz)
-        connect(ui->paramCheckList, &QListWidget::itemChanged, this, [this](QListWidgetItem* item) {
-            // Wywołanie funkcji odświeżającej wykres
-            displayMultiParamChart();
-        });
-    } else {
-        // Sprawdzamy, czy ten parametr już istnieje na liście
-        bool found = false;
-        for (int i = 0; i < ui->paramCheckList->count(); ++i) {
-            QListWidgetItem* item = ui->paramCheckList->item(i);
-            if (item->text() == paramName) {
-                found = true;
-                item->setCheckState(Qt::Checked); // Zaznaczamy aktualnie analizowany parametr
-                break;
-            }
-        }
-
-        // Jeśli nie znaleziono, dodajemy nowy
-        if (!found) {
-            QListWidgetItem* item = new QListWidgetItem(paramName, ui->paramCheckList);
-            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            item->setCheckState(Qt::Checked); // Domyślnie zaznaczamy nowy parametr
-        }
-    }
-
-    // Wyświetl wykres z wybranymi parametrami
-    displayMultiParamChart();
-}
-void MainWindow::displayMultiParamChart() {
-    // Czyścimy istniejący układ wykresu
-    QLayoutItem *child;
-    while ((child = ui->chartLayout->takeAt(0)) != nullptr) {
-        if (child->widget()) {
-            delete child->widget();
-        }
-        delete child;
-    }
-
-    // Filtracja danych według zakresu dat z kontrolek
-    QDateTime startDate = ui->startDateTimeEdit->dateTime();
-    QDateTime endDate = ui->endDateTimeEdit->dateTime();
-
-    // Utworzenie wykresu
-    QChart *chart = new QChart();
-    chart->setTitle(QString("Pomiary parametrów"));
-    chart->legend()->setVisible(true);
-    chart->legend()->setAlignment(Qt::AlignBottom);
-
-    // Zmienne do śledzenia zakresu danych
-    double minValue = std::numeric_limits<double>::max();
-    double maxValue = std::numeric_limits<double>::lowest();
-    QDateTime firstDate, lastDate;
-
-    // Kolory dla różnych serii danych
-    QList<QColor> colors = {Qt::red, Qt::blue, Qt::green, Qt::magenta, Qt::cyan,
-                            Qt::yellow, Qt::darkRed, Qt::darkBlue, Qt::darkGreen,
-                            Qt::darkMagenta, Qt::darkCyan};
-    int colorIndex = 0;
-
-    // Sprawdzamy które parametry są zaznaczone
-    bool anySeriesAdded = false;
-
-    for (int i = 0; i < ui->paramCheckList->count(); ++i) {
-        QListWidgetItem* item = ui->paramCheckList->item(i);
-        if (item->checkState() == Qt::Checked) {
-            QString paramName = item->text();
-            std::string paramNameStd = paramName.toStdString();
-
-            // Sprawdzamy czy parametr istnieje w danych
-            if (m_allResults.find(paramNameStd) == m_allResults.end()) {
-                continue;
-            }
-
-            const auto& results = m_allResults.at(paramNameStd);
-
-            QLineSeries *series = new QLineSeries();
-            series->setName(paramName);
-
-            // Ustawienie koloru dla serii
-            QColor color = colors[colorIndex % colors.size()];
-            series->setColor(color);
-            colorIndex++;
-
-            // Przygotowanie danych do wykresu
-            std::vector<std::pair<QDateTime, double>> filteredData;
-
-            for (const auto& [dateStr, value] : results) {
-                QDateTime date = QDateTime::fromString(QString::fromStdString(dateStr), Qt::ISODate);
-
-                // Sprawdź, czy data mieści się w wybranym zakresie
-                if (date >= startDate && date <= endDate && value != 0.0) {  // Pomijamy wartości null (zamienione na 0.0)
-                    filteredData.push_back({date, value});
-
-                    // Aktualizacja zakresów
-                    if (value < minValue) minValue = value;
-                    if (value > maxValue) maxValue = value;
-
-                    if (firstDate.isNull() || date < firstDate) firstDate = date;
-                    if (lastDate.isNull() || date > lastDate) lastDate = date;
-                }
-            }
-
-            // Sortujemy dane według czasu
-            std::sort(filteredData.begin(), filteredData.end(),
-                      [](const auto& a, const auto& b) { return a.first < b.first; });
-
-            // Dodajemy posortowane dane do serii
-            for (const auto& [date, value] : filteredData) {
-                series->append(date.toMSecsSinceEpoch(), value);
-            }
-
-            chart->addSeries(series);
-            anySeriesAdded = true;
-        }
-    }
-
-    // Jeśli nie ma danych do wyświetlenia, zakończ
-    if (!anySeriesAdded) {
-        QLabel *noDataLabel = new QLabel("Brak danych do wyświetlenia w wybranym zakresie dat lub nie wybrano parametrów.");
-        noDataLabel->setAlignment(Qt::AlignCenter);
-        ui->chartLayout->addWidget(noDataLabel);
-        delete chart;
-        return;
-    }
-
-    // Utworzenie osi czasu
-    QDateTimeAxis *axisX = new QDateTimeAxis();
-    axisX->setFormat("dd.MM.yyyy\nHH:mm"); // Format z datą i godziną w orientacji pionowej
-    axisX->setTitleText("Data pomiaru");
-    axisX->setLabelsAngle(90); // Ustawienie pionowej orientacji etykiet
-
-    // Zapewnienie lepszego formatowania osi czasu
-    if (!firstDate.isNull() && !lastDate.isNull()) {
-        // Dodaj małe marginesy do zakresu czasowego
-        axisX->setRange(firstDate.addSecs(-3600), lastDate.addSecs(3600));
-
-        // Ustaw odpowiednią liczbę znaczników na osi w zależności od zakresu czasu
-        qint64 timeRangeHours = firstDate.secsTo(lastDate) / 3600;
-        if (timeRangeHours <= 24) {
-            axisX->setTickCount(qMin(int(timeRangeHours) + 1, 12)); // Co godzinę lub rzadziej dla krótkich zakresów
-        } else if (timeRangeHours <= 72) {
-            axisX->setTickCount(qMin(int(timeRangeHours / 3) + 1, 12)); // Co 3 godziny dla średnich zakresów
-        } else {
-            axisX->setTickCount(qMin(int(timeRangeHours / 6) + 1, 12)); // Co 6 godzin dla długich zakresów
-        }
-    }
-
-    chart->addAxis(axisX, Qt::AlignBottom);
-
-    // Utworzenie osi wartości z lepszym zakresem
-    QValueAxis *axisY = new QValueAxis();
-    axisY->setTitleText("Wartość");
-
-    // Ustawienie zakresu wartości z marginesem
-    if (minValue != std::numeric_limits<double>::max() && maxValue != std::numeric_limits<double>::lowest()) {
-        double margin = (maxValue - minValue) * 0.1; // 10% marginesu
-        if (margin < 0.1) margin = 1.0; // W przypadku małej różnicy
-
-        axisY->setRange(minValue - margin, maxValue + margin);
-
-        // Automatycznie dobierz liczbę znaczników na osi Y
-        double range = maxValue - minValue;
-        if (range <= 10) {
-            axisY->setTickCount(qMin(int(range) + 2, 10));
-        } else {
-            axisY->setTickCount(10);
-        }
-
-        // Ustawienie formatu liczb, aby wyświetlać pełne wartości
-        axisY->setLabelFormat("%.2f");
-    }
-
-    chart->addAxis(axisY, Qt::AlignLeft);
-
-    // Podłączenie serii danych do osi
-    for (QAbstractSeries *series : chart->series()) {
-        series->attachAxis(axisX);
-        series->attachAxis(axisY);
-    }
-
-    // Dodanie siatki dla lepszej czytelności
-    axisX->setGridLineVisible(true);
-    axisY->setGridLineVisible(true);
-
-    // Utworzenie widoku wykresu
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
-    // Dodanie widoku do układu
-    ui->chartLayout->addWidget(chartView);
+    // Display the chart with the currently selected parameters
+    m_chartManager->displayMultiParamChart(ui->chartLayout, ui->paramCheckList,
+                                           ui->startDateTimeEdit->dateTime(),
+                                           ui->endDateTimeEdit->dateTime());
 }
 
-// Funkcja do odświeżania wykresu (możemy ją podłączyć do przycisku lub innych kontrolek)
 void MainWindow::refreshChart() {
-    displayMultiParamChart();
-}
-// Funkcja do inicjalizacji listy kontrolnej parametrów
-void MainWindow::initParamCheckList(const std::set<std::string>& availableParams) {
-    ui->paramCheckList->clear();
-
-    for (const auto& param : availableParams) {
-        QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(param), ui->paramCheckList);
-        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-        item->setCheckState(Qt::Unchecked);
-    }
-
-    // Połączenie sygnału zmiany stanu checkboxa z odświeżeniem wykresu
-    connect(ui->paramCheckList, &QListWidget::itemChanged, this, [this](QListWidgetItem* item) {
-        // Wywołanie funkcji odświeżającej wykres
-        refreshChart();
-    });
+    // Just call the ChartManager to display the chart
+    m_chartManager->displayMultiParamChart(ui->chartLayout, ui->paramCheckList,
+                                           ui->startDateTimeEdit->dateTime(),
+                                           ui->endDateTimeEdit->dateTime());
 }
 
 
 void MainWindow::displayStatistics(const DataAnalyzer& analyzer) {
     const auto& results = analyzer.getAnalysisResults();
-
-    // Znajdź minimalne i maksymalne wartości
-    double minValue = 999999.0;
-    double maxValue = -999999.0;
-    std::string minDate, maxDate;
     double sum = 0.0;
     int count = 0;
 
-    // Sprawdź, czy klasa DataAnalyzer zaimplementowała te metody
+    // Calculate sum and count regardless of which path we take
+    for (const auto& [date, stats] : results) {
+        double value = std::get<0>(stats);
+        sum += value;
+        count++;
+    }
+
+    // Calculate and display average if we have data
+    if (count > 0) {
+        ui->avgValueEdit->setText(QString::number(sum / count));
+    } else {
+        ui->avgValueEdit->setText("Brak danych");
+    }
+
+    // Now handle min/max values
     if (!analyzer.getMinDate().empty() && !analyzer.getMaxDate().empty()) {
-        // Jeśli metody są zaimplementowane, użyj ich
+        // Use the analyzer's methods
         ui->minValueEdit->setText(QString::number(std::get<0>(results.at(analyzer.getMinDate()))));
         ui->maxValueEdit->setText(QString::number(std::get<0>(results.at(analyzer.getMaxDate()))));
         ui->minDateEdit->setText(QString::fromStdString(analyzer.getMinDate()));
         ui->maxDateEdit->setText(QString::fromStdString(analyzer.getMaxDate()));
     } else {
-        // W przeciwnym razie oblicz statystyki ręcznie
+        // Calculate min/max manually
+        double minValue = 999999.0;
+        double maxValue = -999999.0;
+        std::string minDate, maxDate;
+
         for (const auto& [date, stats] : results) {
-            double value = std::get<0>(stats);  // Pierwsza wartość to wartość pomiaru
+            double value = std::get<0>(stats);
             if (value < minValue) {
                 minValue = value;
                 minDate = date;
@@ -622,8 +522,6 @@ void MainWindow::displayStatistics(const DataAnalyzer& analyzer) {
                 maxValue = value;
                 maxDate = date;
             }
-            sum += value;
-            count++;
         }
 
         if (count > 0) {
@@ -631,16 +529,13 @@ void MainWindow::displayStatistics(const DataAnalyzer& analyzer) {
             ui->maxValueEdit->setText(QString::number(maxValue));
             ui->minDateEdit->setText(QString::fromStdString(minDate));
             ui->maxDateEdit->setText(QString::fromStdString(maxDate));
-            ui->avgValueEdit->setText(QString::number(sum / count));
         }
     }
 
-    // Obliczenie trendu
+    // Calculate trend
     if (results.size() > 1) {
-        // Pobierz pierwszy i ostatni pomiar
         auto firstIt = results.begin();
         auto lastIt = std::prev(results.end());
-
         double firstValue = std::get<0>(firstIt->second);
         double lastValue = std::get<0>(lastIt->second);
 
@@ -732,7 +627,8 @@ void MainWindow::onSaveData() {
         }
     }
 }
-// Implementation of the distance calculation method
+
+// Obliczanie odległości
 double GeoCoordinate::distanceTo(const GeoCoordinate& other) const {
     // Earth radius in meters
     const double R = 6371000.0;
@@ -755,7 +651,6 @@ double GeoCoordinate::distanceTo(const GeoCoordinate& other) const {
     return distance;
 }
 
-// Function to get location from IP using curl
 GeoCoordinate MainWindow::getLocationFromIP() {
     GeoCoordinate result = {0.0, 0.0};
 

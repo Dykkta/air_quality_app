@@ -1,27 +1,22 @@
-//mainwindow.h
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include <QComboBox>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QChartView>
-#include <QLineSeries>
-#include <QDateTimeAxis>
-#include <QValueAxis>
 #include <QDateTime>
 #include <QTimer>
 #include <QListWidget>
 #include <QLabel>
 #include <nlohmann/json.hpp>
 #include "DataAnalyzer.h"
+#include "ChartManager.h"
 
 // Dodane nagłówki dla kontenerów STL
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
-#include <limits>
 #include <algorithm>
 
 struct GeoCoordinate {
@@ -37,13 +32,13 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
     void onFetchData();      // Funkcja do pobierania danych
+    void fetchDataForAllSensors();
     void onAnalyzeData();    // Funkcja do analizy danych
     void initializeStations(); // Funkcja do inicjalizacji stacji
     void onStationChanged(int index); // Funkcja wywoływana po zmianie stacji
@@ -56,15 +51,10 @@ private:
     void updateStationsComboBox(const nlohmann::json& stations); // Aktualizowanie listy stacji
     void updateSensorList(const nlohmann::json& data);  // Aktualizowanie listy czujników
 
-    // Funkcja do wyświetlania wykresu z wieloma parametrami
-    void displayMultiParamChart();
+    // Original displayMultiParamChart method is removed as it's now handled by ChartManager
 
     void initializeUI();
-    // Istniejąca funkcja (zachowujemy dla kompatybilności)
     void displayAnalysisResults(const std::map<std::string, double>& results, const QString& paramName);
-
-    void initParamCheckList(const std::set<std::string>& availableParams);
-
     void displayStatistics(const DataAnalyzer& analyzer); // Wyświetlanie statystyk
     void processAndDisplayData(const nlohmann::json& data, const QString& paramName); // Przetwarzanie i wyświetlanie danych
     void tryLoadOfflineStations(); // Próba wczytania stacji z lokalnej bazy
@@ -73,11 +63,7 @@ private:
 
     Ui::MainWindow *ui;
 
-    // Zmienne do przechowywania danych pomiarowych dla różnych parametrów
-    std::map<std::string, std::map<std::string, double>> m_allResults;
-
-    // Zmienna do przechowywania dostępnych parametrów
-    std::set<std::string> m_availableParams;
+    // Replace existing data storage with ChartManager
+    ChartManager* m_chartManager;
 };
-
 #endif // MAINWINDOW_H

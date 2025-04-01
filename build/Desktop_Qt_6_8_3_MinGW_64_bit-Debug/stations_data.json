@@ -544,22 +544,6 @@
         "stationName": "Siedlce, ul. Konarskiego"
     },
     {
-        "addressStreet": "ul. Tołstoja 2",
-        "city": {
-            "commune": {
-                "communeName": "Warszawa",
-                "districtName": "Warszawa",
-                "provinceName": "MAZOWIECKIE"
-            },
-            "id": 1006,
-            "name": "Warszawa"
-        },
-        "gegrLat": "52.285073",
-        "gegrLon": "20.933018",
-        "id": 538,
-        "stationName": "Warszawa, ul. Tołstoja"
-    },
-    {
         "addressStreet": "ul. Wokalna 1",
         "city": {
             "commune": {
@@ -1664,6 +1648,22 @@
         "stationName": "Osieczów"
     },
     {
+        "addressStreet": "ul. Wysockiego 11",
+        "city": {
+            "commune": {
+                "communeName": "Wałbrzych",
+                "districtName": "Wałbrzych",
+                "provinceName": "DOLNOŚLĄSKIE"
+            },
+            "id": 998,
+            "name": "Wałbrzych"
+        },
+        "gegrLat": "50.768729",
+        "gegrLon": "16.269677",
+        "id": 109,
+        "stationName": "Wałbrzych, ul. Wysockiego"
+    },
+    {
         "addressStreet": "ul. Wały Gen. Sikorskiego 12",
         "city": {
             "commune": {
@@ -2512,6 +2512,22 @@
         "stationName": "Gdańsk, ul. Lawendowe Wzgórze"
     },
     {
+        "addressStreet": "Ludowa",
+        "city": {
+            "commune": {
+                "communeName": "Lubań",
+                "districtName": "lubański",
+                "provinceName": "DOLNOŚLĄSKIE"
+            },
+            "id": 482,
+            "name": "Lubań"
+        },
+        "gegrLat": "51.120091",
+        "gegrLon": "15.298189",
+        "id": 20468,
+        "stationName": "Lubań, ul. Ludowa"
+    },
+    {
         "addressStreet": "ul. Piłsudskiego 51",
         "city": {
             "commune": {
@@ -2702,6 +2718,22 @@
         "gegrLon": "21.769494",
         "id": 20200,
         "stationName": "Kolbuszowa, ul. Jana Pawła II"
+    },
+    {
+        "addressStreet": null,
+        "city": {
+            "commune": {
+                "communeName": "Wola Mysłowska",
+                "districtName": "łukowski",
+                "provinceName": "LUBELSKIE"
+            },
+            "id": 301,
+            "name": "Jarczew"
+        },
+        "gegrLat": "51.814367",
+        "gegrLon": "21.972375",
+        "id": 248,
+        "stationName": "Jarczew, IMGW"
     },
     {
         "addressStreet": null,
@@ -3040,6 +3072,22 @@
         "stationName": "Myślenice"
     },
     {
+        "addressStreet": "ul. 1 Maja 6",
+        "city": {
+            "commune": {
+                "communeName": "Wysokie Mazowieckie",
+                "districtName": "wysokomazowiecki",
+                "provinceName": "PODLASKIE"
+            },
+            "id": 2912,
+            "name": "Wysokie Mazowieckie"
+        },
+        "gegrLat": "52.913878",
+        "gegrLon": "22.509275",
+        "id": 20140,
+        "stationName": "Wysokie Mazowieckie, ul. 1 Maja"
+    },
+    {
         "addressStreet": "Kampinoski Park Narodowy",
         "city": {
             "commune": {
@@ -3232,22 +3280,6 @@
         "stationName": "Bytów, ul. Miła"
     },
     {
-        "addressStreet": "T. Kościuszki",
-        "city": {
-            "commune": {
-                "communeName": "Nowa Sól",
-                "districtName": "nowosolski",
-                "provinceName": "LUBUSKIE"
-            },
-            "id": 605,
-            "name": "Nowa Sól"
-        },
-        "gegrLat": "51.809103",
-        "gegrLon": "15.708042",
-        "id": 16613,
-        "stationName": "Nowa Sól"
-    },
-    {
         "addressStreet": "al. Tysiąclecia",
         "city": {
             "commune": {
@@ -3342,21 +3374,5 @@
         "gegrLon": "19.564044",
         "id": 11301,
         "stationName": "Olkusz, ul. Cegielniana"
-    },
-    {
-        "addressStreet": "ul. Jurajska 7",
-        "city": {
-            "commune": {
-                "communeName": "Kielce",
-                "districtName": "Kielce",
-                "provinceName": "ŚWIĘTOKRZYSKIE"
-            },
-            "id": 360,
-            "name": "Kielce"
-        },
-        "gegrLat": "50.887606",
-        "gegrLon": "20.579965",
-        "id": 16497,
-        "stationName": "Kielce, ul. Jurajska"
     }
 ]
