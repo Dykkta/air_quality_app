@@ -64,14 +64,17 @@ public:
     QGridLayout *gridLayout;
     QLabel *minValueLabel;
     QLineEdit *minValueEdit;
+    QLabel *minUnitLabel;
     QLabel *minDateLabel;
     QLineEdit *minDateEdit;
     QLabel *maxValueLabel;
     QLineEdit *maxValueEdit;
+    QLabel *maxUnitLabel;
     QLabel *maxDateLabel;
     QLineEdit *maxDateEdit;
     QLabel *avgValueLabel;
     QLineEdit *avgValueEdit;
+    QLabel *avgUnitLabel;
     QLabel *trendLabel;
     QLineEdit *trendEdit;
     QSpacerItem *verticalSpacer;
@@ -202,20 +205,27 @@ public:
 
         minValueEdit = new QLineEdit(analysisGroupBox);
         minValueEdit->setObjectName("minValueEdit");
+        minValueEdit->setMaximumSize(QSize(80, 16777215));
         minValueEdit->setReadOnly(true);
 
         gridLayout->addWidget(minValueEdit, 0, 1, 1, 1);
 
+        minUnitLabel = new QLabel(analysisGroupBox);
+        minUnitLabel->setObjectName("minUnitLabel");
+
+        gridLayout->addWidget(minUnitLabel, 0, 2, 1, 1);
+
         minDateLabel = new QLabel(analysisGroupBox);
         minDateLabel->setObjectName("minDateLabel");
 
-        gridLayout->addWidget(minDateLabel, 0, 2, 1, 1);
+        gridLayout->addWidget(minDateLabel, 0, 3, 1, 1);
 
         minDateEdit = new QLineEdit(analysisGroupBox);
         minDateEdit->setObjectName("minDateEdit");
+        minDateEdit->setMinimumSize(QSize(200, 0));
         minDateEdit->setReadOnly(true);
 
-        gridLayout->addWidget(minDateEdit, 0, 3, 1, 1);
+        gridLayout->addWidget(minDateEdit, 0, 4, 1, 1);
 
         maxValueLabel = new QLabel(analysisGroupBox);
         maxValueLabel->setObjectName("maxValueLabel");
@@ -224,20 +234,27 @@ public:
 
         maxValueEdit = new QLineEdit(analysisGroupBox);
         maxValueEdit->setObjectName("maxValueEdit");
+        maxValueEdit->setMaximumSize(QSize(80, 16777215));
         maxValueEdit->setReadOnly(true);
 
         gridLayout->addWidget(maxValueEdit, 1, 1, 1, 1);
 
+        maxUnitLabel = new QLabel(analysisGroupBox);
+        maxUnitLabel->setObjectName("maxUnitLabel");
+
+        gridLayout->addWidget(maxUnitLabel, 1, 2, 1, 1);
+
         maxDateLabel = new QLabel(analysisGroupBox);
         maxDateLabel->setObjectName("maxDateLabel");
 
-        gridLayout->addWidget(maxDateLabel, 1, 2, 1, 1);
+        gridLayout->addWidget(maxDateLabel, 1, 3, 1, 1);
 
         maxDateEdit = new QLineEdit(analysisGroupBox);
         maxDateEdit->setObjectName("maxDateEdit");
+        maxDateEdit->setMinimumSize(QSize(200, 0));
         maxDateEdit->setReadOnly(true);
 
-        gridLayout->addWidget(maxDateEdit, 1, 3, 1, 1);
+        gridLayout->addWidget(maxDateEdit, 1, 4, 1, 1);
 
         avgValueLabel = new QLabel(analysisGroupBox);
         avgValueLabel->setObjectName("avgValueLabel");
@@ -246,20 +263,27 @@ public:
 
         avgValueEdit = new QLineEdit(analysisGroupBox);
         avgValueEdit->setObjectName("avgValueEdit");
+        avgValueEdit->setMaximumSize(QSize(80, 16777215));
         avgValueEdit->setReadOnly(true);
 
         gridLayout->addWidget(avgValueEdit, 2, 1, 1, 1);
 
+        avgUnitLabel = new QLabel(analysisGroupBox);
+        avgUnitLabel->setObjectName("avgUnitLabel");
+
+        gridLayout->addWidget(avgUnitLabel, 2, 2, 1, 1);
+
         trendLabel = new QLabel(analysisGroupBox);
         trendLabel->setObjectName("trendLabel");
 
-        gridLayout->addWidget(trendLabel, 2, 2, 1, 1);
+        gridLayout->addWidget(trendLabel, 2, 3, 1, 1);
 
         trendEdit = new QLineEdit(analysisGroupBox);
         trendEdit->setObjectName("trendEdit");
+        trendEdit->setMinimumSize(QSize(200, 0));
         trendEdit->setReadOnly(true);
 
-        gridLayout->addWidget(trendEdit, 2, 3, 1, 1);
+        gridLayout->addWidget(trendEdit, 2, 4, 1, 1);
 
 
         leftPanelLayout->addWidget(analysisGroupBox);
@@ -284,7 +308,7 @@ public:
         chartGroupBox->setObjectName("chartGroupBox");
         QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
         sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(1);
+        sizePolicy2.setVerticalStretch(3);
         sizePolicy2.setHeightForWidth(chartGroupBox->sizePolicy().hasHeightForWidth());
         chartGroupBox->setSizePolicy(sizePolicy2);
         chartLayout = new QVBoxLayout(chartGroupBox);
@@ -294,13 +318,16 @@ public:
 
         mapGroupBox = new QGroupBox(rightPanel);
         mapGroupBox->setObjectName("mapGroupBox");
-        sizePolicy2.setHeightForWidth(mapGroupBox->sizePolicy().hasHeightForWidth());
-        mapGroupBox->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(2);
+        sizePolicy3.setHeightForWidth(mapGroupBox->sizePolicy().hasHeightForWidth());
+        mapGroupBox->setSizePolicy(sizePolicy3);
         mapLayout = new QVBoxLayout(mapGroupBox);
         mapLayout->setObjectName("mapLayout");
         mapPlaceholderLabel = new QLabel(mapGroupBox);
         mapPlaceholderLabel->setObjectName("mapPlaceholderLabel");
-        mapPlaceholderLabel->setAlignment(Qt::AlignCenter);
+        mapPlaceholderLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         mapLayout->addWidget(mapPlaceholderLabel);
 
@@ -354,10 +381,13 @@ public:
         parametersGroupBox->setTitle(QCoreApplication::translate("MainWindow", "Parametry do wy\305\233wietlenia", nullptr));
         analysisGroupBox->setTitle(QCoreApplication::translate("MainWindow", "Wyniki analizy", nullptr));
         minValueLabel->setText(QCoreApplication::translate("MainWindow", "Warto\305\233\304\207 minimalna:", nullptr));
+        minUnitLabel->setText(QCoreApplication::translate("MainWindow", "\316\274g/m\302\263", nullptr));
         minDateLabel->setText(QCoreApplication::translate("MainWindow", "Data:", nullptr));
         maxValueLabel->setText(QCoreApplication::translate("MainWindow", "Warto\305\233\304\207 maksymalna:", nullptr));
+        maxUnitLabel->setText(QCoreApplication::translate("MainWindow", "\316\274g/m\302\263", nullptr));
         maxDateLabel->setText(QCoreApplication::translate("MainWindow", "Data:", nullptr));
         avgValueLabel->setText(QCoreApplication::translate("MainWindow", "Warto\305\233\304\207 \305\233rednia:", nullptr));
+        avgUnitLabel->setText(QCoreApplication::translate("MainWindow", "\316\274g/m\302\263", nullptr));
         trendLabel->setText(QCoreApplication::translate("MainWindow", "Trend:", nullptr));
         chartGroupBox->setTitle(QCoreApplication::translate("MainWindow", "Dane pomiarowe", nullptr));
         mapGroupBox->setTitle(QCoreApplication::translate("MainWindow", "Mapa", nullptr));

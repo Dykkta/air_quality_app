@@ -30,3 +30,6 @@ nlohmann::json Database::loadFromFile(const std::string& filename) {
 
     return data;
 }
+bool Database::fileExists(const std::string& filename) {
+    return std::filesystem::exists(filename);
+}

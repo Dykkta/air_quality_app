@@ -2512,22 +2512,6 @@
         "stationName": "Gdańsk, ul. Lawendowe Wzgórze"
     },
     {
-        "addressStreet": "Ludowa",
-        "city": {
-            "commune": {
-                "communeName": "Lubań",
-                "districtName": "lubański",
-                "provinceName": "DOLNOŚLĄSKIE"
-            },
-            "id": 482,
-            "name": "Lubań"
-        },
-        "gegrLat": "51.120091",
-        "gegrLon": "15.298189",
-        "id": 20468,
-        "stationName": "Lubań, ul. Ludowa"
-    },
-    {
         "addressStreet": "ul. Piłsudskiego 51",
         "city": {
             "commune": {
@@ -2718,22 +2702,6 @@
         "gegrLon": "21.769494",
         "id": 20200,
         "stationName": "Kolbuszowa, ul. Jana Pawła II"
-    },
-    {
-        "addressStreet": null,
-        "city": {
-            "commune": {
-                "communeName": "Wola Mysłowska",
-                "districtName": "łukowski",
-                "provinceName": "LUBELSKIE"
-            },
-            "id": 301,
-            "name": "Jarczew"
-        },
-        "gegrLat": "51.814367",
-        "gegrLon": "21.972375",
-        "id": 248,
-        "stationName": "Jarczew, IMGW"
     },
     {
         "addressStreet": null,
@@ -3072,22 +3040,6 @@
         "stationName": "Myślenice"
     },
     {
-        "addressStreet": "ul. 1 Maja 6",
-        "city": {
-            "commune": {
-                "communeName": "Wysokie Mazowieckie",
-                "districtName": "wysokomazowiecki",
-                "provinceName": "PODLASKIE"
-            },
-            "id": 2912,
-            "name": "Wysokie Mazowieckie"
-        },
-        "gegrLat": "52.913878",
-        "gegrLon": "22.509275",
-        "id": 20140,
-        "stationName": "Wysokie Mazowieckie, ul. 1 Maja"
-    },
-    {
         "addressStreet": "Kampinoski Park Narodowy",
         "city": {
             "commune": {
@@ -3278,6 +3230,22 @@
         "gegrLon": "17.492990",
         "id": 16270,
         "stationName": "Bytów, ul. Miła"
+    },
+    {
+        "addressStreet": "T. Kościuszki",
+        "city": {
+            "commune": {
+                "communeName": "Nowa Sól",
+                "districtName": "nowosolski",
+                "provinceName": "LUBUSKIE"
+            },
+            "id": 605,
+            "name": "Nowa Sól"
+        },
+        "gegrLat": "51.809103",
+        "gegrLon": "15.708042",
+        "id": 16613,
+        "stationName": "Nowa Sól"
     },
     {
         "addressStreet": "al. Tysiąclecia",

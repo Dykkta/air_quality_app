@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 #include <QMainWindow>
 #include <QComboBox>
 #include <QPushButton>
@@ -9,15 +8,11 @@
 #include <QListWidget>
 #include <QLabel>
 #include <nlohmann/json.hpp>
+
 #include "DataAnalyzer.h"
 #include "ChartManager.h"
 
-// Dodane nagłówki dla kontenerów STL
 #include <map>
-#include <set>
-#include <string>
-#include <vector>
-#include <algorithm>
 
 struct GeoCoordinate {
     double latitude;
@@ -37,33 +32,33 @@ public:
     ~MainWindow();
 
 private slots:
-    void onFetchData();      // Funkcja do pobierania danych
     void fetchDataForAllSensors();
     void onAnalyzeData();    // Funkcja do analizy danych
     void initializeStations(); // Funkcja do inicjalizacji stacji
     void onStationChanged(int index); // Funkcja wywoływana po zmianie stacji
-    void onLoadHistoricalData(); // Funkcja do wczytywania danych historycznych
-    void onSaveData(); // Funkcja do zapisywania danych
     void onFindNearestStation(); // slot do wyszukiwania najbliższej stacji
     void refreshChart(); // Funkcja do odświeżania wykresu po zmianie zaznaczonych parametrów
 
 private:
     void updateStationsComboBox(const nlohmann::json& stations); // Aktualizowanie listy stacji
     void updateSensorList(const nlohmann::json& data);  // Aktualizowanie listy czujników
-
-    // Original displayMultiParamChart method is removed as it's now handled by ChartManager
-
     void initializeUI();
     void displayAnalysisResults(const std::map<std::string, double>& results, const QString& paramName);
     void displayStatistics(const DataAnalyzer& analyzer); // Wyświetlanie statystyk
     void processAndDisplayData(const nlohmann::json& data, const QString& paramName); // Przetwarzanie i wyświetlanie danych
-    void tryLoadOfflineStations(); // Próba wczytania stacji z lokalnej bazy
     GeoCoordinate getLocationFromIP(); // Pobieranie lokalizacji na podstawie IP
     void findNearestStationWithCoordinates(const GeoCoordinate &currentPosition, const nlohmann::json &stations);
 
+    // Metody pomocnicze dla obsługi trybu offline
+    void tryLoadOfflineStations();
+    bool hasSensorOfflineData(int sensorId);
+    void loadSensorsForStation(int stationId);
+    bool loadOfflineData();
+    bool hasOfflineData(const QString& fileName);
+
+    bool m_forceOfflineMode = false;
+    void loadOfflineSensorData(int stationId, const QString& stationFileName);
     Ui::MainWindow *ui;
 
-    // Replace existing data storage with ChartManager
-    ChartManager* m_chartManager;
+    ChartManager* m_chartManager; //chartmanager
 };
-#endif // MAINWINDOW_H

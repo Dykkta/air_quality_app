@@ -12,6 +12,7 @@ SOURCES += \
     chartmanager.cpp \
     dataanalyzer.cpp \
     database.cpp \
+    geocoordinate.cpp \
     httpclient.cpp \
     jsonhandler.cpp \
     main.cpp \
@@ -21,6 +22,7 @@ HEADERS += \
     chartmanager.h \
     dataanalyzer.h \
     database.h \
+    geocoordinate.h \
     httpclient.h \
     jsonhandler.h \
     mainwindow.h

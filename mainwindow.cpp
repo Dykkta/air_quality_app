@@ -1,12 +1,12 @@
 //mainwindow.cpp
-#include <iostream>
-#include <algorithm>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "HttpClient.h"
 #include "JsonHandler.h"
 #include "Database.h"
 #include "DataAnalyzer.h"
+
+
 #include <QMessageBox>
 #include <QPushButton>
 #include <QComboBox>
@@ -34,10 +34,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(findNearestButton, &QPushButton::clicked, this, &MainWindow::onFindNearestStation);
 
     // Połączenie sygnałów z slotami
-    //connect(ui->fetchButton, &QPushButton::clicked, this, &MainWindow::onFetchData);
     connect(ui->analyzeButton, &QPushButton::clicked, this, &MainWindow::onAnalyzeData);
-    connect(ui->actionLoadData, &QAction::triggered, this, &MainWindow::onLoadHistoricalData);
-    connect(ui->actionSaveData, &QAction::triggered, this, &MainWindow::onSaveData);
     connect(ui->actionRefreshStations, &QAction::triggered, this, &MainWindow::initializeStations);
 
     // Inicjalizacja dat w kontrolkach
@@ -77,7 +74,15 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+
 void MainWindow::initializeStations() {
+    if (!HttpClient::isNetworkAvailable()) {
+        QMessageBox::information(this, "Brak połączenia",
+                                 "Brak połączenia internetowego. Wczytuję dane offline.");
+        tryLoadOfflineStations();
+        return;
+    }
+
     try {
         HttpClient client;
         std::string url = "https://api.gios.gov.pl/pjp-api/rest/station/findAll";
@@ -99,30 +104,142 @@ void MainWindow::initializeStations() {
 
         ui->statusbar->showMessage("Pomyślnie pobrano listę stacji.", 5000);
     } catch (const std::exception& e) {
-        QMessageBox::warning(this, "Błąd połączenia",
-                             QString("Nie udało się pobrać danych ze serwera: %1\n\nCzy chcesz wczytać dane z lokalnej bazy?").arg(e.what()));
-
-        // Próba wczytania danych offline
+        QMessageBox::warning(this, "Błąd",
+                             QString("Błąd połączenia: %1. Wczytuję dane offline.").arg(e.what()));
         tryLoadOfflineStations();
     }
 }
-
+// zaimplementowane wyświetlanie tylko tych stacji dla których są dostępne dane pomiarowe offline
 void MainWindow::tryLoadOfflineStations() {
     try {
-        nlohmann::json stations = Database::loadFromFile("stations_data.json");
+        // Wczytaj listę wszystkich stacji z lokalnego pliku
+        nlohmann::json allStations = Database::loadFromFile("stations_data.json");
 
-        if (stations.empty() || !stations.is_array()) {
-            QMessageBox::critical(this, "Błąd", "Brak zapisanych danych o stacjach pomiarowych.");
+        if (allStations.empty() || !allStations.is_array()) {
+            throw std::runtime_error("Brak zapisanych danych o stacjach.");
+        }
+
+        // Utwórz nową listę stacji, która będzie zawierać tylko te z dostępnymi danymi
+        nlohmann::json availableStations = nlohmann::json::array();
+
+        // Sprawdź każdą stację, czy ma dane offline
+        for (const auto& station : allStations) {
+            // Sprawdź, czy stacja ma czujniki z danymi
+            bool hasOfflineData = false;
+
+            // Pobierz ID stacji
+            int stationId = station.at("id").get<int>();
+
+            // Wczytaj listę czujników dla tej stacji (jeśli plik istnieje)
+            QString sensorsFileName = QString("station_%1_sensors.json").arg(stationId);
+
+            // Sprawdź, czy plik z czujnikami istnieje
+            if (QFile::exists(sensorsFileName)) {
+                nlohmann::json sensors = Database::loadFromFile(sensorsFileName.toStdString());
+
+                // Sprawdź, czy którykolwiek z czujników ma dane offline
+                if (sensors.is_array()) {
+                    for (const auto& sensor : sensors) {
+                        int sensorId = sensor.at("id").get<int>();
+                        QString dataFileName = QString("sensor_%1_data.json").arg(sensorId);
+
+                        // Jeśli istnieje plik z danymi dla tego czujnika
+                        if (QFile::exists(dataFileName)) {
+                            hasOfflineData = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Dodaj stację do listy dostępnych, jeśli ma dane offline
+            if (hasOfflineData) {
+                availableStations.push_back(station);
+            }
+        }
+
+        // Jeśli nie ma dostępnych stacji z danymi offline
+        if (availableStations.empty()) {
+            QMessageBox::warning(this, "Brak danych",
+                                 "Nie znaleziono stacji z danymi offline.");
             return;
         }
 
-        updateStationsComboBox(stations);
-        ui->statusbar->showMessage("Wczytano dane offline o stacjach pomiarowych.", 5000);
+        // Aktualizuj interfejs użytkownika tylko dostępnymi stacjami
+        updateStationsComboBox(availableStations);
+        ui->statusbar->showMessage(QString("Wczytano %1 stacji z danymi offline.").arg(availableStations.size()), 5000);
+
     } catch (const std::exception& e) {
         QMessageBox::critical(this, "Błąd",
-                              QString("Nie udało się wczytać danych offline: %1").arg(e.what()));
+                              QString("Błąd podczas wczytywania danych offline: %1").arg(e.what()));
     }
 }
+
+// Pomocnicza funkcja do sprawdzania, czy istnieją dane dla danego czujnika
+bool MainWindow::hasSensorOfflineData(int sensorId) {
+    QString fileName = QString("sensor_%1_data.json").arg(sensorId);
+    QFile file(fileName);
+
+    if (file.exists()) {
+        // Spróbuj otworzyć i sprawdzić zawartość
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QByteArray data = file.readAll();
+            file.close();
+
+            // Sprawdź, czy dane są poprawnym JSON i nie są puste
+            try {
+                JsonHandler jsonHandler;
+                nlohmann::json jsonData = jsonHandler.parseJson(data.toStdString());
+
+                // Sprawdź, czy dane zawierają odpowiednie wartości
+                if (jsonData.contains("values") && jsonData["values"].is_array() && !jsonData["values"].empty()) {
+                    return true;
+                }
+            } catch (...) {
+                // Jeśli wystąpił błąd parsowania, to dane są uszkodzone
+                return false;
+            }
+        }
+    }
+
+    return false;
+}
+
+// Funkcja do wczytywania i wyświetlania czujników dla wybranej stacji
+void MainWindow::loadSensorsForStation(int stationId) {
+    ui->sensorComboBox->clear();
+
+    QString fileName = QString("station_%1_sensors.json").arg(stationId);
+
+    if (!QFile::exists(fileName)) {
+        return;  // Brak danych o czujnikach dla tej stacji
+    }
+
+    try {
+        nlohmann::json sensors = Database::loadFromFile(fileName.toStdString());
+
+        if (!sensors.is_array()) {
+            return;
+        }
+
+        bool isOffline = !HttpClient::isNetworkAvailable();
+
+        for (const auto& sensor : sensors) {
+            int sensorId = sensor.at("id").get<int>();
+            std::string paramName = sensor.at("param").at("paramName").get<std::string>();
+
+            // W trybie offline dodaj tylko czujniki z dostępnymi danymi
+            if (!isOffline || hasSensorOfflineData(sensorId)) {
+                ui->sensorComboBox->addItem(QString::fromStdString(paramName), sensorId);
+            }
+        }
+    } catch (const std::exception& e) {
+        QMessageBox::warning(this, "Błąd",
+                             QString("Nie udało się wczytać danych czujników: %1").arg(e.what()));
+    }
+}
+
+
 
 void MainWindow::updateStationsComboBox(const nlohmann::json& stations) {
     ui->stationComboBox->clear();
@@ -156,6 +273,9 @@ void MainWindow::onStationChanged(int index) {
     // Pobierz ID stacji z danych elementu comboBox
     int stationId = ui->stationComboBox->itemData(index).toInt();
 
+    // Wczytaj dane czujników dla wybranej stacji
+    loadSensorsForStation(stationId);
+
     //reset listy parametrów
     ui->paramCheckList->clear();
 
@@ -176,13 +296,19 @@ void MainWindow::onStationChanged(int index) {
     // Generuj nazwę pliku dla tej stacji
     QString stationFileName = QString("station_%1_sensors.json").arg(stationId);
 
+    if (!HttpClient::isNetworkAvailable()) {
+        // Wczytaj dane offline
+        QString fileName = QString("station_%1_sensors.json").arg(stationId);
+        nlohmann::json offlineData = Database::loadFromFile(fileName.toStdString());
+        updateSensorList(offlineData);
+        fetchDataForAllSensors();
+        return;
+    }
+
     try {
         HttpClient client;
         std::string url = "https://api.gios.gov.pl/pjp-api/rest/station/sensors/" + std::to_string(stationId);
         std::string jsonData = client.getRequest(url);
-
-        // Wydrukuj odpowiedź JSON do debugowania
-        std::cout << "Odpowiedź API (sensors): " << jsonData << std::endl;
 
         // Parsowanie JSON
         JsonHandler jsonHandler;
@@ -225,7 +351,9 @@ void MainWindow::onStationChanged(int index) {
 }
 
 void MainWindow::fetchDataForAllSensors() {
-    // Sprawdź czy lista czujników zawiera elementy
+    bool isOnline = HttpClient::isNetworkAvailable();
+
+    //Sprawdź czy lista czujników zawiera elementy
     if (ui->sensorComboBox->count() <= 0) {
         return;
     }
@@ -236,42 +364,47 @@ void MainWindow::fetchDataForAllSensors() {
         QString paramName = ui->sensorComboBox->itemText(i);
 
         try {
-            HttpClient client;
-            std::string url = "https://api.gios.gov.pl/pjp-api/rest/data/getData/" + std::to_string(sensorId);
-            std::string jsonData = client.getRequest(url);
+            if(isOnline){
+                HttpClient client;
+                std::string url = "https://api.gios.gov.pl/pjp-api/rest/data/getData/" + std::to_string(sensorId);
+                std::string jsonData = client.getRequest(url);
 
-            // Parsowanie JSON
-            JsonHandler jsonHandler;
-            nlohmann::json data = jsonHandler.parseJson(jsonData);
+                // Parsowanie JSON
+                JsonHandler jsonHandler;
+                nlohmann::json data = jsonHandler.parseJson(jsonData);
 
-            if (data.empty() || !data.is_object()) {
-                throw std::runtime_error("Nie udało się pobrać danych z API lub dane są w nieprawidłowym formacie.");
-            }
+                if (data.empty() || !data.is_object()) {
+                    throw std::runtime_error("Nie udało się pobrać danych z API lub dane są w nieprawidłowym formacie.");
+                }
 
-            // Zapis do lokalnej bazy danych z nazwą zawierającą ID czujnika
-            QString fileName = QString("sensor_%1_data.json").arg(sensorId);
-            Database::saveToFile(fileName.toStdString(), data);
+                // Zapis do lokalnej bazy danych z nazwą zawierającą ID czujnika
+                QString fileName = QString("sensor_%1_data.json").arg(sensorId);
+                Database::saveToFile(fileName.toStdString(), data);
 
-            // Przeprowadzenie analizy danych i dodanie do ChartManager
-            DataAnalyzer analyzer;
-            analyzer.analyzeData(data);
-            const auto& results = analyzer.getResults();
+                // Przeprowadzenie analizy danych i dodanie do ChartManager
+                DataAnalyzer analyzer;
+                analyzer.analyzeData(data);
+                const auto& results = analyzer.getResults();
 
-            // Dodaj dane do ChartManager, aby były dostępne dla wykresów
-            m_chartManager->addParameterData(paramName.toStdString(), results);
+                // Dodaj dane do ChartManager, aby były dostępne dla wykresów
+                m_chartManager->addParameterData(paramName.toStdString(), results);
 
-            // Aktualizuj listę dostępnych parametrów w UI
-            m_chartManager->updateParamCheckList(ui->paramCheckList, paramName);
+                // Aktualizuj listę dostępnych parametrów w UI
+                m_chartManager->updateParamCheckList(ui->paramCheckList, paramName);
 
-            // Status dla pierwszego parametru (opcjonalnie)
-            if (i == 0) {
-                ui->statusbar->showMessage(QString("Pobrano dane dla parametrów stacji %1").arg(ui->stationComboBox->currentText()), 5000);
+                // Status dla pierwszego parametru (opcjonalnie)
+                if (i == 0) {
+                    ui->statusbar->showMessage(QString("Pobrano dane dla parametrów stacji %1").arg(ui->stationComboBox->currentText()), 5000);
+                }
+            } else{
+                throw std::runtime_error("Offline mode");
             }
 
         } catch (const std::exception& e) {
-            // W przypadku błędu spróbuj wczytać dane z lokalnej bazy
+            // Wczytaj dane z pliku
             QString fileName = QString("sensor_%1_data.json").arg(sensorId);
             nlohmann::json offlineData = Database::loadFromFile(fileName.toStdString());
+            // ... przetwarzanie danych offline ..
 
             if (!offlineData.empty() && offlineData.is_object()) {
                 // Przeprowadzenie analizy danych i dodanie do ChartManager
@@ -299,63 +432,6 @@ void MainWindow::fetchDataForAllSensors() {
     }
 }
 
-void MainWindow::onFetchData() {
-    int currentIndex = ui->stationComboBox->currentIndex();
-    if (currentIndex < 0) {
-        QMessageBox::warning(this, "Błąd", "Nie wybrano stacji.");
-        return;
-    }
-
-    // Pobierz ID stacji z danych elementu comboBox
-    int stationId = ui->stationComboBox->itemData(currentIndex).toInt();
-    QString stationName = ui->stationComboBox->currentText();
-
-    try {
-        HttpClient client;
-        std::string url = "https://api.gios.gov.pl/pjp-api/rest/station/sensors/" + std::to_string(stationId);
-        std::string jsonData = client.getRequest(url);
-
-        // Wydrukuj odpowiedź JSON do debugowania
-        std::cout << "Odpowiedź API (sensors): " << jsonData << std::endl;
-
-        // Parsowanie JSON
-        JsonHandler jsonHandler;
-        nlohmann::json data = jsonHandler.parseJson(jsonData);
-
-        if (data.empty()) {
-            throw std::runtime_error("Nie udało się pobrać danych z API.");
-        }
-
-        // Sprawdź, czy dane są tablicą
-        if (!data.is_array()) {
-            throw std::runtime_error("Otrzymane dane nie są w oczekiwanym formacie.");
-        }
-
-        // Zapis do lokalnej bazy danych z nazwą zawierającą ID stacji
-        QString fileName = QString("station_%1_sensors.json").arg(stationId);
-        Database::saveToFile(fileName.toStdString(), data);
-
-        // Aktualizacja UI (wybór czujników)
-        updateSensorList(data);
-
-        ui->statusbar->showMessage(QString("Pomyślnie pobrano dane o czujnikach dla stacji %1").arg(stationName), 5000);
-
-    } catch (const std::exception& e) {
-        QMessageBox::warning(this, "Błąd połączenia",
-                             QString("Nie udało się pobrać danych o czujnikach: %1\n\nCzy chcesz wczytać dane z lokalnej bazy?").arg(e.what()));
-
-        // Próba wczytania danych offline
-        QString fileName = QString("station_%1_sensors.json").arg(stationId);
-        nlohmann::json offlineData = Database::loadFromFile(fileName.toStdString());
-
-        if (!offlineData.empty() && offlineData.is_array()) {
-            updateSensorList(offlineData);
-            ui->statusbar->showMessage(QString("Wczytano offline dane o czujnikach dla stacji %1").arg(stationName), 5000);
-        } else {
-            QMessageBox::critical(this, "Błąd", "Brak zapisanych danych o czujnikach dla wybranej stacji.");
-        }
-    }
-}
 
 void MainWindow::onAnalyzeData() {
     int stationIndex = ui->stationComboBox->currentIndex();
@@ -375,13 +451,19 @@ void MainWindow::onAnalyzeData() {
     int sensorId = ui->sensorComboBox->itemData(sensorIndex).toInt();
     QString paramName = ui->sensorComboBox->currentText();
 
+
+    if (!HttpClient::isNetworkAvailable()) {
+        // Wczytaj dane z lokalnego pliku
+        QString fileName = QString("sensor_%1_data.json").arg(sensorId);
+        nlohmann::json offlineData = Database::loadFromFile(fileName.toStdString());
+        processAndDisplayData(offlineData, paramName);
+        return;
+    }
+
     try {
         HttpClient client;
         std::string url = "https://api.gios.gov.pl/pjp-api/rest/data/getData/" + std::to_string(sensorId);
         std::string jsonData = client.getRequest(url);
-
-        // Wydrukuj odpowiedź JSON do debugowania
-        std::cout << "Odpowiedź API (data): " << jsonData << std::endl;
 
         // Parsowanie JSON
         JsonHandler jsonHandler;
@@ -494,7 +576,7 @@ void MainWindow::displayStatistics(const DataAnalyzer& analyzer) {
 
     // Calculate and display average if we have data
     if (count > 0) {
-        ui->avgValueEdit->setText(QString::number(sum / count));
+        ui->avgValueEdit->setText(QString::number(sum / count, 'f', 1));
     } else {
         ui->avgValueEdit->setText("Brak danych");
     }
@@ -548,83 +630,6 @@ void MainWindow::displayStatistics(const DataAnalyzer& analyzer) {
         }
     } else {
         ui->trendEdit->setText("Brak danych");
-    }
-}
-
-void MainWindow::onLoadHistoricalData() {
-    QString fileName = QFileDialog::getOpenFileName(this, "Wczytaj dane historyczne", "", "Pliki JSON (*.json)");
-    if (fileName.isEmpty()) {
-        return;
-    }
-
-    try {
-        nlohmann::json data = Database::loadFromFile(fileName.toStdString());
-
-        // Sprawdzamy rodzaj danych w pliku
-        if (data.is_array() && !data.empty() && data[0].contains("stationName")) {
-            // To są dane o stacjach
-            updateStationsComboBox(data);
-            ui->statusbar->showMessage("Wczytano historyczne dane o stacjach pomiarowych.", 5000);
-        } else if (data.is_array() && !data.empty() && data[0].contains("param")) {
-            // To są dane o czujnikach
-            updateSensorList(data);
-            ui->statusbar->showMessage("Wczytano historyczne dane o czujnikach.", 5000);
-        } else if (data.is_object() && data.contains("values")) {
-            // To są dane pomiarowe
-            bool ok;
-            QString paramName = QInputDialog::getText(this, "Nazwa parametru",
-                                                      "Podaj nazwę parametru dla wykresu:", QLineEdit::Normal, "", &ok);
-            if (ok && !paramName.isEmpty()) {
-                processAndDisplayData(data, paramName);
-                ui->statusbar->showMessage("Wczytano historyczne dane pomiarowe.", 5000);
-            }
-        } else {
-            QMessageBox::warning(this, "Błąd", "Nierozpoznany format danych.");
-        }
-    } catch (const std::exception& e) {
-        QMessageBox::critical(this, "Błąd",
-                              QString("Nie udało się wczytać danych z pliku: %1").arg(e.what()));
-    }
-}
-
-void MainWindow::onSaveData() {
-    QString fileName = QFileDialog::getSaveFileName(this, "Zapisz dane", "", "Pliki JSON (*.json)");
-    if (fileName.isEmpty()) {
-        return;
-    }
-
-    int stationIndex = ui->stationComboBox->currentIndex();
-    int sensorIndex = ui->sensorComboBox->currentIndex();
-
-    if (stationIndex < 0) {
-        QMessageBox::warning(this, "Błąd", "Nie wybrano stacji.");
-        return;
-    }
-
-    if (sensorIndex < 0) {
-        // Zapisz dane o stacji
-        int stationId = ui->stationComboBox->itemData(stationIndex).toInt();
-        QString stationFileName = QString("station_%1_sensors.json").arg(stationId);
-        nlohmann::json stationData = Database::loadFromFile(stationFileName.toStdString());
-
-        if (!stationData.empty()) {
-            Database::saveToFile(fileName.toStdString(), stationData);
-            ui->statusbar->showMessage(QString("Zapisano dane o czujnikach dla stacji %1").arg(ui->stationComboBox->currentText()), 5000);
-        } else {
-            QMessageBox::warning(this, "Błąd", "Brak danych do zapisania.");
-        }
-    } else {
-        // Zapisz dane pomiarowe
-        int sensorId = ui->sensorComboBox->itemData(sensorIndex).toInt();
-        QString dataFileName = QString("sensor_%1_data.json").arg(sensorId);
-        nlohmann::json sensorData = Database::loadFromFile(dataFileName.toStdString());
-
-        if (!sensorData.empty()) {
-            Database::saveToFile(fileName.toStdString(), sensorData);
-            ui->statusbar->showMessage(QString("Zapisano dane pomiarowe dla %1").arg(ui->sensorComboBox->currentText()), 5000);
-        } else {
-            QMessageBox::warning(this, "Błąd", "Brak danych do zapisania.");
-        }
     }
 }
 
@@ -699,7 +704,14 @@ GeoCoordinate MainWindow::getLocationFromIP() {
 
     return result;
 }
+
 void MainWindow::onFindNearestStation() {
+
+    if (!HttpClient::isNetworkAvailable()) {
+        QMessageBox::information(this, "Offline",
+                                 "Wyszukiwanie stacji w trybie offline jest niemożliwe. \nSpróbuj wybrać stację ręcznie.");
+        return;
+    }
     try {
         // First try to load station data
         nlohmann::json stations;

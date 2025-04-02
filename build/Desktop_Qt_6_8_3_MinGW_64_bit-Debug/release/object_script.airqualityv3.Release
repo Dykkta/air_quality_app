@@ -1,0 +1,10 @@
+release/chartmanager.o
+release/dataanalyzer.o
+release/database.o
+release/geocoordinate.o
+release/httpclient.o
+release/jsonhandler.o
+release/main.o
+release/mainwindow.o
+release/moc_chartmanager.o
+release/moc_mainwindow.o

@@ -7,7 +7,6 @@
 *****************************************************************************/
 
 #include "../../../chartmanager.h"
-#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -62,7 +61,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN12ChartManagerE[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   20,    2, 0x0a,    1 /* Public */,
+       1,    1,   20,    2, 0x08,    1 /* Private */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,

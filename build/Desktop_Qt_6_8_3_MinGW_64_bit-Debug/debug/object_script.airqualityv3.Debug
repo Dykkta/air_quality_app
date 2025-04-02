@@ -1,0 +1,10 @@
+debug/chartmanager.o
+debug/dataanalyzer.o
+debug/database.o
+debug/geocoordinate.o
+debug/httpclient.o
+debug/jsonhandler.o
+debug/main.o
+debug/mainwindow.o
+debug/moc_chartmanager.o
+debug/moc_mainwindow.o
