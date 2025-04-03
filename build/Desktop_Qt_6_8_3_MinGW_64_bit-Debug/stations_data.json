@@ -48,6 +48,22 @@
         "stationName": "Kłodzko, ul. Szkolna"
     },
     {
+        "addressStreet": "al. Rzeczypospolitej 10/12",
+        "city": {
+            "commune": {
+                "communeName": "Legnica",
+                "districtName": "Legnica",
+                "provinceName": "DOLNOŚLĄSKIE"
+            },
+            "id": 453,
+            "name": "Legnica"
+        },
+        "gegrLat": "51.204503",
+        "gegrLon": "16.180513",
+        "id": 52,
+        "stationName": "Legnica, al. Rzeczypospolitej"
+    },
+    {
         "addressStreet": "ul. Bartnicza",
         "city": {
             "commune": {
@@ -176,6 +192,22 @@
         "stationName": "Toruń, ul. Dziewulskiego"
     },
     {
+        "addressStreet": "ul. Przy Kaszowniku",
+        "city": {
+            "commune": {
+                "communeName": "Toruń",
+                "districtName": "Toruń",
+                "provinceName": "KUJAWSKO-POMORSKIE"
+            },
+            "id": 966,
+            "name": "Toruń"
+        },
+        "gegrLat": "53.017628",
+        "gegrLon": "18.612808",
+        "id": 208,
+        "stationName": "Toruń, ul. Przy Kaszowniku"
+    },
+    {
         "addressStreet": "Bory Tucholskie",
         "city": {
             "commune": {
@@ -286,6 +318,22 @@
         "gegrLon": "19.517556",
         "id": 319,
         "stationName": "Parzniewice, Ujęcie Wody"
+    },
+    {
+        "addressStreet": "ul. Krakowskie Przedmieście 13",
+        "city": {
+            "commune": {
+                "communeName": "Piotrków Trybunalski",
+                "districtName": "Piotrków Trybunalski",
+                "provinceName": "ŁÓDZKIE"
+            },
+            "id": 703,
+            "name": "Piotrków Trybunalski"
+        },
+        "gegrLat": "51.404406",
+        "gegrLon": "19.696956",
+        "id": 322,
+        "stationName": "Piotrków Trybunalski, ul. Krakowskie Przedmieście"
     },
     {
         "addressStreet": "ul. Kosynierów Gdyńskich",
@@ -544,6 +592,38 @@
         "stationName": "Kędzierzyn-Koźle, ul. Śmiałego"
     },
     {
+        "addressStreet": "ul. Kniaziewicza 30",
+        "city": {
+            "commune": {
+                "communeName": "Słupsk",
+                "districtName": "Słupsk",
+                "provinceName": "POMORSKIE"
+            },
+            "id": 846,
+            "name": "Słupsk"
+        },
+        "gegrLat": "54.463611",
+        "gegrLon": "17.046722",
+        "id": 725,
+        "stationName": "Słupsk, ul. Kniaziewicza"
+    },
+    {
+        "addressStreet": "ul. Powstańców Warszawskich",
+        "city": {
+            "commune": {
+                "communeName": "Gdańsk",
+                "districtName": "Gdańsk",
+                "provinceName": "POMORSKIE"
+            },
+            "id": 218,
+            "name": "Gdańsk"
+        },
+        "gegrLat": "54.353196",
+        "gegrLon": "18.635267",
+        "id": 729,
+        "stationName": "Gdańsk, ul. Powstańców Warszawskich"
+    },
+    {
         "addressStreet": "ul. Wyzwolenia",
         "city": {
             "commune": {
@@ -576,6 +656,22 @@
         "stationName": "Gdańsk, ul. Leczkowa"
     },
     {
+        "addressStreet": "ul. Targowa",
+        "city": {
+            "commune": {
+                "communeName": "Kościerzyna",
+                "districtName": "kościerski",
+                "provinceName": "POMORSKIE"
+            },
+            "id": 406,
+            "name": "Kościerzyna"
+        },
+        "gegrLat": "54.120694",
+        "gegrLon": "17.975861",
+        "id": 740,
+        "stationName": "Kościerzyna, ul. Targowa"
+    },
+    {
         "addressStreet": null,
         "city": {
             "commune": {
@@ -590,6 +686,22 @@
         "gegrLon": "18.182972",
         "id": 743,
         "stationName": "Liniewko Kościerskie"
+    },
+    {
+        "addressStreet": "ul. Armii Krajowej 2",
+        "city": {
+            "commune": {
+                "communeName": "Częstochowa",
+                "districtName": "Częstochowa",
+                "provinceName": "ŚLĄSKIE"
+            },
+            "id": 146,
+            "name": "Częstochowa"
+        },
+        "gegrLat": "50.817217",
+        "gegrLon": "19.118997",
+        "id": 798,
+        "stationName": "Częstochowa, ul. AK/Jana Pawła II"
     },
     {
         "addressStreet": "ul. Baczyńskiego 2",
@@ -672,6 +784,22 @@
         "stationName": "Ustroń, ul. Sanatoryjna"
     },
     {
+        "addressStreet": "ul. Gałczyńskiego 1",
+        "city": {
+            "commune": {
+                "communeName": "Wodzisław Śląski",
+                "districtName": "wodzisławski",
+                "provinceName": "ŚLĄSKIE"
+            },
+            "id": 1050,
+            "name": "Wodzisław Śląski"
+        },
+        "gegrLat": "50.007629",
+        "gegrLon": "18.455548",
+        "id": 845,
+        "stationName": "Wodzisław Śląski, ul. Gałczyńskiego"
+    },
+    {
         "addressStreet": "Leśniczówka Kamienna Góra",
         "city": {
             "commune": {
@@ -736,6 +864,38 @@
         "stationName": "Olsztyn, ul. Puszkina"
     },
     {
+        "addressStreet": "ul. Wyszyńskiego 3",
+        "city": {
+            "commune": {
+                "communeName": "Konin",
+                "districtName": "Konin",
+                "provinceName": "WIELKOPOLSKIE"
+            },
+            "id": 393,
+            "name": "Konin"
+        },
+        "gegrLat": "52.225650",
+        "gegrLon": "18.268927",
+        "id": 902,
+        "stationName": "Konin, ul. Wyszyńskiego"
+    },
+    {
+        "addressStreet": "ul. Dąbrowskiego 169",
+        "city": {
+            "commune": {
+                "communeName": "Poznań",
+                "districtName": "Poznań",
+                "provinceName": "WIELKOPOLSKIE"
+            },
+            "id": 729,
+            "name": "Poznań"
+        },
+        "gegrLat": "52.420319",
+        "gegrLon": "16.877289",
+        "id": 944,
+        "stationName": "Poznań, ul. Dąbrowskiego"
+    },
+    {
         "addressStreet": "ul. Andrzejewskiego 23",
         "city": {
             "commune": {
@@ -752,6 +912,22 @@
         "stationName": "Szczecin, ul. Andrzejewskiego"
     },
     {
+        "addressStreet": "ul. Piłsudskiego 1",
+        "city": {
+            "commune": {
+                "communeName": "Szczecin",
+                "districtName": "Szczecin",
+                "provinceName": "ZACHODNIOPOMORSKIE"
+            },
+            "id": 917,
+            "name": "Szczecin"
+        },
+        "gegrLat": "53.432169",
+        "gegrLon": "14.553900",
+        "id": 987,
+        "stationName": "Szczecin, ul. Piłsudskiego"
+    },
+    {
         "addressStreet": "ul. Szymanowskiego 8",
         "city": {
             "commune": {
@@ -766,6 +942,38 @@
         "gegrLon": "15.127808",
         "id": 382,
         "stationName": "Żary, ul. Szymanowskiego "
+    },
+    {
+        "addressStreet": "ul. Ogińskiego 6",
+        "city": {
+            "commune": {
+                "communeName": "Jelenia Góra",
+                "districtName": "Jelenia Góra",
+                "provinceName": "DOLNOŚLĄSKIE"
+            },
+            "id": 319,
+            "name": "Jelenia Góra"
+        },
+        "gegrLat": "50.913433",
+        "gegrLon": "15.765608",
+        "id": 9153,
+        "stationName": "Jelenia Góra, ul. Ogińskiego"
+    },
+    {
+        "addressStreet": "ul. Piastów 6",
+        "city": {
+            "commune": {
+                "communeName": "Zdzieszowice",
+                "districtName": "krapkowicki",
+                "provinceName": "OPOLSKIE"
+            },
+            "id": 1097,
+            "name": "Zdzieszowice"
+        },
+        "gegrLat": "50.423533",
+        "gegrLon": "18.120739",
+        "id": 600,
+        "stationName": "Zdzieszowice, ul. Piastów"
     },
     {
         "addressStreet": "ul. Roosevelta 2",
@@ -880,6 +1088,22 @@
         "stationName": "Borówiec, ul. Drapałka"
     },
     {
+        "addressStreet": "Złoty Róg",
+        "city": {
+            "commune": {
+                "communeName": "Kraków",
+                "districtName": "Kraków",
+                "provinceName": "MAŁOPOLSKIE"
+            },
+            "id": 415,
+            "name": "Kraków"
+        },
+        "gegrLat": "50.081197",
+        "gegrLon": "19.895358",
+        "id": 10123,
+        "stationName": "Kraków, ul. Złoty Róg"
+    },
+    {
         "addressStreet": "Biernackiego",
         "city": {
             "commune": {
@@ -944,6 +1168,54 @@
         "stationName": "Koziegłowy, os.Leśne"
     },
     {
+        "addressStreet": "ul. Okrzei",
+        "city": {
+            "commune": {
+                "communeName": "Włocławek",
+                "districtName": "Włocławek",
+                "provinceName": "KUJAWSKO-POMORSKIE"
+            },
+            "id": 1046,
+            "name": "Włocławek"
+        },
+        "gegrLat": "52.658467",
+        "gegrLon": "19.059314",
+        "id": 225,
+        "stationName": "Włocławek, ul. Okrzei"
+    },
+    {
+        "addressStreet": "ul. Słowackiego",
+        "city": {
+            "commune": {
+                "communeName": "Olesno",
+                "districtName": "oleski",
+                "provinceName": "OPOLSKIE"
+            },
+            "id": 636,
+            "name": "Olesno"
+        },
+        "gegrLat": "50.876983",
+        "gegrLon": "18.416878",
+        "id": 584,
+        "stationName": "Olesno, ul. Słowackiego"
+    },
+    {
+        "addressStreet": "ul. 42 Pułku Piechoty 117",
+        "city": {
+            "commune": {
+                "communeName": "Białystok",
+                "districtName": "Białystok",
+                "provinceName": "PODLASKIE"
+            },
+            "id": 35,
+            "name": "Białystok"
+        },
+        "gegrLat": "53.144122",
+        "gegrLon": "23.216322",
+        "id": 11174,
+        "stationName": "Białystok, ul. 42 Pułku Piechoty"
+    },
+    {
         "addressStreet": "ul. Targowa 3",
         "city": {
             "commune": {
@@ -990,6 +1262,22 @@
         "gegrLon": "20.906073",
         "id": 10955,
         "stationName": "Warszawa, ul. Chrościckiego"
+    },
+    {
+        "addressStreet": "os. Armii Krajowej",
+        "city": {
+            "commune": {
+                "communeName": "Opole",
+                "districtName": "Opole",
+                "provinceName": "OPOLSKIE"
+            },
+            "id": 645,
+            "name": "Opole"
+        },
+        "gegrLat": "50.676856",
+        "gegrLon": "17.950278",
+        "id": 590,
+        "stationName": "Opole, os. Armii Krajowej"
     },
     {
         "addressStreet": "ul. Chopina 42",
@@ -1072,20 +1360,20 @@
         "stationName": "Racibórz, Wojska Polskiego"
     },
     {
-        "addressStreet": "ul. Przy Kaszowniku",
+        "addressStreet": "J. Bema",
         "city": {
             "commune": {
-                "communeName": "Toruń",
-                "districtName": "Toruń",
-                "provinceName": "KUJAWSKO-POMORSKIE"
+                "communeName": "Oświęcim",
+                "districtName": "oświęcimski",
+                "provinceName": "MAŁOPOLSKIE"
             },
-            "id": 966,
-            "name": "Toruń"
+            "id": 660,
+            "name": "Oświęcim"
         },
-        "gegrLat": "53.017628",
-        "gegrLon": "18.612808",
-        "id": 208,
-        "stationName": "Toruń, ul. Przy Kaszowniku"
+        "gegrLat": "50.033083",
+        "gegrLon": "19.245275",
+        "id": 10814,
+        "stationName": "Oświęcim, ul. J. Bema"
     },
     {
         "addressStreet": "Al. Józefa Piłsudskiego 34",
@@ -1120,20 +1408,20 @@
         "stationName": "Augustów, Uzdrowisko"
     },
     {
-        "addressStreet": "ul. Słowackiego",
+        "addressStreet": "ul. Świętego Wawrzyńca",
         "city": {
             "commune": {
-                "communeName": "Olesno",
-                "districtName": "oleski",
-                "provinceName": "OPOLSKIE"
+                "communeName": "Nakło nad Notecią",
+                "districtName": "nakielski",
+                "provinceName": "KUJAWSKO-POMORSKIE"
             },
-            "id": 636,
-            "name": "Olesno"
+            "id": 587,
+            "name": "Nakło nad Notecią"
         },
-        "gegrLat": "50.876983",
-        "gegrLon": "18.416878",
-        "id": 584,
-        "stationName": "Olesno, ul. Słowackiego"
+        "gegrLat": "53.136681",
+        "gegrLon": "17.591539",
+        "id": 9798,
+        "stationName": "Nakło nad Notecią, ul. Św. Wawrzyńca"
     },
     {
         "addressStreet": "ul. Koszyka 21",
@@ -1232,20 +1520,36 @@
         "stationName": "Brzeg, ul. Poprzeczna"
     },
     {
-        "addressStreet": "Diabla Góra",
+        "addressStreet": "ul. Piłsudskiego 27",
         "city": {
             "commune": {
-                "communeName": "Kruklanki",
-                "districtName": "giżycki",
+                "communeName": "Ełk",
+                "districtName": "ełcki",
                 "provinceName": "WARMIŃSKO-MAZURSKIE"
             },
-            "id": 167,
-            "name": "Diabla Góra"
+            "id": 203,
+            "name": "Ełk"
         },
-        "gegrLat": "54.124819",
-        "gegrLon": "22.038056",
-        "id": 882,
-        "stationName": "Diabla Góra, Puszcza Borecka"
+        "gegrLat": "53.828389",
+        "gegrLon": "22.348338",
+        "id": 10005,
+        "stationName": "Ełk, ul. Piłsudskiego"
+    },
+    {
+        "addressStreet": "ul. Kamieńskiego",
+        "city": {
+            "commune": {
+                "communeName": "Kraków",
+                "districtName": "Kraków",
+                "provinceName": "MAŁOPOLSKIE"
+            },
+            "id": 415,
+            "name": "Kraków"
+        },
+        "gegrLat": "50.024605",
+        "gegrLon": "19.978460",
+        "id": 16896,
+        "stationName": "Kraków, ul. Kamieńskiego"
     },
     {
         "addressStreet": "Jerzego Dudy-Gracza",
@@ -1262,22 +1566,6 @@
         "gegrLon": "19.036217",
         "id": 17318,
         "stationName": "Katowice, ul. Dudy-Gracza"
-    },
-    {
-        "addressStreet": "ul. Świętego Wawrzyńca",
-        "city": {
-            "commune": {
-                "communeName": "Nakło nad Notecią",
-                "districtName": "nakielski",
-                "provinceName": "KUJAWSKO-POMORSKIE"
-            },
-            "id": 587,
-            "name": "Nakło nad Notecią"
-        },
-        "gegrLat": "53.136681",
-        "gegrLon": "17.591539",
-        "id": 9798,
-        "stationName": "Nakło nad Notecią, ul. Św. Wawrzyńca"
     },
     {
         "addressStreet": "ul. M. Skłodowskiej-Curie 34",
@@ -1310,22 +1598,6 @@
         "gegrLon": "20.044386",
         "id": 20367,
         "stationName": "Kraków, ul. Półłanki"
-    },
-    {
-        "addressStreet": "al. Rzeczypospolitej 10/12",
-        "city": {
-            "commune": {
-                "communeName": "Legnica",
-                "districtName": "Legnica",
-                "provinceName": "DOLNOŚLĄSKIE"
-            },
-            "id": 453,
-            "name": "Legnica"
-        },
-        "gegrLat": "51.204503",
-        "gegrLon": "16.180513",
-        "id": 52,
-        "stationName": "Legnica, al. Rzeczypospolitej"
     },
     {
         "addressStreet": "ul. Żołnierzy AK 9",
@@ -1376,20 +1648,20 @@
         "stationName": "Wałbrzych, ul. Wysockiego"
     },
     {
-        "addressStreet": "ul. Okrzei",
+        "addressStreet": "ul. Wały Gen. Sikorskiego 12",
         "city": {
             "commune": {
-                "communeName": "Włocławek",
-                "districtName": "Włocławek",
+                "communeName": "Toruń",
+                "districtName": "Toruń",
                 "provinceName": "KUJAWSKO-POMORSKIE"
             },
-            "id": 1046,
-            "name": "Włocławek"
+            "id": 966,
+            "name": "Toruń"
         },
-        "gegrLat": "52.658467",
-        "gegrLon": "19.059314",
-        "id": 225,
-        "stationName": "Włocławek, ul. Okrzei"
+        "gegrLat": "53.012475",
+        "gegrLon": "18.605681",
+        "id": 145,
+        "stationName": "Toruń, ul. Wały gen. Sikorskiego"
     },
     {
         "addressStreet": "ul. Hrubieszowska 69A",
@@ -1406,22 +1678,6 @@
         "gegrLon": "23.290247",
         "id": 285,
         "stationName": "Zamość, ul. Hrubieszowska"
-    },
-    {
-        "addressStreet": "ul. Krakowskie Przedmieście 13",
-        "city": {
-            "commune": {
-                "communeName": "Piotrków Trybunalski",
-                "districtName": "Piotrków Trybunalski",
-                "provinceName": "ŁÓDZKIE"
-            },
-            "id": 703,
-            "name": "Piotrków Trybunalski"
-        },
-        "gegrLat": "51.404406",
-        "gegrLon": "19.696956",
-        "id": 322,
-        "stationName": "Piotrków Trybunalski, ul. Krakowskie Przedmieście"
     },
     {
         "addressStreet": "Smolary Bytnickie 45A",
@@ -1584,36 +1840,36 @@
         "stationName": "Jaslo, ul. Sikorskiego"
     },
     {
-        "addressStreet": "ul. Kniaziewicza 30",
+        "addressStreet": "Szklarniowa",
         "city": {
             "commune": {
-                "communeName": "Słupsk",
-                "districtName": "Słupsk",
-                "provinceName": "POMORSKIE"
+                "communeName": "Nisko",
+                "districtName": "niżański",
+                "provinceName": "PODKARPACKIE"
             },
-            "id": 846,
-            "name": "Słupsk"
+            "id": 600,
+            "name": "Nisko"
         },
-        "gegrLat": "54.463611",
-        "gegrLon": "17.046722",
-        "id": 725,
-        "stationName": "Słupsk, ul. Kniaziewicza"
+        "gegrLat": "50.529892",
+        "gegrLon": "22.112467",
+        "id": 659,
+        "stationName": "Nisko, ul. Szklarniowa"
     },
     {
-        "addressStreet": "ul. Powstańców Warszawskich",
+        "addressStreet": "ul. Porębskiego",
         "city": {
             "commune": {
-                "communeName": "Gdańsk",
-                "districtName": "Gdańsk",
+                "communeName": "Gdynia",
+                "districtName": "Gdynia",
                 "provinceName": "POMORSKIE"
             },
-            "id": 218,
-            "name": "Gdańsk"
+            "id": 219,
+            "name": "Gdynia"
         },
-        "gegrLat": "54.353196",
-        "gegrLon": "18.635267",
-        "id": 729,
-        "stationName": "Gdańsk, ul. Powstańców Warszawskich"
+        "gegrLat": "54.560836",
+        "gegrLon": "18.493331",
+        "id": 732,
+        "stationName": "Gdynia, ul. Porębskiego"
     },
     {
         "addressStreet": "ul. Parkowa",
@@ -1630,6 +1886,22 @@
         "gegrLon": "20.533506",
         "id": 769,
         "stationName": "Nowiny, ul. Parkowa"
+    },
+    {
+        "addressStreet": "ul. Ruszczańska 23",
+        "city": {
+            "commune": {
+                "communeName": "Połaniec",
+                "districtName": "staszowski",
+                "provinceName": "ŚWIĘTOKRZYSKIE"
+            },
+            "id": 723,
+            "name": "Połaniec"
+        },
+        "gegrLat": "50.429014",
+        "gegrLon": "21.277367",
+        "id": 778,
+        "stationName": "Połaniec, ul. Ruszczańska"
     },
     {
         "addressStreet": "ul. Kossak-Szczuckiej 19",
@@ -1696,22 +1968,6 @@
         "stationName": "Tychy, ul. Tołstoja"
     },
     {
-        "addressStreet": "ul. Wyszyńskiego 3",
-        "city": {
-            "commune": {
-                "communeName": "Konin",
-                "districtName": "Konin",
-                "provinceName": "WIELKOPOLSKIE"
-            },
-            "id": 393,
-            "name": "Konin"
-        },
-        "gegrLat": "52.225650",
-        "gegrLon": "18.268927",
-        "id": 902,
-        "stationName": "Konin, ul. Wyszyńskiego"
-    },
-    {
         "addressStreet": "ul. Kusocińskiego 10A",
         "city": {
             "commune": {
@@ -1726,22 +1982,6 @@
         "gegrLon": "16.759572",
         "id": 920,
         "stationName": "Pila, ul. Kusocińskiego"
-    },
-    {
-        "addressStreet": "ul. Dąbrowskiego 169",
-        "city": {
-            "commune": {
-                "communeName": "Poznań",
-                "districtName": "Poznań",
-                "provinceName": "WIELKOPOLSKIE"
-            },
-            "id": 729,
-            "name": "Poznań"
-        },
-        "gegrLat": "52.420319",
-        "gegrLon": "16.877289",
-        "id": 944,
-        "stationName": "Poznań, ul. Dąbrowskiego"
     },
     {
         "addressStreet": "ul. Przemysłowa 5",
@@ -1760,36 +2000,20 @@
         "stationName": "Szczecinek, ul. Przemysłowa"
     },
     {
-        "addressStreet": "ul. Piłsudskiego 1",
+        "addressStreet": "ul. Spokojna",
         "city": {
             "commune": {
-                "communeName": "Szczecin",
-                "districtName": "Szczecin",
-                "provinceName": "ZACHODNIOPOMORSKIE"
+                "communeName": "Kłaj",
+                "districtName": "wielicki",
+                "provinceName": "MAŁOPOLSKIE"
             },
-            "id": 917,
-            "name": "Szczecin"
+            "id": 913,
+            "name": "Szarów"
         },
-        "gegrLat": "53.432169",
-        "gegrLon": "14.553900",
-        "id": 987,
-        "stationName": "Szczecin, ul. Piłsudskiego"
-    },
-    {
-        "addressStreet": "ul. Ogińskiego 6",
-        "city": {
-            "commune": {
-                "communeName": "Jelenia Góra",
-                "districtName": "Jelenia Góra",
-                "provinceName": "DOLNOŚLĄSKIE"
-            },
-            "id": 319,
-            "name": "Jelenia Góra"
-        },
-        "gegrLat": "50.913433",
-        "gegrLon": "15.765608",
-        "id": 9153,
-        "stationName": "Jelenia Góra, ul. Ogińskiego"
+        "gegrLat": "50.007500",
+        "gegrLon": "20.259167",
+        "id": 9179,
+        "stationName": "Szarów, ul. Spokojna"
     },
     {
         "addressStreet": "Guty Duże 4",
@@ -1808,36 +2032,20 @@
         "stationName": "Guty Duże"
     },
     {
-        "addressStreet": "ul. Targowa",
+        "addressStreet": "al. Jana Pawła II 15",
         "city": {
             "commune": {
-                "communeName": "Kościerzyna",
-                "districtName": "kościerski",
-                "provinceName": "POMORSKIE"
+                "communeName": "Łódź",
+                "districtName": "Łódź",
+                "provinceName": "ŁÓDZKIE"
             },
-            "id": 406,
-            "name": "Kościerzyna"
+            "id": 516,
+            "name": "Łódź"
         },
-        "gegrLat": "54.120694",
-        "gegrLon": "17.975861",
-        "id": 740,
-        "stationName": "Kościerzyna, ul. Targowa"
-    },
-    {
-        "addressStreet": "ul. Piłsudskiego 27",
-        "city": {
-            "commune": {
-                "communeName": "Ełk",
-                "districtName": "ełcki",
-                "provinceName": "WARMIŃSKO-MAZURSKIE"
-            },
-            "id": 203,
-            "name": "Ełk"
-        },
-        "gegrLat": "53.828389",
-        "gegrLon": "22.348338",
-        "id": 10005,
-        "stationName": "Ełk, ul. Piłsudskiego"
+        "gegrLat": "51.754613",
+        "gegrLon": "19.434925",
+        "id": 10058,
+        "stationName": "Łódź, al. Jana Pawła II"
     },
     {
         "addressStreet": "Piłsudskiego",
@@ -1888,6 +2096,22 @@
         "stationName": "Tarnów, ul. Ks. Romana Sitko"
     },
     {
+        "addressStreet": "ul. Partyzantów",
+        "city": {
+            "commune": {
+                "communeName": "Bielsko-Biała",
+                "districtName": "Bielsko-Biała",
+                "provinceName": "ŚLĄSKIE"
+            },
+            "id": 41,
+            "name": "Bielsko-Biała"
+        },
+        "gegrLat": "49.802075",
+        "gegrLon": "19.048610",
+        "id": 10158,
+        "stationName": "Bielsko-Biała, ul.Partyzantów"
+    },
+    {
         "addressStreet": "ul. Rolna 2",
         "city": {
             "commune": {
@@ -1902,6 +2126,22 @@
         "gegrLon": "19.448714",
         "id": 331,
         "stationName": "Radomsko, ul. Rolna"
+    },
+    {
+        "addressStreet": "ul. Bajkowa 17/21",
+        "city": {
+            "commune": {
+                "communeName": "Warszawa",
+                "districtName": "Warszawa",
+                "provinceName": "MAZOWIECKIE"
+            },
+            "id": 1006,
+            "name": "Warszawa"
+        },
+        "gegrLat": "52.188474",
+        "gegrLon": "21.176233",
+        "id": 10956,
+        "stationName": "Warszawa, ul. Bajkowa"
     },
     {
         "addressStreet": null,
@@ -1920,20 +2160,20 @@
         "stationName": "Borsukowizna, Szkółka Leśna"
     },
     {
-        "addressStreet": "ul. 42 Pułku Piechoty 117",
+        "addressStreet": "ul. Pułaskiego 26",
         "city": {
             "commune": {
-                "communeName": "Białystok",
-                "districtName": "Białystok",
+                "communeName": "Suwałki",
+                "districtName": "Suwałki",
                 "provinceName": "PODLASKIE"
             },
-            "id": 35,
-            "name": "Białystok"
+            "id": 906,
+            "name": "Suwałki"
         },
-        "gegrLat": "53.144122",
-        "gegrLon": "23.216322",
-        "id": 11174,
-        "stationName": "Białystok, ul. 42 Pułku Piechoty"
+        "gegrLat": "54.115897",
+        "gegrLon": "22.938464",
+        "id": 11154,
+        "stationName": "Suwałki, ul. Pułaskiego 26"
     },
     {
         "addressStreet": "Pruchnicka",
@@ -1966,6 +2206,22 @@
         "gegrLon": "19.439012",
         "id": 11455,
         "stationName": "Zawiercie, ul. K.I.Gałczyńskiego"
+    },
+    {
+        "addressStreet": "ul. Parkowa",
+        "city": {
+            "commune": {
+                "communeName": "Goczałkowice-Zdrój",
+                "districtName": "pszczyński",
+                "provinceName": "ŚLĄSKIE"
+            },
+            "id": 2280,
+            "name": "Goczałkowice-Zdrój"
+        },
+        "gegrLat": "49.937850",
+        "gegrLon": "18.975594",
+        "id": 11457,
+        "stationName": "Goczałkowice Zdrój, ul. Parkowa"
     },
     {
         "addressStreet": "ul. Jeździecka",
@@ -2016,6 +2272,38 @@
         "stationName": "Świecie, al. Jana Pawła II"
     },
     {
+        "addressStreet": "al. Mickiewicza",
+        "city": {
+            "commune": {
+                "communeName": "Pleszew",
+                "districtName": "pleszewski",
+                "provinceName": "WIELKOPOLSKIE"
+            },
+            "id": 706,
+            "name": "Pleszew"
+        },
+        "gegrLat": "51.884922",
+        "gegrLon": "17.791106",
+        "id": 9218,
+        "stationName": "Pleszew, Al. Mickiewicza"
+    },
+    {
+        "addressStreet": "ul. Malczewskiego",
+        "city": {
+            "commune": {
+                "communeName": "Lębork",
+                "districtName": "lęborski",
+                "provinceName": "POMORSKIE"
+            },
+            "id": 464,
+            "name": "Lębork"
+        },
+        "gegrLat": "54.546167",
+        "gegrLon": "17.746194",
+        "id": 742,
+        "stationName": "Lębork, ul. Malczewskiego"
+    },
+    {
         "addressStreet": "Licealna 10b",
         "city": {
             "commune": {
@@ -2032,20 +2320,20 @@
         "stationName": "Sulechów, ul. Licealna"
     },
     {
-        "addressStreet": "Marii Dąbrowskiej",
+        "addressStreet": "ul. Szwajcarska",
         "city": {
             "commune": {
-                "communeName": "Tarnobrzeg",
-                "districtName": "Tarnobrzeg",
-                "provinceName": "PODKARPACKIE"
+                "communeName": "Poznań",
+                "districtName": "Poznań",
+                "provinceName": "WIELKOPOLSKIE"
             },
-            "id": 954,
-            "name": "Tarnobrzeg"
+            "id": 729,
+            "name": "Poznań"
         },
-        "gegrLat": "50.575742",
-        "gegrLon": "21.688367",
-        "id": 684,
-        "stationName": "Tarnobrzeg, ul. Dąbrowskiej"
+        "gegrLat": "52.390879",
+        "gegrLon": "16.998053",
+        "id": 16493,
+        "stationName": "Poznań ul. Szwajcarska"
     },
     {
         "addressStreet": "ul. Upalna 26",
@@ -2078,6 +2366,22 @@
         "gegrLon": "15.596347",
         "id": 10934,
         "stationName": "Kołobrzeg, ul. Żółkiewskiego"
+    },
+    {
+        "addressStreet": "ul. 1 Maja 82",
+        "city": {
+            "commune": {
+                "communeName": "Skarżysko-Kamienna",
+                "districtName": "skarżyski",
+                "provinceName": "ŚWIĘTOKRZYSKIE"
+            },
+            "id": 833,
+            "name": "Skarżysko-Kamienna"
+        },
+        "gegrLat": "51.115842",
+        "gegrLon": "20.891593",
+        "id": 17758,
+        "stationName": "Skarżysko-Kamienna, ul. 1 Maja"
     },
     {
         "addressStreet": "Kwiatkowskiego",
@@ -2160,20 +2464,20 @@
         "stationName": "Lubań, ul. Ludowa"
     },
     {
-        "addressStreet": "ul. Wały Gen. Sikorskiego 12",
+        "addressStreet": "ul. Piłsudskiego 51",
         "city": {
             "commune": {
-                "communeName": "Toruń",
-                "districtName": "Toruń",
+                "communeName": "Grudziądz",
+                "districtName": "Grudziądz",
                 "provinceName": "KUJAWSKO-POMORSKIE"
             },
-            "id": 966,
-            "name": "Toruń"
+            "id": 269,
+            "name": "Grudziądz"
         },
-        "gegrLat": "53.012475",
-        "gegrLon": "18.605681",
-        "id": 145,
-        "stationName": "Toruń, ul. Wały gen. Sikorskiego"
+        "gegrLat": "53.493550",
+        "gegrLon": "18.762139",
+        "id": 142,
+        "stationName": "Grudziądz, ul. Piłsudskiego"
     },
     {
         "addressStreet": "ul. Tężniowa - Park Tężniowy",
@@ -2192,38 +2496,6 @@
         "stationName": "Ciechocinek, ul. Tężniowa"
     },
     {
-        "addressStreet": "ul. Piastów 6",
-        "city": {
-            "commune": {
-                "communeName": "Zdzieszowice",
-                "districtName": "krapkowicki",
-                "provinceName": "OPOLSKIE"
-            },
-            "id": 1097,
-            "name": "Zdzieszowice"
-        },
-        "gegrLat": "50.423533",
-        "gegrLon": "18.120739",
-        "id": 600,
-        "stationName": "Zdzieszowice, ul. Piastów"
-    },
-    {
-        "addressStreet": "ul. Porębskiego",
-        "city": {
-            "commune": {
-                "communeName": "Gdynia",
-                "districtName": "Gdynia",
-                "provinceName": "POMORSKIE"
-            },
-            "id": 219,
-            "name": "Gdynia"
-        },
-        "gegrLat": "54.560836",
-        "gegrLon": "18.493331",
-        "id": 732,
-        "stationName": "Gdynia, ul. Porębskiego"
-    },
-    {
         "addressStreet": "ul. Mickiewicza",
         "city": {
             "commune": {
@@ -2238,38 +2510,6 @@
         "gegrLon": "19.032899",
         "id": 741,
         "stationName": "Malbork, ul. Mickiewicza"
-    },
-    {
-        "addressStreet": "ul. Ruszczańska 23",
-        "city": {
-            "commune": {
-                "communeName": "Połaniec",
-                "districtName": "staszowski",
-                "provinceName": "ŚWIĘTOKRZYSKIE"
-            },
-            "id": 723,
-            "name": "Połaniec"
-        },
-        "gegrLat": "50.429014",
-        "gegrLon": "21.277367",
-        "id": 778,
-        "stationName": "Połaniec, ul. Ruszczańska"
-    },
-    {
-        "addressStreet": "ul. Armii Krajowej 2",
-        "city": {
-            "commune": {
-                "communeName": "Częstochowa",
-                "districtName": "Częstochowa",
-                "provinceName": "ŚLĄSKIE"
-            },
-            "id": 146,
-            "name": "Częstochowa"
-        },
-        "gegrLat": "50.817217",
-        "gegrLon": "19.118997",
-        "id": 798,
-        "stationName": "Częstochowa, ul. AK/Jana Pawła II"
     },
     {
         "addressStreet": "Piaski 10",
@@ -2304,22 +2544,6 @@
         "stationName": "Krempna, Ośrodek edukacyjno-muzealny MPN"
     },
     {
-        "addressStreet": "ul. Spokojna",
-        "city": {
-            "commune": {
-                "communeName": "Kłaj",
-                "districtName": "wielicki",
-                "provinceName": "MAŁOPOLSKIE"
-            },
-            "id": 913,
-            "name": "Szarów"
-        },
-        "gegrLat": "50.007500",
-        "gegrLon": "20.259167",
-        "id": 9179,
-        "stationName": "Szarów, ul. Spokojna"
-    },
-    {
         "addressStreet": "ul. Kopernika 83 a",
         "city": {
             "commune": {
@@ -2334,54 +2558,6 @@
         "gegrLon": "19.234446",
         "id": 856,
         "stationName": "Żywiec, ul. Kopernika"
-    },
-    {
-        "addressStreet": "al. Jana Pawła II 15",
-        "city": {
-            "commune": {
-                "communeName": "Łódź",
-                "districtName": "Łódź",
-                "provinceName": "ŁÓDZKIE"
-            },
-            "id": 516,
-            "name": "Łódź"
-        },
-        "gegrLat": "51.754613",
-        "gegrLon": "19.434925",
-        "id": 10058,
-        "stationName": "Łódź, al. Jana Pawła II"
-    },
-    {
-        "addressStreet": "ul. Partyzantów",
-        "city": {
-            "commune": {
-                "communeName": "Bielsko-Biała",
-                "districtName": "Bielsko-Biała",
-                "provinceName": "ŚLĄSKIE"
-            },
-            "id": 41,
-            "name": "Bielsko-Biała"
-        },
-        "gegrLat": "49.802075",
-        "gegrLon": "19.048610",
-        "id": 10158,
-        "stationName": "Bielsko-Biała, ul.Partyzantów"
-    },
-    {
-        "addressStreet": "ul. Parkowa",
-        "city": {
-            "commune": {
-                "communeName": "Goczałkowice-Zdrój",
-                "districtName": "pszczyński",
-                "provinceName": "ŚLĄSKIE"
-            },
-            "id": 2280,
-            "name": "Goczałkowice-Zdrój"
-        },
-        "gegrLat": "49.937850",
-        "gegrLon": "18.975594",
-        "id": 11457,
-        "stationName": "Goczałkowice Zdrój, ul. Parkowa"
     },
     {
         "addressStreet": "Aleja Józefa Piłsudskiego/Harcerska 3",
@@ -2400,22 +2576,6 @@
         "stationName": "Jastrzębie-Zdrój, Al.J.Piłsudskiego/Harcerska"
     },
     {
-        "addressStreet": "J. Bema",
-        "city": {
-            "commune": {
-                "communeName": "Oświęcim",
-                "districtName": "oświęcimski",
-                "provinceName": "MAŁOPOLSKIE"
-            },
-            "id": 660,
-            "name": "Oświęcim"
-        },
-        "gegrLat": "50.033083",
-        "gegrLon": "19.245275",
-        "id": 10814,
-        "stationName": "Oświęcim, ul. J. Bema"
-    },
-    {
         "addressStreet": "ul. Żeromskiego",
         "city": {
             "commune": {
@@ -2430,22 +2590,6 @@
         "gegrLon": "21.124598",
         "id": 16271,
         "stationName": "Konstancin-Jeziorna, ul. Żeromskiego"
-    },
-    {
-        "addressStreet": "ul. Szwajcarska",
-        "city": {
-            "commune": {
-                "communeName": "Poznań",
-                "districtName": "Poznań",
-                "provinceName": "WIELKOPOLSKIE"
-            },
-            "id": 729,
-            "name": "Poznań"
-        },
-        "gegrLat": "52.390879",
-        "gegrLon": "16.998053",
-        "id": 16493,
-        "stationName": "Poznań ul. Szwajcarska"
     },
     {
         "addressStreet": "ul. Czereśniowa 4",
@@ -2496,22 +2640,6 @@
         "stationName": "Krapkowice, ul. 3 Maja"
     },
     {
-        "addressStreet": "ul. 1 Maja 82",
-        "city": {
-            "commune": {
-                "communeName": "Skarżysko-Kamienna",
-                "districtName": "skarżyski",
-                "provinceName": "ŚWIĘTOKRZYSKIE"
-            },
-            "id": 833,
-            "name": "Skarżysko-Kamienna"
-        },
-        "gegrLat": "51.115842",
-        "gegrLon": "20.891593",
-        "id": 17758,
-        "stationName": "Skarżysko-Kamienna, ul. 1 Maja"
-    },
-    {
         "addressStreet": "Jana Pawła II ",
         "city": {
             "commune": {
@@ -2526,22 +2654,6 @@
         "gegrLon": "21.769494",
         "id": 20200,
         "stationName": "Kolbuszowa, ul. Jana Pawła II"
-    },
-    {
-        "addressStreet": "ul. Piłsudskiego 51",
-        "city": {
-            "commune": {
-                "communeName": "Grudziądz",
-                "districtName": "Grudziądz",
-                "provinceName": "KUJAWSKO-POMORSKIE"
-            },
-            "id": 269,
-            "name": "Grudziądz"
-        },
-        "gegrLat": "53.493550",
-        "gegrLon": "18.762139",
-        "id": 142,
-        "stationName": "Grudziądz, ul. Piłsudskiego"
     },
     {
         "addressStreet": null,
@@ -2592,36 +2704,36 @@
         "stationName": "Rzeszów, ul. Rejtana"
     },
     {
-        "addressStreet": "ul. Gałczyńskiego 1",
+        "addressStreet": "os. Piastów",
         "city": {
             "commune": {
-                "communeName": "Wodzisław Śląski",
-                "districtName": "wodzisławski",
-                "provinceName": "ŚLĄSKIE"
+                "communeName": "Kraków",
+                "districtName": "Kraków",
+                "provinceName": "MAŁOPOLSKIE"
             },
-            "id": 1050,
-            "name": "Wodzisław Śląski"
+            "id": 415,
+            "name": "Kraków"
         },
-        "gegrLat": "50.007629",
-        "gegrLon": "18.455548",
-        "id": 845,
-        "stationName": "Wodzisław Śląski, ul. Gałczyńskiego"
+        "gegrLat": "50.098508",
+        "gegrLon": "20.018269",
+        "id": 10139,
+        "stationName": "Kraków, os. Piastów"
     },
     {
-        "addressStreet": "os. Armii Krajowej",
+        "addressStreet": "Parkowa 5",
         "city": {
             "commune": {
-                "communeName": "Opole",
-                "districtName": "Opole",
-                "provinceName": "OPOLSKIE"
+                "communeName": "Rymanów",
+                "districtName": "krośnieński",
+                "provinceName": "PODKARPACKIE"
             },
-            "id": 645,
-            "name": "Opole"
+            "id": 805,
+            "name": "Rymanów-Zdrój"
         },
-        "gegrLat": "50.676856",
-        "gegrLon": "17.950278",
-        "id": 590,
-        "stationName": "Opole, os. Armii Krajowej"
+        "gegrLat": "49.546539",
+        "gegrLon": "21.851006",
+        "id": 10414,
+        "stationName": "Rymanów Zdrój, ul. Parkowa"
     },
     {
         "addressStreet": null,
@@ -2720,20 +2832,20 @@
         "stationName": "Łomża, ul. Sikorskiego"
     },
     {
-        "addressStreet": "ul. Malczewskiego",
+        "addressStreet": "ul. Rąbka 1A",
         "city": {
             "commune": {
-                "communeName": "Lębork",
+                "communeName": "Łeba",
                 "districtName": "lęborski",
                 "provinceName": "POMORSKIE"
             },
-            "id": 464,
-            "name": "Lębork"
+            "id": 506,
+            "name": "Łeba"
         },
-        "gegrLat": "54.546167",
-        "gegrLon": "17.746194",
-        "id": 742,
-        "stationName": "Lębork, ul. Malczewskiego"
+        "gegrLat": "54.754139",
+        "gegrLon": "17.534528",
+        "id": 750,
+        "stationName": "Łeba, IMGW"
     },
     {
         "addressStreet": "ul. Bulwary Rybackie 1",
@@ -2766,22 +2878,6 @@
         "gegrLon": "14.556250",
         "id": 989,
         "stationName": "Szczecin, ul. Łączna"
-    },
-    {
-        "addressStreet": "Szklarniowa",
-        "city": {
-            "commune": {
-                "communeName": "Nisko",
-                "districtName": "niżański",
-                "provinceName": "PODKARPACKIE"
-            },
-            "id": 600,
-            "name": "Nisko"
-        },
-        "gegrLat": "50.529892",
-        "gegrLon": "22.112467",
-        "id": 659,
-        "stationName": "Nisko, ul. Szklarniowa"
     },
     {
         "addressStreet": "ul. Nieszczyńskiej",
@@ -2912,20 +3008,20 @@
         "stationName": "Wysokie Mazowieckie, ul. 1 Maja"
     },
     {
-        "addressStreet": "Parkowa 5",
+        "addressStreet": "Kampinoski Park Narodowy",
         "city": {
             "commune": {
-                "communeName": "Rymanów",
-                "districtName": "krośnieński",
-                "provinceName": "PODKARPACKIE"
+                "communeName": "Kampinos",
+                "districtName": "warszawski zachodni",
+                "provinceName": "MAZOWIECKIE"
             },
-            "id": 805,
-            "name": "Rymanów-Zdrój"
+            "id": 259,
+            "name": "Granica"
         },
-        "gegrLat": "49.546539",
-        "gegrLon": "21.851006",
-        "id": 10414,
-        "stationName": "Rymanów Zdrój, ul. Parkowa"
+        "gegrLat": "52.285858",
+        "gegrLon": "20.454653",
+        "id": 466,
+        "stationName": "Granica, KPN"
     },
     {
         "addressStreet": "ul. Jeziorna 19",
@@ -2942,6 +3038,22 @@
         "gegrLon": "16.498245",
         "id": 11254,
         "stationName": "Nowa Ruda, ul. Jeziorna"
+    },
+    {
+        "addressStreet": "ul. Połaniecka",
+        "city": {
+            "commune": {
+                "communeName": "Chełm",
+                "districtName": "Chełm",
+                "provinceName": "LUBELSKIE"
+            },
+            "id": 100,
+            "name": "Chełm"
+        },
+        "gegrLat": "51.122147",
+        "gegrLon": "23.473075",
+        "id": 11360,
+        "stationName": "Chełm, ul. Połaniecka"
     },
     {
         "addressStreet": "ul. Ks. Płk. Jana Szymały 3",
@@ -2976,6 +3088,22 @@
         "stationName": "Rabka-Zdrój, ul. Orkana"
     },
     {
+        "addressStreet": "Wapienna",
+        "city": {
+            "commune": {
+                "communeName": "Zabierzów",
+                "districtName": "krakowski",
+                "provinceName": "MAŁOPOLSKIE"
+            },
+            "id": 2300,
+            "name": "Zabierzów"
+        },
+        "gegrLat": "50.116028",
+        "gegrLon": "19.800639",
+        "id": 11434,
+        "stationName": "Zabierzów, ul. Wapienna"
+    },
+    {
         "addressStreet": "ul. Chopina 37",
         "city": {
             "commune": {
@@ -3006,22 +3134,6 @@
         "gegrLon": "22.195892",
         "id": 678,
         "stationName": "Sanok, ul. Sadowa"
-    },
-    {
-        "addressStreet": "ul. Kamieńskiego",
-        "city": {
-            "commune": {
-                "communeName": "Kraków",
-                "districtName": "Kraków",
-                "provinceName": "MAŁOPOLSKIE"
-            },
-            "id": 415,
-            "name": "Kraków"
-        },
-        "gegrLat": "50.024605",
-        "gegrLon": "19.978460",
-        "id": 16896,
-        "stationName": "Kraków, ul. Kamieńskiego"
     },
     {
         "addressStreet": "Wysowa",
@@ -3056,36 +3168,20 @@
         "stationName": "Rzeszów, ul. Starzyńskiego"
     },
     {
-        "addressStreet": "Kampinoski Park Narodowy",
+        "addressStreet": "Lusińska",
         "city": {
             "commune": {
-                "communeName": "Kampinos",
-                "districtName": "warszawski zachodni",
-                "provinceName": "MAZOWIECKIE"
+                "communeName": "Kraków",
+                "districtName": "Kraków",
+                "provinceName": "MAŁOPOLSKIE"
             },
-            "id": 259,
-            "name": "Granica"
+            "id": 415,
+            "name": "Kraków"
         },
-        "gegrLat": "52.285858",
-        "gegrLon": "20.454653",
-        "id": 466,
-        "stationName": "Granica, KPN"
-    },
-    {
-        "addressStreet": "ul. Bajkowa 17/21",
-        "city": {
-            "commune": {
-                "communeName": "Warszawa",
-                "districtName": "Warszawa",
-                "provinceName": "MAZOWIECKIE"
-            },
-            "id": 1006,
-            "name": "Warszawa"
-        },
-        "gegrLat": "52.188474",
-        "gegrLon": "21.176233",
-        "id": 10956,
-        "stationName": "Warszawa, ul. Bajkowa"
+        "gegrLat": "49.991442",
+        "gegrLon": "19.936792",
+        "id": 11303,
+        "stationName": "Kraków, os. Swoszowice"
     },
     {
         "addressStreet": "Miła 17",
@@ -3136,6 +3232,22 @@
         "stationName": "Nowy Targ, al. Tysiąclecia "
     },
     {
+        "addressStreet": "Olimpijska 10",
+        "city": {
+            "commune": {
+                "communeName": "Krotoszyn",
+                "districtName": "krotoszyński",
+                "provinceName": "WIELKOPOLSKIE"
+            },
+            "id": 430,
+            "name": "Krotoszyn"
+        },
+        "gegrLat": "51.697308",
+        "gegrLon": "17.441263",
+        "id": 20307,
+        "stationName": "Krotoszyn, ul. Olimpijska"
+    },
+    {
         "addressStreet": "ul. Mickiewicza 10",
         "city": {
             "commune": {
@@ -3184,22 +3296,6 @@
         "stationName": "Złockie, szkoła podstawowa"
     },
     {
-        "addressStreet": "Olimpijska 10",
-        "city": {
-            "commune": {
-                "communeName": "Krotoszyn",
-                "districtName": "krotoszyński",
-                "provinceName": "WIELKOPOLSKIE"
-            },
-            "id": 430,
-            "name": "Krotoszyn"
-        },
-        "gegrLat": "51.697308",
-        "gegrLon": "17.441263",
-        "id": 20307,
-        "stationName": "Krotoszyn, ul. Olimpijska"
-    },
-    {
         "addressStreet": " Cegielniana",
         "city": {
             "commune": {
@@ -3230,133 +3326,5 @@
         "gegrLon": "20.579965",
         "id": 16497,
         "stationName": "Kielce, ul. Jurajska"
-    },
-    {
-        "addressStreet": "ul. Połaniecka",
-        "city": {
-            "commune": {
-                "communeName": "Chełm",
-                "districtName": "Chełm",
-                "provinceName": "LUBELSKIE"
-            },
-            "id": 100,
-            "name": "Chełm"
-        },
-        "gegrLat": "51.122147",
-        "gegrLon": "23.473075",
-        "id": 11360,
-        "stationName": "Chełm, ul. Połaniecka"
-    },
-    {
-        "addressStreet": "Złoty Róg",
-        "city": {
-            "commune": {
-                "communeName": "Kraków",
-                "districtName": "Kraków",
-                "provinceName": "MAŁOPOLSKIE"
-            },
-            "id": 415,
-            "name": "Kraków"
-        },
-        "gegrLat": "50.081197",
-        "gegrLon": "19.895358",
-        "id": 10123,
-        "stationName": "Kraków, ul. Złoty Róg"
-    },
-    {
-        "addressStreet": "Lusińska",
-        "city": {
-            "commune": {
-                "communeName": "Kraków",
-                "districtName": "Kraków",
-                "provinceName": "MAŁOPOLSKIE"
-            },
-            "id": 415,
-            "name": "Kraków"
-        },
-        "gegrLat": "49.991442",
-        "gegrLon": "19.936792",
-        "id": 11303,
-        "stationName": "Kraków, os. Swoszowice"
-    },
-    {
-        "addressStreet": "ul. Rąbka 1A",
-        "city": {
-            "commune": {
-                "communeName": "Łeba",
-                "districtName": "lęborski",
-                "provinceName": "POMORSKIE"
-            },
-            "id": 506,
-            "name": "Łeba"
-        },
-        "gegrLat": "54.754139",
-        "gegrLon": "17.534528",
-        "id": 750,
-        "stationName": "Łeba, IMGW"
-    },
-    {
-        "addressStreet": "al. Mickiewicza",
-        "city": {
-            "commune": {
-                "communeName": "Pleszew",
-                "districtName": "pleszewski",
-                "provinceName": "WIELKOPOLSKIE"
-            },
-            "id": 706,
-            "name": "Pleszew"
-        },
-        "gegrLat": "51.884922",
-        "gegrLon": "17.791106",
-        "id": 9218,
-        "stationName": "Pleszew, Al. Mickiewicza"
-    },
-    {
-        "addressStreet": "ul. Pułaskiego 26",
-        "city": {
-            "commune": {
-                "communeName": "Suwałki",
-                "districtName": "Suwałki",
-                "provinceName": "PODLASKIE"
-            },
-            "id": 906,
-            "name": "Suwałki"
-        },
-        "gegrLat": "54.115897",
-        "gegrLon": "22.938464",
-        "id": 11154,
-        "stationName": "Suwałki, ul. Pułaskiego 26"
-    },
-    {
-        "addressStreet": "Wapienna",
-        "city": {
-            "commune": {
-                "communeName": "Zabierzów",
-                "districtName": "krakowski",
-                "provinceName": "MAŁOPOLSKIE"
-            },
-            "id": 2300,
-            "name": "Zabierzów"
-        },
-        "gegrLat": "50.116028",
-        "gegrLon": "19.800639",
-        "id": 11434,
-        "stationName": "Zabierzów, ul. Wapienna"
-    },
-    {
-        "addressStreet": "os. Piastów",
-        "city": {
-            "commune": {
-                "communeName": "Kraków",
-                "districtName": "Kraków",
-                "provinceName": "MAŁOPOLSKIE"
-            },
-            "id": 415,
-            "name": "Kraków"
-        },
-        "gegrLat": "50.098508",
-        "gegrLon": "20.018269",
-        "id": 10139,
-        "stationName": "Kraków, os. Piastów"
     }
 ]
