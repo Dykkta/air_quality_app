@@ -277,55 +277,55 @@
      </widget>
     </item>
     <item>
- <widget class="QWidget" name="rightPanel" native="true">
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-    <horstretch>2</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
-  <layout class="QVBoxLayout" name="rightPanelLayout">
-   <item>
-    <widget class="QGroupBox" name="chartGroupBox">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>3</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Dane pomiarowe</string>
-     </property>
-     <layout class="QVBoxLayout" name="chartLayout"/>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="mapGroupBox">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Mapa</string>
-     </property>
-     <layout class="QVBoxLayout" name="mapLayout">
-      <item>
-       <widget class="QLabel" name="mapPlaceholderLabel">
-        <property name="text">
-         <string>Miejsce na przyszłą mapę</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-  </layout>
-</widget>
+     <widget class="QWidget" name="rightPanel" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>2</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <layout class="QVBoxLayout" name="rightPanelLayout">
+       <item>
+        <widget class="QGroupBox" name="chartGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>3</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Dane pomiarowe</string>
+         </property>
+         <layout class="QVBoxLayout" name="chartLayout"/>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="mapGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>2</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Mapa</string>
+         </property>
+         <layout class="QVBoxLayout" name="mapLayout">
+          <item>
+           <widget class="QLabel" name="mapPlaceholderLabel">
+            <property name="text">
+             <string>Miejsce na przyszłą mapę</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -342,8 +342,6 @@
     <property name="title">
      <string>Plik</string>
     </property>
-    <addaction name="actionLoadData"/>
-    <addaction name="actionSaveData"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -357,16 +355,6 @@
    <addaction name="menuTools"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionLoadData">
-   <property name="text">
-    <string>Wczytaj dane</string>
-   </property>
-  </action>
-  <action name="actionSaveData">
-   <property name="text">
-    <string>Zapisz dane</string>
-   </property>
-  </action>
   <action name="actionExit">
    <property name="text">
     <string>Wyjdź</string>

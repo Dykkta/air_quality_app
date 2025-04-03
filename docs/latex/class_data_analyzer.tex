@@ -1,0 +1,129 @@
+\doxysection{Data\+Analyzer Class Reference}
+\hypertarget{class_data_analyzer}{}\label{class_data_analyzer}\index{DataAnalyzer@{DataAnalyzer}}
+
+
+Klasa odpowiedzialna za analizę danych pomiarowych.  
+
+
+
+
+{\ttfamily \#include $<$dataanalyzer.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_data_analyzer_aeac2d304712701fb46c915942528c838}{analyze\+Data}} (const nlohmann\+::json \&data)
+\begin{DoxyCompactList}\small\item\em Analizuje przekazane dane JSON. \end{DoxyCompactList}\item 
+const std\+::map$<$ std\+::string, double $>$ \& \mbox{\hyperlink{class_data_analyzer_a1ee4d9b38f892c8d080f83b80f063f6c}{get\+Results}} () const
+\begin{DoxyCompactList}\small\item\em Pobiera wyniki analizy. \end{DoxyCompactList}\item 
+const std\+::map$<$ std\+::string, std\+::tuple$<$ double, double, double $>$ $>$ \& \mbox{\hyperlink{class_data_analyzer_a83cab2862ef00354b7dbe23a808361f2}{get\+Analysis\+Results}} () const
+\begin{DoxyCompactList}\small\item\em Pobiera szczegółowe wyniki analizy. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_data_analyzer_a722dc3259fa04ff2f55602580c7ec874}{get\+Min\+Date}} () const
+\begin{DoxyCompactList}\small\item\em Pobiera najwcześniejszą datę pomiaru. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_data_analyzer_a7939eafa8ef18ebd32b6f9d0d1efef17}{get\+Max\+Date}} () const
+\begin{DoxyCompactList}\small\item\em Pobiera najpóźniejszą datę pomiaru. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa odpowiedzialna za analizę danych pomiarowych. 
+
+Klasa \doxylink{class_data_analyzer}{Data\+Analyzer} wykonuje obliczenia statystyczne na danych pomiarowych w formacie JSON. Oblicza wartości średnie, minimalne i maksymalne dla parametrów oraz określa zakres dat, w których zostały zebrane dane. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_data_analyzer_aeac2d304712701fb46c915942528c838}\index{DataAnalyzer@{DataAnalyzer}!analyzeData@{analyzeData}}
+\index{analyzeData@{analyzeData}!DataAnalyzer@{DataAnalyzer}}
+\doxysubsubsection{\texorpdfstring{analyzeData()}{analyzeData()}}
+{\footnotesize\ttfamily \label{class_data_analyzer_aeac2d304712701fb46c915942528c838} 
+void Data\+Analyzer\+::analyze\+Data (\begin{DoxyParamCaption}\item[{const nlohmann\+::json \&}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Analizuje przekazane dane JSON. 
+
+Analizuje dane o jakości powietrza z formatu JSON.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Dane pomiarowe w formacie JSON do analizy\\
+\hline
+\end{DoxyParams}
+Metoda przetwarza dane wejściowe, obliczając statystyki dla każdego parametru i określając zakres dat pomiarów.
+
+Funkcja przetwarza dane pomiarowe o jakości powietrza dostarczone w formacie JSON, oblicza wartości minimalne i maksymalne oraz zapisuje wyniki do wewnętrznych struktur danych.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Dane wejściowe w formacie JSON zawierające pomiary jakości powietrza \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nie} & zgłasza wyjątków, ale wyświetla błędy na standardowym wyjściu błędów \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_data_analyzer_a83cab2862ef00354b7dbe23a808361f2}\index{DataAnalyzer@{DataAnalyzer}!getAnalysisResults@{getAnalysisResults}}
+\index{getAnalysisResults@{getAnalysisResults}!DataAnalyzer@{DataAnalyzer}}
+\doxysubsubsection{\texorpdfstring{getAnalysisResults()}{getAnalysisResults()}}
+{\footnotesize\ttfamily \label{class_data_analyzer_a83cab2862ef00354b7dbe23a808361f2} 
+const std\+::map$<$ std\+::string, std\+::tuple$<$ double, double, double $>$ $>$ \& Data\+Analyzer\+::get\+Analysis\+Results (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Pobiera szczegółowe wyniki analizy. 
+
+Zwraca szczegółowe wyniki analizy danych.
+
+\begin{DoxyReturn}{Returns}
+Mapa wyników (nazwa parametru -\/\texorpdfstring{$>$}{>} krotka (średnia, minimum, maksimum))
+
+Referencja do stałej mapy zawierającej pary data-\/krotka z wartościami (aktualna wartość, min, max) 
+\end{DoxyReturn}
+\Hypertarget{class_data_analyzer_a7939eafa8ef18ebd32b6f9d0d1efef17}\index{DataAnalyzer@{DataAnalyzer}!getMaxDate@{getMaxDate}}
+\index{getMaxDate@{getMaxDate}!DataAnalyzer@{DataAnalyzer}}
+\doxysubsubsection{\texorpdfstring{getMaxDate()}{getMaxDate()}}
+{\footnotesize\ttfamily \label{class_data_analyzer_a7939eafa8ef18ebd32b6f9d0d1efef17} 
+const std\+::string \& Data\+Analyzer\+::get\+Max\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pobiera najpóźniejszą datę pomiaru. 
+
+\begin{DoxyReturn}{Returns}
+Data w formacie tekstowym 
+\end{DoxyReturn}
+\Hypertarget{class_data_analyzer_a722dc3259fa04ff2f55602580c7ec874}\index{DataAnalyzer@{DataAnalyzer}!getMinDate@{getMinDate}}
+\index{getMinDate@{getMinDate}!DataAnalyzer@{DataAnalyzer}}
+\doxysubsubsection{\texorpdfstring{getMinDate()}{getMinDate()}}
+{\footnotesize\ttfamily \label{class_data_analyzer_a722dc3259fa04ff2f55602580c7ec874} 
+const std\+::string \& Data\+Analyzer\+::get\+Min\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pobiera najwcześniejszą datę pomiaru. 
+
+\begin{DoxyReturn}{Returns}
+Data w formacie tekstowym 
+\end{DoxyReturn}
+\Hypertarget{class_data_analyzer_a1ee4d9b38f892c8d080f83b80f063f6c}\index{DataAnalyzer@{DataAnalyzer}!getResults@{getResults}}
+\index{getResults@{getResults}!DataAnalyzer@{DataAnalyzer}}
+\doxysubsubsection{\texorpdfstring{getResults()}{getResults()}}
+{\footnotesize\ttfamily \label{class_data_analyzer_a1ee4d9b38f892c8d080f83b80f063f6c} 
+const std\+::map$<$ std\+::string, double $>$ \& Data\+Analyzer\+::get\+Results (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Pobiera wyniki analizy. 
+
+Zwraca wyniki analizy danych.
+
+\begin{DoxyReturn}{Returns}
+Mapa wyników (nazwa parametru -\/\texorpdfstring{$>$}{>} wartość średnia)
+
+Referencja do stałej mapy zawierającej pary data-\/wartość pomiarowa 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{dataanalyzer_8h}{dataanalyzer.\+h}}\item 
+\mbox{\hyperlink{dataanalyzer_8cpp}{dataanalyzer.\+cpp}}\end{DoxyCompactItemize}

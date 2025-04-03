@@ -1,0 +1,17 @@
+\doxysection{database.\+h}
+\hypertarget{database_8h_source}{}\label{database_8h_source}\mbox{\hyperlink{database_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_database}{Database}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_a887f16c6c36efc47bea2e297aacd6dfb}{saveToFile}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ nlohmann::json\&\ data);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ nlohmann::json\ \mbox{\hyperlink{class_database_aa84a574d0d2f13c3e3b30e7a71d5ed7c}{loadFromFile}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_database_ac0935502998572c539d7e8fb44635ac3}{fileExists}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00046\ \};}
+
+\end{DoxyCode}

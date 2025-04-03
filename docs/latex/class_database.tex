@@ -1,0 +1,133 @@
+\doxysection{Database Class Reference}
+\hypertarget{class_database}{}\label{class_database}\index{Database@{Database}}
+
+
+Klasa odpowiedzialna za operacje na plikach bazy danych.  
+
+
+
+
+{\ttfamily \#include $<$database.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_database_ac0935502998572c539d7e8fb44635ac3}{file\+Exists}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Sprawdza istnienie pliku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_database_a887f16c6c36efc47bea2e297aacd6dfb}{save\+To\+File}} (const std\+::string \&filename, const nlohmann\+::json \&data)
+\begin{DoxyCompactList}\small\item\em Zapisuje dane JSON do pliku. \end{DoxyCompactList}\item 
+static nlohmann\+::json \mbox{\hyperlink{class_database_aa84a574d0d2f13c3e3b30e7a71d5ed7c}{load\+From\+File}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Wczytuje dane JSON z pliku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa odpowiedzialna za operacje na plikach bazy danych. 
+
+Klasa \doxylink{class_database}{Database} zapewnia funkcjonalność do zapisywania i wczytywania danych w formacie JSON do/z plików. Wszystkie metody są statyczne, co umożliwia korzystanie z nich bez konieczności tworzenia instancji klasy. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_database_ac0935502998572c539d7e8fb44635ac3}\index{Database@{Database}!fileExists@{fileExists}}
+\index{fileExists@{fileExists}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{fileExists()}{fileExists()}}
+{\footnotesize\ttfamily \label{class_database_ac0935502998572c539d7e8fb44635ac3} 
+bool Database\+::file\+Exists (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Sprawdza istnienie pliku. 
+
+Sprawdza czy plik istnieje.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nazwa pliku do sprawdzenia \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true jeśli plik istnieje, false w przeciwnym przypadku
+\end{DoxyReturn}
+Metoda weryfikuje czy plik o podanej nazwie istnieje w systemie plików i czy jest dostępny do odczytu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nazwa pliku do sprawdzenia \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true jeśli plik istnieje, false w przeciwnym wypadku 
+\end{DoxyReturn}
+\Hypertarget{class_database_aa84a574d0d2f13c3e3b30e7a71d5ed7c}\index{Database@{Database}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily \label{class_database_aa84a574d0d2f13c3e3b30e7a71d5ed7c} 
+nlohmann\+::json Database\+::load\+From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Wczytuje dane JSON z pliku. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nazwa pliku źródłowego \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dane wczytane w formacie JSON 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & W przypadku błędu odczytu pliku lub parsowania JSON \\
+\hline
+{\em nlohmann\+::json\+::parse\+\_\+error} & W przypadku niepoprawnego formatu JSON\\
+\hline
+\end{DoxyExceptions}
+Metoda wczytuje zawartość pliku i parsuje ją do obiektu JSON. Jeśli plik nie istnieje lub jest pusty, zostanie rzucony wyjątek.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nazwa pliku źródłowego \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Obiekt JSON zawierający wczytane dane lub pusty obiekt w przypadku błędu
+\end{DoxyReturn}
+Funkcja obsługuje błędy otwarcia pliku oraz parsowania formatu JSON \Hypertarget{class_database_a887f16c6c36efc47bea2e297aacd6dfb}\index{Database@{Database}!saveToFile@{saveToFile}}
+\index{saveToFile@{saveToFile}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{saveToFile()}{saveToFile()}}
+{\footnotesize\ttfamily \label{class_database_a887f16c6c36efc47bea2e297aacd6dfb} 
+void Database\+::save\+To\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{const nlohmann\+::json \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Zapisuje dane JSON do pliku. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nazwa pliku docelowego \\
+\hline
+{\em data} & Dane w formacie JSON do zapisania \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & W przypadku błędu zapisu do pliku\\
+\hline
+\end{DoxyExceptions}
+Metoda serializuje obiekt JSON i zapisuje go do określonego pliku. Jeśli plik istnieje, zostanie nadpisany.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Nazwa pliku docelowego \\
+\hline
+{\em data} & Dane w formacie JSON do zapisania\\
+\hline
+\end{DoxyParams}
+Funkcja zapisuje dane JSON z ładnym formatowaniem (wcięcie 4 spacje) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{database_8h}{database.\+h}}\item 
+\mbox{\hyperlink{database_8cpp}{database.\+cpp}}\end{DoxyCompactItemize}

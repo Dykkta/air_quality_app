@@ -1,0 +1,79 @@
+\doxysection{Json\+Handler Class Reference}
+\hypertarget{class_json_handler}{}\label{class_json_handler}\index{JsonHandler@{JsonHandler}}
+
+
+Klasa do parsowania i walidacji danych JSON.  
+
+
+
+
+{\ttfamily \#include $<$jsonhandler.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static nlohmann\+::json \mbox{\hyperlink{class_json_handler_a86ea2890d777a8bcb8c4cd8db85508b4}{parse\+Json}} (const std\+::string \&json\+String)
+\begin{DoxyCompactList}\small\item\em Parsuje ciąg znaków JSON do obiektu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa do parsowania i walidacji danych JSON. 
+
+Klasa \doxylink{class_json_handler}{Json\+Handler} zapewnia funkcjonalność do przetwarzania ciągów znaków w formacie JSON do obiektów klasy nlohmann\+::json. Wykorzystuje parser biblioteki nlohmann/json do efektywnego przetwarzania danych. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_json_handler_a86ea2890d777a8bcb8c4cd8db85508b4}\index{JsonHandler@{JsonHandler}!parseJson@{parseJson}}
+\index{parseJson@{parseJson}!JsonHandler@{JsonHandler}}
+\doxysubsubsection{\texorpdfstring{parseJson()}{parseJson()}}
+{\footnotesize\ttfamily \label{class_json_handler_a86ea2890d777a8bcb8c4cd8db85508b4} 
+nlohmann\+::json Json\+Handler\+::parse\+Json (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{json\+String}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parsuje ciąg znaków JSON do obiektu. 
+
+Parsuje string zawierający dane JSON do obiektu nlohmann\+::json.
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+String} & Ciąg znaków w formacie JSON do sparsowania \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sparsowany obiekt JSON 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em nlohmann\+::json\+::parse\+\_\+error} & W przypadku nieprawidłowego formatu JSON \\
+\hline
+{\em std\+::invalid\+\_\+argument} & W przypadku pustego ciągu wejściowego\\
+\hline
+\end{DoxyExceptions}
+Metoda konwertuje ciąg znaków w formacie JSON na obiekt json, który może być następnie łatwo przetwarzany. Przykład użycia\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{auto}\ data\ =\ \mbox{\hyperlink{class_json_handler_a86ea2890d777a8bcb8c4cd8db85508b4}{JsonHandler::parseJson}}(\textcolor{stringliteral}{"{}\{\(\backslash\)"{}key\(\backslash\)"{}:\(\backslash\)"{}value\(\backslash\)"{}\}"{}});}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ nlohmann::json::parse\_error\&\ e)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ obsługa\ błędów\ parsowania}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+Metoda jest wrapperm wokół nlohmann\+::json\+::parse, zapewniającym dodatkową walidację wejścia i ujednolicone zarządzanie błędami.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em json\+String} & String zawierający dane w formacie JSON \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sparsowany obiekt nlohmann\+::json lub pusty obiekt w przypadku błędu parsowania
+\end{DoxyReturn}
+Funkcja obsługuje wyjątki związane z parsowaniem JSON i raportuje błędy do strumienia błędów 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{jsonhandler_8h}{jsonhandler.\+h}}\item 
+\mbox{\hyperlink{jsonhandler_8cpp}{jsonhandler.\+cpp}}\end{DoxyCompactItemize}

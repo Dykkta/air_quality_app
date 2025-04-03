@@ -1,0 +1,45 @@
+\doxysection{chartmanager.\+h}
+\hypertarget{chartmanager_8h_source}{}\label{chartmanager_8h_source}\mbox{\hyperlink{chartmanager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <QListWidget>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QLayout>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QDateTime>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_chart_manager_a6e687a75eb3e906f3f04ad9c8fa9ea60}{ChartManager}}\ :\ \textcolor{keyword}{public}\ QObject}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_chart_manager_a6e687a75eb3e906f3f04ad9c8fa9ea60}{ChartManager}}(QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_chart_manager_a7a3215b189ef4b3aecad2e0395f7647c}{\string~ChartManager}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_chart_manager_a7b3bdfb6bd4cc84996bae3702547a9d7}{addParameterData}}(\textcolor{keyword}{const}\ std::string\&\ paramName,\ \textcolor{keyword}{const}\ std::map<std::string,\ double>\&\ results);}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ std::set<std::string>\&\ \mbox{\hyperlink{class_chart_manager_aa41b88e891403fe1514d703a0ec517d7}{getAvailableParams}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_chart_manager_a0cc66903c6d5971ee3994ab0783108f4}{clearData}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_chart_manager_aa0f7ef2a0bee519e66706de0467c14b6}{updateParamCheckList}}(QListWidget*\ paramCheckList,\ \textcolor{keyword}{const}\ QString\&\ currentParam);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_chart_manager_ac97f158d35dd9a8472edcae85db164f7}{displayMultiParamChart}}(QLayout*\ chartLayout,\ QListWidget*\ paramCheckList,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QDateTime\ startDate,\ QDateTime\ endDate);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_chart_manager_a15b9648be33a79e4616a321a6b98df0a}{connectParamCheckList}}(QListWidget*\ paramCheckList);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ onParamCheckStateChanged(QListWidgetItem*\ item);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ \ \ \ \ std::map<std::string,\ std::map<std::string,\ double>>\ m\_allResults;\ }
+\DoxyCodeLine{00083\ \ \ \ \ std::set<std::string>\ m\_availableParams;\ }
+\DoxyCodeLine{00084\ \ \ \ \ QLayout*\ m\_currentChartLayout;\ }
+\DoxyCodeLine{00085\ \ \ \ \ QListWidget*\ m\_currentParamCheckList;\ }
+\DoxyCodeLine{00086\ \ \ \ \ QDateTime\ m\_startDate;\ }
+\DoxyCodeLine{00087\ \ \ \ \ QDateTime\ m\_endDate;\ }
+\DoxyCodeLine{00088\ \};}
+
+\end{DoxyCode}

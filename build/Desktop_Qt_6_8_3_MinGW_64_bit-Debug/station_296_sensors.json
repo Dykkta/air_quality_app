@@ -1,0 +1,42 @@
+[
+    {
+        "id": 2088,
+        "param": {
+            "idParam": 1,
+            "paramCode": "SO2",
+            "paramFormula": "SO2",
+            "paramName": "dwutlenek siarki"
+        },
+        "stationId": 296
+    },
+    {
+        "id": 2087,
+        "param": {
+            "idParam": 3,
+            "paramCode": "PM10",
+            "paramFormula": "PM10",
+            "paramName": "pył zawieszony PM10"
+        },
+        "stationId": 296
+    },
+    {
+        "id": 2079,
+        "param": {
+            "idParam": 10,
+            "paramCode": "C6H6",
+            "paramFormula": "C6H6",
+            "paramName": "benzen"
+        },
+        "stationId": 296
+    },
+    {
+        "id": 2083,
+        "param": {
+            "idParam": 6,
+            "paramCode": "NO2",
+            "paramFormula": "NO2",
+            "paramName": "dwutlenek azotu"
+        },
+        "stationId": 296
+    }
+]

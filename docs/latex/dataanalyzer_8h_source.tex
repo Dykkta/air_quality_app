@@ -1,0 +1,32 @@
+\doxysection{dataanalyzer.\+h}
+\hypertarget{dataanalyzer_8h_source}{}\label{dataanalyzer_8h_source}\mbox{\hyperlink{dataanalyzer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_data_analyzer}{DataAnalyzer}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_analyzer_aeac2d304712701fb46c915942528c838}{analyzeData}}(\textcolor{keyword}{const}\ nlohmann::json\&\ data);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ std::map<std::string,\ double>\&\ \mbox{\hyperlink{class_data_analyzer_a1ee4d9b38f892c8d080f83b80f063f6c}{getResults}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ std::map<std::string,\ std::tuple<double,\ double,\ double>>\&\ \mbox{\hyperlink{class_data_analyzer_a83cab2862ef00354b7dbe23a808361f2}{getAnalysisResults}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_data_analyzer_a722dc3259fa04ff2f55602580c7ec874}{getMinDate}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ minDate;\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_data_analyzer_a7939eafa8ef18ebd32b6f9d0d1efef17}{getMaxDate}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ maxDate;\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ std::map<std::string,\ double>\ results;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ std::map<std::string,\ std::tuple<double,\ double,\ double>>\ analysisResults;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ minDate;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ std::string\ maxDate;}
+\DoxyCodeLine{00061\ \};}
+
+\end{DoxyCode}

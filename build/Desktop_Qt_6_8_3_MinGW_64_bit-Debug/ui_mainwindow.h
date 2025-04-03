@@ -34,8 +34,6 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
-    QAction *actionLoadData;
-    QAction *actionSaveData;
     QAction *actionExit;
     QAction *actionRefreshStations;
     QWidget *centralwidget;
@@ -95,10 +93,6 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(1200, 800);
-        actionLoadData = new QAction(MainWindow);
-        actionLoadData->setObjectName("actionLoadData");
-        actionSaveData = new QAction(MainWindow);
-        actionSaveData->setObjectName("actionSaveData");
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName("actionExit");
         actionRefreshStations = new QAction(MainWindow);
@@ -352,8 +346,6 @@ public:
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuTools->menuAction());
-        menuFile->addAction(actionLoadData);
-        menuFile->addAction(actionSaveData);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
         menuTools->addAction(actionRefreshStations);
@@ -366,8 +358,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Pogoda i Jako\305\233\304\207 Powietrza w Polsce", nullptr));
-        actionLoadData->setText(QCoreApplication::translate("MainWindow", "Wczytaj dane", nullptr));
-        actionSaveData->setText(QCoreApplication::translate("MainWindow", "Zapisz dane", nullptr));
         actionExit->setText(QCoreApplication::translate("MainWindow", "Wyjd\305\272", nullptr));
         actionRefreshStations->setText(QCoreApplication::translate("MainWindow", "Od\305\233wie\305\274 list\304\231 stacji", nullptr));
         stationGroupBox->setTitle(QCoreApplication::translate("MainWindow", "Wyb\303\263r stacji pomiarowej", nullptr));

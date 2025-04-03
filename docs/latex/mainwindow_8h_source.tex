@@ -1,0 +1,72 @@
+\doxysection{mainwindow.\+h}
+\hypertarget{mainwindow_8h_source}{}\label{mainwindow_8h_source}\mbox{\hyperlink{mainwindow_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{chartmanager_8h}{ChartManager.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dataanalyzer_8h}{DataAnalyzer.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_geo_coordinate}{GeoCoordinate}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_geo_coordinate_a72baaae87d9aa0ae358ca2b808fce821}{latitude}};\ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_geo_coordinate_a427b63a195e1aca9bb5da71b22ef4821}{longitude}};\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_geo_coordinate_a9604317b2a77f16a9443a80d7eb826ed}{distanceTo}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_geo_coordinate}{GeoCoordinate}}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ui}{Ui}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window}{MainWindow}};}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}\ :\ \textcolor{keyword}{public}\ QMainWindow}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{\string~MainWindow}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeUI();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeStations();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ onStationChanged(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ onAnalyzeData();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ refreshChart();}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ onFindNearestStation();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ tryLoadOfflineStations();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasSensorOfflineData(\textcolor{keywordtype}{int}\ sensorId);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ loadSensorsForStation(\textcolor{keywordtype}{int}\ stationId);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ updateStationsComboBox(\textcolor{keyword}{const}\ nlohmann::json\&\ stations);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ fetchDataForAllSensors();}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ updateSensorList(\textcolor{keyword}{const}\ nlohmann::json\&\ data);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ processAndDisplayData(\textcolor{keyword}{const}\ nlohmann::json\&\ data,\ \textcolor{keyword}{const}\ QString\&\ paramName);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordtype}{void}\ displayAnalysisResults(\textcolor{keyword}{const}\ std::map<std::string,\ double>\&\ results,\ \textcolor{keyword}{const}\ QString\&\ paramName);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordtype}{void}\ displayStatistics(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_data_analyzer}{DataAnalyzer}}\&\ analyzer);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00203\ \ \ \ \ \mbox{\hyperlink{struct_geo_coordinate}{GeoCoordinate}}\ getLocationFromIP();}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{void}\ findNearestStationWithCoordinates(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_geo_coordinate}{GeoCoordinate}}\&\ currentPosition,\ \textcolor{keyword}{const}\ nlohmann::json\&\ stations);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ Ui::MainWindow\ *ui;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{class_chart_manager}{ChartManager}}\ *m\_chartManager;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00217\ \};}
+
+\end{DoxyCode}

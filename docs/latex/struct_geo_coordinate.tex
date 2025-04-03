@@ -1,0 +1,88 @@
+\doxysection{Geo\+Coordinate Struct Reference}
+\hypertarget{struct_geo_coordinate}{}\label{struct_geo_coordinate}\index{GeoCoordinate@{GeoCoordinate}}
+
+
+Struktura przechowująca współrzędne geograficzne.  
+
+
+
+
+{\ttfamily \#include $<$mainwindow.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{struct_geo_coordinate_a9604317b2a77f16a9443a80d7eb826ed}{distance\+To}} (const \mbox{\hyperlink{struct_geo_coordinate}{Geo\+Coordinate}} \&other) const
+\begin{DoxyCompactList}\small\item\em Oblicza odległość między dwoma współrzędnymi geograficznymi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{struct_geo_coordinate_a72baaae87d9aa0ae358ca2b808fce821}{latitude}}
+\begin{DoxyCompactList}\small\item\em Szerokość geograficzna w stopniach. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{struct_geo_coordinate_a427b63a195e1aca9bb5da71b22ef4821}{longitude}}
+\begin{DoxyCompactList}\small\item\em Długość geograficzna w stopniach. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struktura przechowująca współrzędne geograficzne. 
+
+Struktura zawiera pola dla szerokości i długości geograficznej oraz metodę do obliczania odległości między dwoma punktami. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_geo_coordinate_a9604317b2a77f16a9443a80d7eb826ed}\index{GeoCoordinate@{GeoCoordinate}!distanceTo@{distanceTo}}
+\index{distanceTo@{distanceTo}!GeoCoordinate@{GeoCoordinate}}
+\doxysubsubsection{\texorpdfstring{distanceTo()}{distanceTo()}}
+{\footnotesize\ttfamily \label{struct_geo_coordinate_a9604317b2a77f16a9443a80d7eb826ed} 
+double Geo\+Coordinate\+::distance\+To (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_geo_coordinate}{Geo\+Coordinate}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Oblicza odległość między dwoma współrzędnymi geograficznymi. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Współrzędne punktu docelowego \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Odległość w metrach między bieżącym punktem a punktem docelowym
+\end{DoxyReturn}
+Funkcja wykorzystuje formułę Haversine do obliczenia odległości między dwoma punktami na powierzchni Ziemi określonymi przez ich współrzędne geograficzne.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Współrzędne punktu docelowego \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Odległość w metrach między bieżącym punktem a punktem docelowym 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_geo_coordinate_a72baaae87d9aa0ae358ca2b808fce821}\index{GeoCoordinate@{GeoCoordinate}!latitude@{latitude}}
+\index{latitude@{latitude}!GeoCoordinate@{GeoCoordinate}}
+\doxysubsubsection{\texorpdfstring{latitude}{latitude}}
+{\footnotesize\ttfamily \label{struct_geo_coordinate_a72baaae87d9aa0ae358ca2b808fce821} 
+double Geo\+Coordinate\+::latitude}
+
+
+
+Szerokość geograficzna w stopniach. 
+
+\Hypertarget{struct_geo_coordinate_a427b63a195e1aca9bb5da71b22ef4821}\index{GeoCoordinate@{GeoCoordinate}!longitude@{longitude}}
+\index{longitude@{longitude}!GeoCoordinate@{GeoCoordinate}}
+\doxysubsubsection{\texorpdfstring{longitude}{longitude}}
+{\footnotesize\ttfamily \label{struct_geo_coordinate_a427b63a195e1aca9bb5da71b22ef4821} 
+double Geo\+Coordinate\+::longitude}
+
+
+
+Długość geograficzna w stopniach. 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{mainwindow_8h}{mainwindow.\+h}}\item 
+\mbox{\hyperlink{mainwindow_8cpp}{mainwindow.\+cpp}}\end{DoxyCompactItemize}

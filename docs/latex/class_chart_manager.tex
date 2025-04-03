@@ -1,0 +1,195 @@
+\doxysection{Chart\+Manager Class Reference}
+\hypertarget{class_chart_manager}{}\label{class_chart_manager}\index{ChartManager@{ChartManager}}
+
+
+Klasa zarządzająca wyświetlaniem wykresów danych jakości powietrza.  
+
+
+
+
+{\ttfamily \#include $<$chartmanager.\+h$>$}
+
+Inheritance diagram for Chart\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_chart_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_chart_manager_a6e687a75eb3e906f3f04ad9c8fa9ea60}{Chart\+Manager}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Konstruktor klasy \doxylink{class_chart_manager}{Chart\+Manager}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_chart_manager_a7a3215b189ef4b3aecad2e0395f7647c}{\texorpdfstring{$\sim$}{\string~}\+Chart\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destruktor klasy \doxylink{class_chart_manager}{Chart\+Manager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chart_manager_a7b3bdfb6bd4cc84996bae3702547a9d7}{add\+Parameter\+Data}} (const std\+::string \&param\+Name, const std\+::map$<$ std\+::string, double $>$ \&results)
+\begin{DoxyCompactList}\small\item\em Dodaje dane dla określonego parametru. \end{DoxyCompactList}\item 
+const std\+::set$<$ std\+::string $>$ \& \mbox{\hyperlink{class_chart_manager_aa41b88e891403fe1514d703a0ec517d7}{get\+Available\+Params}} () const
+\begin{DoxyCompactList}\small\item\em Zwraca zbiór dostępnych parametrów. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chart_manager_a0cc66903c6d5971ee3994ab0783108f4}{clear\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Czyści wszystkie dane pomiarowe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chart_manager_aa0f7ef2a0bee519e66706de0467c14b6}{update\+Param\+Check\+List}} (QList\+Widget \texorpdfstring{$\ast$}{*}param\+Check\+List, const QString \&current\+Param)
+\begin{DoxyCompactList}\small\item\em Aktualizuje listę wyboru parametrów. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chart_manager_ac97f158d35dd9a8472edcae85db164f7}{display\+Multi\+Param\+Chart}} (QLayout \texorpdfstring{$\ast$}{*}chart\+Layout, QList\+Widget \texorpdfstring{$\ast$}{*}param\+Check\+List, QDate\+Time start\+Date, QDate\+Time end\+Date)
+\begin{DoxyCompactList}\small\item\em Wyświetla wykres z wieloma parametrami. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chart_manager_a15b9648be33a79e4616a321a6b98df0a}{connect\+Param\+Check\+List}} (QList\+Widget \texorpdfstring{$\ast$}{*}param\+Check\+List)
+\begin{DoxyCompactList}\small\item\em Łączy listę wyboru parametrów z menedżerem wykresów. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa zarządzająca wyświetlaniem wykresów danych jakości powietrza. 
+
+Klasa \doxylink{class_chart_manager}{Chart\+Manager} dostarcza funkcjonalność do przechowywania, przetwarzania i wizualizacji danych pomiarowych jakości powietrza. Umożliwia wyświetlanie wielu parametrów na jednym wykresie, z automatycznym doborem kolorów i osi. Zapewnia interaktywne funkcje jak podpowiedzi po najechaniu na punkty danych. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_chart_manager_a6e687a75eb3e906f3f04ad9c8fa9ea60}\index{ChartManager@{ChartManager}!ChartManager@{ChartManager}}
+\index{ChartManager@{ChartManager}!ChartManager@{ChartManager}}
+\doxysubsubsection{\texorpdfstring{ChartManager()}{ChartManager()}}
+{\footnotesize\ttfamily \label{class_chart_manager_a6e687a75eb3e906f3f04ad9c8fa9ea60} 
+Chart\+Manager\+::\+Chart\+Manager (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Konstruktor klasy \doxylink{class_chart_manager}{Chart\+Manager}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Wskaźnik na obiekt rodzica w hierarchii Qt\\
+\hline
+{\em parent} & Wskaźnik na obiekt rodzica w hierarchii Qt\\
+\hline
+\end{DoxyParams}
+Inicjalizuje obiekt klasy \doxylink{class_chart_manager}{Chart\+Manager} z domyślnymi wartościami. \Hypertarget{class_chart_manager_a7a3215b189ef4b3aecad2e0395f7647c}\index{ChartManager@{ChartManager}!````~ChartManager@{\texorpdfstring{$\sim$}{\string~}ChartManager}}
+\index{````~ChartManager@{\texorpdfstring{$\sim$}{\string~}ChartManager}!ChartManager@{ChartManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ChartManager()}{\string~ChartManager()}}
+{\footnotesize\ttfamily \label{class_chart_manager_a7a3215b189ef4b3aecad2e0395f7647c} 
+Chart\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Chart\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destruktor klasy \doxylink{class_chart_manager}{Chart\+Manager}. 
+
+Zwalnia zasoby używane przez obiekt \doxylink{class_chart_manager}{Chart\+Manager}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_chart_manager_a7b3bdfb6bd4cc84996bae3702547a9d7}\index{ChartManager@{ChartManager}!addParameterData@{addParameterData}}
+\index{addParameterData@{addParameterData}!ChartManager@{ChartManager}}
+\doxysubsubsection{\texorpdfstring{addParameterData()}{addParameterData()}}
+{\footnotesize\ttfamily \label{class_chart_manager_a7b3bdfb6bd4cc84996bae3702547a9d7} 
+void Chart\+Manager\+::add\+Parameter\+Data (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{param\+Name}{, }\item[{const std\+::map$<$ std\+::string, double $>$ \&}]{results}{}\end{DoxyParamCaption})}
+
+
+
+Dodaje dane dla określonego parametru. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Name} & Nazwa parametru \\
+\hline
+{\em results} & Mapa wyników zawierająca pary data-\/wartość dla parametru\\
+\hline
+{\em param\+Name} & Nazwa parametru \\
+\hline
+{\em results} & Mapa wyników zawierająca pary data-\/wartość dla parametru\\
+\hline
+\end{DoxyParams}
+Zapisuje dane parametru w globalnej mapie wyników i aktualizuje zbiór dostępnych parametrów. \Hypertarget{class_chart_manager_a0cc66903c6d5971ee3994ab0783108f4}\index{ChartManager@{ChartManager}!clearData@{clearData}}
+\index{clearData@{clearData}!ChartManager@{ChartManager}}
+\doxysubsubsection{\texorpdfstring{clearData()}{clearData()}}
+{\footnotesize\ttfamily \label{class_chart_manager_a0cc66903c6d5971ee3994ab0783108f4} 
+void Chart\+Manager\+::clear\+Data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Czyści wszystkie dane pomiarowe. 
+
+Czyści wszystkie dane parametrów.
+
+Usuwa wszystkie zapisane wyniki pomiarów i resetuje listę dostępnych parametrów. \Hypertarget{class_chart_manager_a15b9648be33a79e4616a321a6b98df0a}\index{ChartManager@{ChartManager}!connectParamCheckList@{connectParamCheckList}}
+\index{connectParamCheckList@{connectParamCheckList}!ChartManager@{ChartManager}}
+\doxysubsubsection{\texorpdfstring{connectParamCheckList()}{connectParamCheckList()}}
+{\footnotesize\ttfamily \label{class_chart_manager_a15b9648be33a79e4616a321a6b98df0a} 
+void Chart\+Manager\+::connect\+Param\+Check\+List (\begin{DoxyParamCaption}\item[{QList\+Widget \texorpdfstring{$\ast$}{*}}]{param\+Check\+List}{}\end{DoxyParamCaption})}
+
+
+
+Łączy listę wyboru parametrów z menedżerem wykresów. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Check\+List} & Wskaźnik na widget listy parametrów\\
+\hline
+{\em param\+Check\+List} & Wskaźnik na widget listy parametrów\\
+\hline
+\end{DoxyParams}
+Zapisuje referencję do listy parametrów i łączy sygnał zmiany stanu elementu z odpowiednim slotem w menedżerze wykresów. \Hypertarget{class_chart_manager_ac97f158d35dd9a8472edcae85db164f7}\index{ChartManager@{ChartManager}!displayMultiParamChart@{displayMultiParamChart}}
+\index{displayMultiParamChart@{displayMultiParamChart}!ChartManager@{ChartManager}}
+\doxysubsubsection{\texorpdfstring{displayMultiParamChart()}{displayMultiParamChart()}}
+{\footnotesize\ttfamily \label{class_chart_manager_ac97f158d35dd9a8472edcae85db164f7} 
+void Chart\+Manager\+::display\+Multi\+Param\+Chart (\begin{DoxyParamCaption}\item[{QLayout \texorpdfstring{$\ast$}{*}}]{chart\+Layout}{, }\item[{QList\+Widget \texorpdfstring{$\ast$}{*}}]{param\+Check\+List}{, }\item[{QDate\+Time}]{start\+Date}{, }\item[{QDate\+Time}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Wyświetla wykres z wieloma parametrami. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em chart\+Layout} & Układ, w którym ma być wyświetlony wykres \\
+\hline
+{\em param\+Check\+List} & Lista wyboru parametrów \\
+\hline
+{\em start\+Date} & Data początkowa zakresu \\
+\hline
+{\em end\+Date} & Data końcowa zakresu\\
+\hline
+{\em chart\+Layout} & Układ, w którym będzie wyświetlany wykres \\
+\hline
+{\em param\+Check\+List} & Lista wyboru parametrów \\
+\hline
+{\em start\+Date} & Data początkowa zakresu danych \\
+\hline
+{\em end\+Date} & Data końcowa zakresu danych\\
+\hline
+\end{DoxyParams}
+Tworzy i konfiguruje wykres prezentujący wybrane parametry jakości powietrza w określonym zakresie dat. Wykres zawiera osobne osie dla każdego parametru i umożliwia interaktywne wyświetlanie danych przy najechaniu kursorem. \Hypertarget{class_chart_manager_aa41b88e891403fe1514d703a0ec517d7}\index{ChartManager@{ChartManager}!getAvailableParams@{getAvailableParams}}
+\index{getAvailableParams@{getAvailableParams}!ChartManager@{ChartManager}}
+\doxysubsubsection{\texorpdfstring{getAvailableParams()}{getAvailableParams()}}
+{\footnotesize\ttfamily \label{class_chart_manager_aa41b88e891403fe1514d703a0ec517d7} 
+const std\+::set$<$ std\+::string $>$ \& Chart\+Manager\+::get\+Available\+Params (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Zwraca zbiór dostępnych parametrów. 
+
+\begin{DoxyReturn}{Returns}
+Referencja do zbioru zawierającego nazwy wszystkich dostępnych parametrów
+
+Referencja do zbioru zawierającego nazwy wszystkich dostępnych parametrów
+\end{DoxyReturn}
+Udostępnia informacje o wszystkich parametrach, dla których dostępne są dane. \Hypertarget{class_chart_manager_aa0f7ef2a0bee519e66706de0467c14b6}\index{ChartManager@{ChartManager}!updateParamCheckList@{updateParamCheckList}}
+\index{updateParamCheckList@{updateParamCheckList}!ChartManager@{ChartManager}}
+\doxysubsubsection{\texorpdfstring{updateParamCheckList()}{updateParamCheckList()}}
+{\footnotesize\ttfamily \label{class_chart_manager_aa0f7ef2a0bee519e66706de0467c14b6} 
+void Chart\+Manager\+::update\+Param\+Check\+List (\begin{DoxyParamCaption}\item[{QList\+Widget \texorpdfstring{$\ast$}{*}}]{param\+Check\+List}{, }\item[{const QString \&}]{current\+Param}{}\end{DoxyParamCaption})}
+
+
+
+Aktualizuje listę wyboru parametrów. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Check\+List} & Widget listy parametrów do aktualizacji \\
+\hline
+{\em current\+Param} & Aktualnie wybrany parametr\\
+\hline
+{\em param\+Check\+List} & Wskaźnik na widget listy wyboru parametrów \\
+\hline
+{\em current\+Param} & Nazwa aktualnie analizowanego parametru\\
+\hline
+\end{DoxyParams}
+Dodaje dostępne parametry do listy wyboru lub aktualizuje istniejące elementy. Domyślnie zaznacza aktualnie analizowany parametr. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{chartmanager_8h}{chartmanager.\+h}}\item 
+\mbox{\hyperlink{chartmanager_8cpp}{chartmanager.\+cpp}}\end{DoxyCompactItemize}

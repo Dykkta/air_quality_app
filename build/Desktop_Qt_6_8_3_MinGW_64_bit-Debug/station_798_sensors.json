@@ -1,0 +1,32 @@
+[
+    {
+        "id": 5228,
+        "param": {
+            "idParam": 8,
+            "paramCode": "CO",
+            "paramFormula": "CO",
+            "paramName": "tlenek węgla"
+        },
+        "stationId": 798
+    },
+    {
+        "id": 5230,
+        "param": {
+            "idParam": 6,
+            "paramCode": "NO2",
+            "paramFormula": "NO2",
+            "paramName": "dwutlenek azotu"
+        },
+        "stationId": 798
+    },
+    {
+        "id": 5232,
+        "param": {
+            "idParam": 3,
+            "paramCode": "PM10",
+            "paramFormula": "PM10",
+            "paramName": "pył zawieszony PM10"
+        },
+        "stationId": 798
+    }
+]

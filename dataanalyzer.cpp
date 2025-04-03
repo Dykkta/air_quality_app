@@ -2,6 +2,15 @@
 #include <iostream>
 #include <limits>
 
+/**
+ * @brief Analizuje dane o jakości powietrza z formatu JSON
+ *
+ * Funkcja przetwarza dane pomiarowe o jakości powietrza dostarczone w formacie JSON,
+ * oblicza wartości minimalne i maksymalne oraz zapisuje wyniki do wewnętrznych struktur danych.
+ *
+ * @param data Dane wejściowe w formacie JSON zawierające pomiary jakości powietrza
+ * @throws Nie zgłasza wyjątków, ale wyświetla błędy na standardowym wyjściu błędów
+ */
 void DataAnalyzer::analyzeData(const nlohmann::json& data) {
     results.clear();
     analysisResults.clear();
@@ -51,7 +60,6 @@ void DataAnalyzer::analyzeData(const nlohmann::json& data) {
                 minVal = value;
                 minDate = dateStr;
             }
-
             if (value > maxVal) {
                 maxVal = value;
                 maxDate = dateStr;
@@ -63,10 +71,20 @@ void DataAnalyzer::analyzeData(const nlohmann::json& data) {
     // Aktualizacja wartości trendów itp. może być dodana tutaj
 }
 
+/**
+ * @brief Zwraca wyniki analizy danych
+ *
+ * @return Referencja do stałej mapy zawierającej pary data-wartość pomiarowa
+ */
 const std::map<std::string, double>& DataAnalyzer::getResults() const {
     return results;
 }
 
+/**
+ * @brief Zwraca szczegółowe wyniki analizy danych
+ *
+ * @return Referencja do stałej mapy zawierającej pary data-krotka z wartościami (aktualna wartość, min, max)
+ */
 const std::map<std::string, std::tuple<double, double, double>>& DataAnalyzer::getAnalysisResults() const {
     return analysisResults;
 }

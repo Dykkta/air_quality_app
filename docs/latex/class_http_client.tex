@@ -1,0 +1,99 @@
+\doxysection{Http\+Client Class Reference}
+\hypertarget{class_http_client}{}\label{class_http_client}\index{HttpClient@{HttpClient}}
+
+
+Klasa do obsługi zapytań HTTP.  
+
+
+
+
+{\ttfamily \#include $<$httpclient.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{class_http_client_a91b92e02532ae529a83b7f207d8340b9}{get\+Request}} (const std\+::string \&url)
+\begin{DoxyCompactList}\small\item\em Wykonuje żądanie HTTP GET. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_http_client_a0690fb40fb1565f208f0300264a78407}{is\+Network\+Available}} ()
+\begin{DoxyCompactList}\small\item\em Sprawdza dostępność połączenia sieciowego. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa do obsługi zapytań HTTP. 
+
+Klasa \doxylink{class_http_client}{Http\+Client} umożliwia wykonywanie podstawowych operacji sieciowych, w tym wysyłanie żądań GET oraz sprawdzanie dostępności połączenia sieciowego. Wszystkie metody są statyczne, co pozwala na ich użycie bez tworzenia instancji klasy. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_http_client_a91b92e02532ae529a83b7f207d8340b9}\index{HttpClient@{HttpClient}!getRequest@{getRequest}}
+\index{getRequest@{getRequest}!HttpClient@{HttpClient}}
+\doxysubsubsection{\texorpdfstring{getRequest()}{getRequest()}}
+{\footnotesize\ttfamily \label{class_http_client_a91b92e02532ae529a83b7f207d8340b9} 
+std\+::string Http\+Client\+::get\+Request (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Wykonuje żądanie HTTP GET. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & Adres URL do którego ma zostać wysłane żądanie \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Odpowiedź serwera jako string 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & W przypadku błędu połączenia \\
+\hline
+{\em std\+::invalid\+\_\+argument} & W przypadku nieprawidłowego URL\\
+\hline
+\end{DoxyExceptions}
+Metoda wysyła synchroniczne żądanie GET do określonego URL i zwraca otrzymaną odpowiedź. Obsługuje protokoły HTTP i HTTPS. Przykład użycia\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::string\ response\ =\ \mbox{\hyperlink{class_http_client_a91b92e02532ae529a83b7f207d8340b9}{HttpClient::getRequest}}(\textcolor{stringliteral}{"{}https://api.example.com/data"{}});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & Adres URL, do którego ma zostać wysłane żądanie \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Odpowiedź serwera jako string
+\end{DoxyReturn}
+Wykorzystuje bibliotekę libcurl do wykonania żądania HTTP GET \Hypertarget{class_http_client_a0690fb40fb1565f208f0300264a78407}\index{HttpClient@{HttpClient}!isNetworkAvailable@{isNetworkAvailable}}
+\index{isNetworkAvailable@{isNetworkAvailable}!HttpClient@{HttpClient}}
+\doxysubsubsection{\texorpdfstring{isNetworkAvailable()}{isNetworkAvailable()}}
+{\footnotesize\ttfamily \label{class_http_client_a0690fb40fb1565f208f0300264a78407} 
+bool Http\+Client\+::is\+Network\+Available (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sprawdza dostępność połączenia sieciowego. 
+
+Sprawdza dostępność połączenia internetowego.
+
+\begin{DoxyReturn}{Returns}
+true jeśli połączenie jest dostępne, false w przeciwnym przypadku
+\end{DoxyReturn}
+Metoda sprawdza czy urządzenie ma aktywny dostęp do internetu. Weryfikuje zarówno połączenie sieciowe jak i dostępność zdalnych serwerów. Przykład użycia\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(\mbox{\hyperlink{class_http_client_a0690fb40fb1565f208f0300264a78407}{HttpClient::isNetworkAvailable}}())\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ wykonaj\ operacje\ sieciowe}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyReturn}{Returns}
+true jeśli połączenie internetowe jest dostępne, false w przeciwnym przypadku
+\end{DoxyReturn}
+Próbuje połączyć się z wiarygodnym serwerem Google z krótkim limitem czasu oczekiwania 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{httpclient_8h}{httpclient.\+h}}\item 
+\mbox{\hyperlink{httpclient_8cpp}{httpclient.\+cpp}}\end{DoxyCompactItemize}

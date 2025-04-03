@@ -1,0 +1,48 @@
+\doxysection{httpclient.\+cpp File Reference}
+\hypertarget{httpclient_8cpp}{}\label{httpclient_8cpp}\index{httpclient.cpp@{httpclient.cpp}}
+
+
+Implementacja klasy \doxylink{class_http_client}{Http\+Client} służącej do wykonywania żądań HTTP.  
+
+
+{\ttfamily \#include "{}Http\+Client.\+h"{}}\newline
+{\ttfamily \#include $<$curl/curl.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{httpclient_8cpp_aaf8b229d06393cd7e4480e76d49a1a0f}{Write\+Callback}} (void \texorpdfstring{$\ast$}{*}contents, size\+\_\+t size, size\+\_\+t nmemb, std\+::string \texorpdfstring{$\ast$}{*}output)
+\begin{DoxyCompactList}\small\item\em Funkcja callback dla biblioteki libcurl do odbierania danych HTTP. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementacja klasy \doxylink{class_http_client}{Http\+Client} służącej do wykonywania żądań HTTP. 
+
+Zawiera funkcjonalność do pobierania danych z API o jakości powietrza 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{httpclient_8cpp_aaf8b229d06393cd7e4480e76d49a1a0f}\index{httpclient.cpp@{httpclient.cpp}!WriteCallback@{WriteCallback}}
+\index{WriteCallback@{WriteCallback}!httpclient.cpp@{httpclient.cpp}}
+\doxysubsubsection{\texorpdfstring{WriteCallback()}{WriteCallback()}}
+{\footnotesize\ttfamily \label{httpclient_8cpp_aaf8b229d06393cd7e4480e76d49a1a0f} 
+size\+\_\+t Write\+Callback (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{contents}{, }\item[{size\+\_\+t}]{size}{, }\item[{size\+\_\+t}]{nmemb}{, }\item[{std\+::string \texorpdfstring{$\ast$}{*}}]{output}{}\end{DoxyParamCaption})}
+
+
+
+Funkcja callback dla biblioteki libcurl do odbierania danych HTTP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contents} & Wskaźnik do odebranych danych \\
+\hline
+{\em size} & Rozmiar pojedynczego elementu \\
+\hline
+{\em nmemb} & Liczba elementów \\
+\hline
+{\em output} & Wskaźnik do stringa, do którego zapisywane są dane \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Całkowity rozmiar odebranych danych
+\end{DoxyReturn}
+Funkcja jest używana wewnętrznie przez libcurl do przechwytywania odpowiedzi HTTP 

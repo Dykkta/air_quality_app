@@ -8,11 +8,13 @@
 #include <QDateTime>
 
 /**
- * @brief Klasa zarządzająca wykresami danych pomiarowych
+ * @class ChartManager
+ * @brief Klasa zarządzająca wyświetlaniem wykresów danych jakości powietrza
  *
- * ChartManager odpowiada za przechowywanie, zarządzanie i wyświetlanie danych pomiarowych
- * na wykresach. Umożliwia dodawanie różnych parametrów, kontrolę wyświetlanych zakresów
- * dat oraz interaktywną selekcję parametrów do wyświetlenia.
+ * Klasa ChartManager dostarcza funkcjonalność do przechowywania, przetwarzania
+ * i wizualizacji danych pomiarowych jakości powietrza. Umożliwia wyświetlanie
+ * wielu parametrów na jednym wykresie, z automatycznym doborem kolorów i osi.
+ * Zapewnia interaktywne funkcje jak podpowiedzi po najechaniu na punkty danych.
  */
 class ChartManager : public QObject
 {
@@ -20,7 +22,7 @@ class ChartManager : public QObject
 public:
     /**
      * @brief Konstruktor klasy ChartManager
-     * @param parent Obiekt rodzica (dla zarządzania pamięcią)
+     * @param parent Wskaźnik na obiekt rodzica w hierarchii Qt
      */
     explicit ChartManager(QObject *parent = nullptr);
 
@@ -30,29 +32,14 @@ public:
     ~ChartManager();
 
     /**
-     * @brief Dodaje dane pomiarowe dla określonego parametru
+     * @brief Dodaje dane dla określonego parametru
      * @param paramName Nazwa parametru
-     * @param results Mapa wyników (data -> wartość)
+     * @param results Mapa wyników zawierająca pary data-wartość dla parametru
      */
     void addParameterData(const std::string& paramName, const std::map<std::string, double>& results);
-
-    /**
-     * @brief Ustawia jednostkę dla parametru
-     * @param paramName Nazwa parametru
-     * @param unit Jednostka miary (np. "μg/m³")
-     */
-    void setParameterUnit(const std::string& paramName, const std::string& unit);
-
-    /**
-     * @brief Pobiera jednostkę dla parametru
-     * @param paramName Nazwa parametru
-     * @return Jednostka miary parametru
-     */
-    std::string getParameterUnit(const std::string& paramName) const;
-
     /**
      * @brief Zwraca zbiór dostępnych parametrów
-     * @return Referencja do zbioru nazw dostępnych parametrów
+     * @return Referencja do zbioru zawierającego nazwy wszystkich dostępnych parametrów
      */
     const std::set<std::string>& getAvailableParams() const;
 
@@ -79,48 +66,23 @@ public:
                                 QDateTime startDate, QDateTime endDate);
 
     /**
-     * @brief Podłącza sygnały zmiany stanu parametrów
-     * @param paramCheckList Lista wyboru parametrów do monitorowania
+     * @brief Łączy listę wyboru parametrów z menedżerem wykresów
+     * @param paramCheckList Wskaźnik na widget listy parametrów
      */
     void connectParamCheckList(QListWidget* paramCheckList);
 
 private slots:
     /**
-     * @brief Obsługuje zmianę stanu zaznaczenia parametru
-     * @param item Element listy, którego stan się zmienił
+     * @brief Slot wywoływany przy zmianie stanu zaznaczenia parametru
+     * @param item Wskaźnik na element listy, którego stan się zmienił
      */
     void onParamCheckStateChanged(QListWidgetItem* item);
 
 private:
-    /**
-     * @brief Mapa przechowująca wszystkie wyniki pomiarów
-     *
-     * Struktura: nazwa parametru -> (data -> wartość)
-     */
-    std::map<std::string, std::map<std::string, double>> m_allResults;
-
-    /**
-     * @brief Zbiór dostępnych parametrów
-     */
-    std::set<std::string> m_availableParams;
-
-    /**
-     * @brief Wskaźnik na aktualny układ wykresu
-     */
-    QLayout* m_currentChartLayout;
-
-    /**
-     * @brief Wskaźnik na aktualną listę wyboru parametrów
-     */
-    QListWidget* m_currentParamCheckList;
-
-    /**
-     * @brief Data początkowa zakresu wyświetlania
-     */
-    QDateTime m_startDate;
-
-    /**
-     * @brief Data końcowa zakresu wyświetlania
-     */
-    QDateTime m_endDate;
+    std::map<std::string, std::map<std::string, double>> m_allResults; ///< Mapa wszystkich wyników dla parametrów
+    std::set<std::string> m_availableParams; ///< Zbiór nazw dostępnych parametrów
+    QLayout* m_currentChartLayout; ///< Wskaźnik na aktualnie używany układ wykresu
+    QListWidget* m_currentParamCheckList; ///< Wskaźnik na aktualnie używaną listę parametrów
+    QDateTime m_startDate; ///< Data początkowa zakresu danych
+    QDateTime m_endDate; ///< Data końcowa zakresu danych
 };

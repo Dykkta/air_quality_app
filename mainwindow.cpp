@@ -1,4 +1,3 @@
-//mainwindow.cpp
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "HttpClient.h"
@@ -18,6 +17,13 @@
 #include <QInputDialog>
 #include <exception>
 
+/**
+ * @brief Konstruktor klasy MainWindow
+ * @param parent - Wskaźnik do widgetu nadrzędnego
+ *
+ * Inicjalizuje główne okno aplikacji, tworzy menedżera wykresów,
+ * konfiguruje interfejs użytkownika oraz łączy sygnały ze slotami.
+ */
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
@@ -50,6 +56,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             this, &MainWindow::onStationChanged);
 }
 
+/**
+ * @brief Inicjalizuje interfejs użytkownika
+ *
+ * Konfiguruje główne okno aplikacji, ustawia rozmiary paneli,
+ * inicjalizuje kontrolki dat oraz łączy je z funkcją odświeżania wykresu.
+ */
 void MainWindow::initializeUI() {
     // Ustawienie okna na pełny ekran
     showMaximized();
@@ -70,11 +82,21 @@ void MainWindow::initializeUI() {
     connect(ui->endDateTimeEdit, &QDateTimeEdit::dateTimeChanged, this, &MainWindow::refreshChart);
 }
 
+/**
+ * @brief Destruktor klasy MainWindow
+ *
+ * Zwalnia zasoby alokowane podczas tworzenia obiektu klasy MainWindow.
+ */
 MainWindow::~MainWindow() {
     delete ui;
 }
 
-
+/**
+ * @brief Inicjalizuje listę stacji pomiarowych
+ *
+ * Pobiera dane o stacjach pomiarowych z API GIOŚ lub wczytuje je z lokalnej bazy danych,
+ * jeśli nie ma połączenia z internetem. Po pobraniu danych aktualizuje interfejs użytkownika.
+ */
 void MainWindow::initializeStations() {
     if (!HttpClient::isNetworkAvailable()) {
         QMessageBox::information(this, "Brak połączenia",
@@ -109,7 +131,13 @@ void MainWindow::initializeStations() {
         tryLoadOfflineStations();
     }
 }
-// zaimplementowane wyświetlanie tylko tych stacji dla których są dostępne dane pomiarowe offline
+
+/**
+ * @brief Próbuje wczytać dane o stacjach z lokalnej bazy danych
+ *
+ * Funkcja wyświetla tylko te stacje, dla których dostępne są dane pomiarowe offline.
+ * Jest wywoływana, gdy nie można pobrać danych z API.
+ */
 void MainWindow::tryLoadOfflineStations() {
     try {
         // Wczytaj listę wszystkich stacji z lokalnego pliku
@@ -175,7 +203,14 @@ void MainWindow::tryLoadOfflineStations() {
     }
 }
 
-// Pomocnicza funkcja do sprawdzania, czy istnieją dane dla danego czujnika
+/**
+ * @brief Sprawdza czy dla danego czujnika istnieją dane offline
+ * @param sensorId - Identyfikator czujnika
+ * @return true jeśli dane istnieją, false w przeciwnym wypadku
+ *
+ * Funkcja sprawdza czy plik z danymi dla określonego czujnika istnieje
+ * i czy zawiera poprawne dane w formacie JSON.
+ */
 bool MainWindow::hasSensorOfflineData(int sensorId) {
     QString fileName = QString("sensor_%1_data.json").arg(sensorId);
     QFile file(fileName);
@@ -205,7 +240,14 @@ bool MainWindow::hasSensorOfflineData(int sensorId) {
     return false;
 }
 
-// Funkcja do wczytywania i wyświetlania czujników dla wybranej stacji
+/**
+ * @brief Wczytuje i wyświetla czujniki dla wybranej stacji
+ * @param stationId - Identyfikator stacji
+ *
+ * Funkcja wczytuje dane o czujnikach dla określonej stacji z pliku
+ * i aktualizuje listę czujników w interfejsie użytkownika.
+ * W trybie offline pokazuje tylko czujniki z dostępnymi danymi.
+ */
 void MainWindow::loadSensorsForStation(int stationId) {
     ui->sensorComboBox->clear();
 
@@ -239,8 +281,13 @@ void MainWindow::loadSensorsForStation(int stationId) {
     }
 }
 
-
-
+/**
+ * @brief Aktualizuje kontrolkę ComboBox ze stacjami
+ * @param stations - Obiekt JSON zawierający dane o stacjach
+ *
+ * Funkcja czyści obecną listę stacji, sortuje je alfabetycznie według nazwy
+ * i dodaje do kontrolki ComboBox wraz z identyfikatorami jako dane użytkownika.
+ */
 void MainWindow::updateStationsComboBox(const nlohmann::json& stations) {
     ui->stationComboBox->clear();
 
@@ -267,6 +314,13 @@ void MainWindow::updateStationsComboBox(const nlohmann::json& stations) {
     }
 }
 
+/**
+ * @brief Obsługuje zmianę wybranej stacji
+ * @param index - Indeks nowo wybranej stacji w ComboBox
+ *
+ * Funkcja pobiera dane o czujnikach dla wybranej stacji z API lub
+ * z lokalnej bazy danych, aktualizuje listę czujników i czyści dane wykresu.
+ */
 void MainWindow::onStationChanged(int index) {
     if (index < 0) return;
 
@@ -350,6 +404,13 @@ void MainWindow::onStationChanged(int index) {
     }
 }
 
+/**
+ * @brief Pobiera dane dla wszystkich czujników wybranej stacji
+ *
+ * Funkcja pobiera dane pomiarowe dla każdego czujnika z API lub
+ * wczytuje je z lokalnej bazy danych, analizuje je i aktualizuje
+ * menedżera wykresów oraz listę dostępnych parametrów.
+ */
 void MainWindow::fetchDataForAllSensors() {
     bool isOnline = HttpClient::isNetworkAvailable();
 
@@ -432,7 +493,13 @@ void MainWindow::fetchDataForAllSensors() {
     }
 }
 
-
+/**
+ * @brief Obsługuje żądanie analizy danych
+ *
+ * Funkcja jest wywoływana po kliknięciu przycisku "Analizuj".
+ * Pobiera dane dla wybranego czujnika z API lub z lokalnej bazy danych,
+ * analizuje je i wyświetla wyniki analizy oraz wykres.
+ */
 void MainWindow::onAnalyzeData() {
     int stationIndex = ui->stationComboBox->currentIndex();
     int sensorIndex = ui->sensorComboBox->currentIndex();
@@ -499,6 +566,13 @@ void MainWindow::onAnalyzeData() {
     }
 }
 
+/**
+ * @brief Aktualizuje listę czujników
+ * @param data - Obiekt JSON zawierający dane o czujnikach
+ *
+ * Funkcja czyści obecną listę czujników i dodaje nowe dane
+ * z obiektu JSON do kontrolki ComboBox.
+ */
 void MainWindow::updateSensorList(const nlohmann::json& data) {
     ui->sensorComboBox->clear();
 
@@ -514,6 +588,14 @@ void MainWindow::updateSensorList(const nlohmann::json& data) {
     }
 }
 
+/**
+ * @brief Przetwarza i wyświetla dane pomiarowe
+ * @param data - Obiekt JSON zawierający dane pomiarowe
+ * @param paramName - Nazwa parametru pomiarowego
+ *
+ * Funkcja analizuje dane pomiarowe, wyświetla je na wykresie
+ * oraz pokazuje statystyki takie jak wartość średnia, minimalna i maksymalna.
+ */
 void MainWindow::processAndDisplayData(const nlohmann::json& data, const QString& paramName) {
     // Najpierw czyścimy istniejący układ wykresu - poprawiona wersja
     QLayoutItem* item;
@@ -541,6 +623,15 @@ void MainWindow::processAndDisplayData(const nlohmann::json& data, const QString
     // Wyświetlanie statystyk
     displayStatistics(analyzer);
 }
+
+/**
+ * @brief Wyświetla wyniki analizy danych
+ * @param results - Mapa zawierająca wyniki analizy
+ * @param paramName - Nazwa parametru pomiarowego
+ *
+ * Funkcja dodaje dane do menedżera wykresów, aktualizuje listę parametrów
+ * i wyświetla wykres dla wybranych parametrów.
+ */
 void MainWindow::displayAnalysisResults(const std::map<std::string, double>& results, const QString& paramName) {
     // Add the data to the ChartManager
     m_chartManager->addParameterData(paramName.toStdString(), results);
@@ -554,6 +645,12 @@ void MainWindow::displayAnalysisResults(const std::map<std::string, double>& res
                                            ui->endDateTimeEdit->dateTime());
 }
 
+/**
+ * @brief Odświeża wykres
+ *
+ * Funkcja wyświetla wykres z aktualnymi danymi dla wybranych parametrów
+ * w wybranym zakresie czasowym. Jest wywoływana po zmianie zakresu dat.
+ */
 void MainWindow::refreshChart() {
     // Just call the ChartManager to display the chart
     m_chartManager->displayMultiParamChart(ui->chartLayout, ui->paramCheckList,
@@ -562,6 +659,15 @@ void MainWindow::refreshChart() {
 }
 
 
+/**
+ * @brief Wyświetla statystyki analizy danych
+ *
+ * Funkcja oblicza i wyświetla w interfejsie użytkownika statystyki na podstawie danych
+ * z analizatora, takie jak: wartość średnia, wartości minimalne i maksymalne,
+ * daty wystąpienia wartości minimalnych i maksymalnych oraz trend zmian wartości.
+ *
+ * @param analyzer Obiekt analizatora danych zawierający wyniki analizy
+ */
 void MainWindow::displayStatistics(const DataAnalyzer& analyzer) {
     const auto& results = analyzer.getAnalysisResults();
     double sum = 0.0;
@@ -633,7 +739,15 @@ void MainWindow::displayStatistics(const DataAnalyzer& analyzer) {
     }
 }
 
-// Obliczanie odległości
+/**
+ * @brief Oblicza odległość między dwoma współrzędnymi geograficznymi
+ *
+ * Funkcja wykorzystuje formułę Haversine do obliczenia odległości między dwoma
+ * punktami na powierzchni Ziemi określonymi przez ich współrzędne geograficzne.
+ *
+ * @param other Współrzędne punktu docelowego
+ * @return Odległość w metrach między bieżącym punktem a punktem docelowym
+ */
 double GeoCoordinate::distanceTo(const GeoCoordinate& other) const {
     // Earth radius in meters
     const double R = 6371000.0;
@@ -656,6 +770,15 @@ double GeoCoordinate::distanceTo(const GeoCoordinate& other) const {
     return distance;
 }
 
+/**
+ * @brief Pobiera położenie geograficzne na podstawie adresu IP
+ *
+ * Funkcja używa zewnętrznego API (ip-api.com) do określenia położenia geograficznego
+ * użytkownika na podstawie jego adresu IP. Wyniki są pobierane za pomocą polecenia curl
+ * i zapisywane w pliku tymczasowym, który następnie jest przetwarzany.
+ *
+ * @return Obiekt GeoCoordinate zawierający współrzędne geograficzne (szerokość i długość)
+ */
 GeoCoordinate MainWindow::getLocationFromIP() {
     GeoCoordinate result = {0.0, 0.0};
 
@@ -705,6 +828,15 @@ GeoCoordinate MainWindow::getLocationFromIP() {
     return result;
 }
 
+/**
+ * @brief Obsługuje żądanie znalezienia najbliższej stacji pomiarowej
+ *
+ * Funkcja wywoływana po kliknięciu przycisku wyszukiwania najbliższej stacji.
+ * Sprawdza dostępność sieci, pobiera aktualną lokalizację użytkownika,
+ * a następnie przeszukuje listę stacji pomiarowych, aby znaleźć najbliższą.
+ * Jeśli automatyczne określenie lokalizacji nie jest możliwe, prosi użytkownika
+ * o ręczne wprowadzenie współrzędnych.
+ */
 void MainWindow::onFindNearestStation() {
 
     if (!HttpClient::isNetworkAvailable()) {
@@ -774,6 +906,17 @@ void MainWindow::onFindNearestStation() {
     }
 }
 
+/**
+ * @brief Znajduje najbliższą stację pomiarową na podstawie współrzędnych geograficznych
+ *
+ * Funkcja analizuje listę stacji pomiarowych i znajduje tę, która jest najbliżej
+ * podanej lokalizacji. Odległość jest obliczana za pomocą metody distanceTo klasy
+ * GeoCoordinate. Po znalezieniu najbliższej stacji, jest ona wybierana w interfejsie
+ * użytkownika.
+ *
+ * @param currentPosition Aktualna pozycja geograficzna, względem której szukamy najbliższej stacji
+ * @param stations Lista dostępnych stacji pomiarowych w formacie JSON
+ */
 void MainWindow::findNearestStationWithCoordinates(const GeoCoordinate &currentPosition, const nlohmann::json &stations) {
     // Variable to store the nearest station
     int closestStationId = -1;
@@ -848,4 +991,14 @@ void MainWindow::findNearestStationWithCoordinates(const GeoCoordinate &currentP
         QMessageBox::warning(this, "Informacja",
                              "Nie znaleziono stacji z danymi geograficznymi.");
     }
+}
+
+
+/**
+ * @brief Zamyka aplikację
+ *
+ *
+ */
+void MainWindow::on_actionExit_triggered() {
+    QApplication::quit();
 }

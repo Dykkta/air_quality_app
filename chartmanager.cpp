@@ -8,30 +8,34 @@
 #include <QLabel>
 #include <QToolTip>
 
-// map to store parameter units
-std::map<std::string, std::string> paramUnits = {
-    {"PM10", "μg/m³"},
-    {"PM2.5", "μg/m³"},
-    {"O3", "μg/m³"},
-    {"NO2", "μg/m³"},
-    {"SO2", "μg/m³"},
-    {"CO", "mg/m³"},
-    {"C6H6", "μg/m³"}, //benzen
-    {"Temperature", "°C"},
-    {"Humidity", "%"},
-    {"Pressure", "hPa"}
-};
-
+/**
+ * @brief Konstruktor klasy ChartManager
+ * @param parent Wskaźnik na obiekt rodzica w hierarchii Qt
+ *
+ * Inicjalizuje obiekt klasy ChartManager z domyślnymi wartościami.
+ */
 ChartManager::ChartManager(QObject *parent) : QObject(parent),
     m_currentChartLayout(nullptr),
     m_currentParamCheckList(nullptr)
 {
 }
 
+/**
+ * @brief Destruktor klasy ChartManager
+ *
+ * Zwalnia zasoby używane przez obiekt ChartManager.
+ */
 ChartManager::~ChartManager()
 {
 }
 
+/**
+ * @brief Łączy listę wyboru parametrów z menedżerem wykresów
+ * @param paramCheckList Wskaźnik na widget listy parametrów
+ *
+ * Zapisuje referencję do listy parametrów i łączy sygnał zmiany stanu elementu
+ * z odpowiednim slotem w menedżerze wykresów.
+ */
 void ChartManager::connectParamCheckList(QListWidget* paramCheckList)
 {
     if (!paramCheckList)
@@ -43,6 +47,13 @@ void ChartManager::connectParamCheckList(QListWidget* paramCheckList)
     connect(paramCheckList, &QListWidget::itemChanged, this, &ChartManager::onParamCheckStateChanged);
 }
 
+/**
+ * @brief Slot wywoływany przy zmianie stanu zaznaczenia parametru
+ * @param item Wskaźnik na element listy, którego stan się zmienił
+ *
+ * Odświeża wykres, jeśli wszystkie niezbędne dane są dostępne,
+ * w reakcji na zmianę zaznaczenia parametrów przez użytkownika.
+ */
 void ChartManager::onParamCheckStateChanged(QListWidgetItem* item)
 {
     // Refresh chart if we have all necessary data
@@ -52,6 +63,14 @@ void ChartManager::onParamCheckStateChanged(QListWidgetItem* item)
     }
 }
 
+/**
+ * @brief Dodaje dane dla określonego parametru
+ * @param paramName Nazwa parametru
+ * @param results Mapa wyników zawierająca pary data-wartość dla parametru
+ *
+ * Zapisuje dane parametru w globalnej mapie wyników i aktualizuje
+ * zbiór dostępnych parametrów.
+ */
 void ChartManager::addParameterData(const std::string& paramName, const std::map<std::string, double>& results)
 {
     // Save results in the global data map
@@ -61,33 +80,36 @@ void ChartManager::addParameterData(const std::string& paramName, const std::map
     m_availableParams.insert(paramName);
 }
 
-// New method to set units for parameters
-void ChartManager::setParameterUnit(const std::string& paramName, const std::string& unit)
-{
-    paramUnits[paramName] = unit;
-}
-
-// New method to get unit for a parameter
-std::string ChartManager::getParameterUnit(const std::string& paramName) const
-{
-    auto it = paramUnits.find(paramName);
-    if (it != paramUnits.end()) {
-        return it->second;
-    }
-    return ""; // Return empty string if no unit found
-}
-
+/**
+ * @brief Zwraca zbiór dostępnych parametrów
+ * @return Referencja do zbioru zawierającego nazwy wszystkich dostępnych parametrów
+ *
+ * Udostępnia informacje o wszystkich parametrach, dla których dostępne są dane.
+ */
 const std::set<std::string>& ChartManager::getAvailableParams() const
 {
     return m_availableParams;
 }
 
+/**
+ * @brief Czyści wszystkie dane parametrów
+ *
+ * Usuwa wszystkie zapisane wyniki pomiarów i resetuje listę dostępnych parametrów.
+ */
 void ChartManager::clearData()
 {
     m_allResults.clear();
     m_availableParams.clear();
 }
 
+/**
+ * @brief Aktualizuje listę wyboru parametrów
+ * @param paramCheckList Wskaźnik na widget listy wyboru parametrów
+ * @param currentParam Nazwa aktualnie analizowanego parametru
+ *
+ * Dodaje dostępne parametry do listy wyboru lub aktualizuje istniejące elementy.
+ * Domyślnie zaznacza aktualnie analizowany parametr.
+ */
 void ChartManager::updateParamCheckList(QListWidget* paramCheckList, const QString& currentParam)
 {
     if (!paramCheckList)
@@ -99,13 +121,7 @@ void ChartManager::updateParamCheckList(QListWidget* paramCheckList, const QStri
     if (paramCheckList->count() == 0) {
         // Initialize the check list with available parameters
         for (const auto& param : m_availableParams) {
-            // Include unit in the display text if available
             QString displayText = QString::fromStdString(param);
-            std::string unit = getParameterUnit(param);
-            if (!unit.empty()) {
-                displayText += " [" + QString::fromStdString(unit) + "]";
-            }
-
             QListWidgetItem* item = new QListWidgetItem(displayText, paramCheckList);
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
             item->setCheckState(Qt::Checked); // Default to checked for new parameter
@@ -126,13 +142,7 @@ void ChartManager::updateParamCheckList(QListWidget* paramCheckList, const QStri
 
         // If not found, add new
         if (!found) {
-            // Include unit in the display text if available
             QString displayText = currentParam;
-            std::string unit = getParameterUnit(currentParamStd);
-            if (!unit.empty()) {
-                displayText += " [" + QString::fromStdString(unit) + "]";
-            }
-
             QListWidgetItem* item = new QListWidgetItem(displayText, paramCheckList);
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
             item->setCheckState(Qt::Checked); // Default to checked for new parameter
@@ -141,6 +151,17 @@ void ChartManager::updateParamCheckList(QListWidget* paramCheckList, const QStri
     }
 }
 
+/**
+ * @brief Wyświetla wykres z wieloma parametrami
+ * @param chartLayout Układ, w którym będzie wyświetlany wykres
+ * @param paramCheckList Lista wyboru parametrów
+ * @param startDate Data początkowa zakresu danych
+ * @param endDate Data końcowa zakresu danych
+ *
+ * Tworzy i konfiguruje wykres prezentujący wybrane parametry jakości powietrza
+ * w określonym zakresie dat. Wykres zawiera osobne osie dla każdego parametru
+ * i umożliwia interaktywne wyświetlanie danych przy najechaniu kursorem.
+ */
 void ChartManager::displayMultiParamChart(QLayout* chartLayout, QListWidget* paramCheckList,
                                           QDateTime startDate, QDateTime endDate)
 {
@@ -209,15 +230,7 @@ void ChartManager::displayMultiParamChart(QLayout* chartLayout, QListWidget* par
             const auto& results = m_allResults.at(paramNameStd);
 
             QLineSeries *series = new QLineSeries();
-
-            // Get unit for this parameter
-            std::string unit = getParameterUnit(paramNameStd);
-            QString displayName = paramName;
-            if (!unit.empty()) {
-                displayName += " [" + QString::fromStdString(unit) + "]";
-            }
-
-            series->setName(displayName);
+            series->setName(paramName);
 
             // Set color for the series
             QColor color = colors[colorIndex % colors.size()];
@@ -267,20 +280,17 @@ void ChartManager::displayMultiParamChart(QLayout* chartLayout, QListWidget* par
             }
 
             // Enable tooltips for this series
-            if (!unit.empty()) {
-                connect(series, &QLineSeries::hovered,
-                        [series, unit](const QPointF &point, bool state) {
-                            if (state) {
-                                QDateTime pointTime = QDateTime::fromMSecsSinceEpoch(point.x());
-                                QString tooltip = QString("%1\nData: %2\nWartość: %3 %4")
-                                                      .arg(series->name())
-                                                      .arg(pointTime.toString("dd.MM.yyyy HH:mm"))
-                                                      .arg(point.y(), 0, 'f', 2)
-                                                      .arg(QString::fromStdString(unit));
-                                QToolTip::showText(QCursor::pos(), tooltip);
-                            }
-                        });
-            }
+            connect(series, &QLineSeries::hovered,
+                    [series](const QPointF &point, bool state) {
+                        if (state) {
+                            QDateTime pointTime = QDateTime::fromMSecsSinceEpoch(point.x());
+                            QString tooltip = QString("%1\nData: %2\nWartość: %3")
+                                                  .arg(series->name())
+                                                  .arg(pointTime.toString("dd.MM.yyyy HH:mm"))
+                                                  .arg(point.y(), 0, 'f', 2);
+                            QToolTip::showText(QCursor::pos(), tooltip);
+                        }
+                    });
 
             chart->addSeries(series);
             paramSeries[paramNameStd] = series;
@@ -327,13 +337,7 @@ void ChartManager::displayMultiParamChart(QLayout* chartLayout, QListWidget* par
         QValueAxis *axisY = new QValueAxis();
         QString paramQStr = QString::fromStdString(paramName);
 
-        // Add unit to axis title
-        std::string unit = getParameterUnit(paramName);
-        if (!unit.empty()) {
-            axisY->setTitleText(QString("%1 [%2]").arg(paramQStr).arg(QString::fromStdString(unit)));
-        } else {
-            axisY->setTitleText(paramQStr);
-        }
+        axisY->setTitleText(paramQStr);
 
         // Set color matching the series
         axisY->setLabelsColor(series->color());
