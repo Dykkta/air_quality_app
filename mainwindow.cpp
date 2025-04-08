@@ -484,13 +484,6 @@ void MainWindow::fetchDataForAllSensors() {
 
     // Po załadowaniu wszystkich danych, podłącz listę parametrów do ChartManager
     m_chartManager->connectParamCheckList(ui->paramCheckList);
-
-    // Wyświetl wykres, jeśli mamy jakieś dane
-    if (m_chartManager->getAvailableParams().size() > 0) {
-        // Tutaj możesz dodać kod do automatycznego wyświetlenia wykresu
-        // np. przy użyciu danych z pierwszego czujnika lub wszystkich czujników razem
-        // W zależności od tego, jak zdefiniowana jest funkcja displayMultiParamChart
-    }
 }
 
 /**

@@ -544,6 +544,22 @@
         "stationName": "Siedlce, ul. Konarskiego"
     },
     {
+        "addressStreet": "ul. Tołstoja 2",
+        "city": {
+            "commune": {
+                "communeName": "Warszawa",
+                "districtName": "Warszawa",
+                "provinceName": "MAZOWIECKIE"
+            },
+            "id": 1006,
+            "name": "Warszawa"
+        },
+        "gegrLat": "52.285073",
+        "gegrLon": "20.933018",
+        "id": 538,
+        "stationName": "Warszawa, ul. Tołstoja"
+    },
+    {
         "addressStreet": "ul. Wokalna 1",
         "city": {
             "commune": {
@@ -558,22 +574,6 @@
         "gegrLon": "21.033819",
         "id": 550,
         "stationName": "Warszawa, ul. Wokalna"
-    },
-    {
-        "addressStreet": "ul. Kondratowicza 8",
-        "city": {
-            "commune": {
-                "communeName": "Warszawa",
-                "districtName": "Warszawa",
-                "provinceName": "MAZOWIECKIE"
-            },
-            "id": 1006,
-            "name": "Warszawa"
-        },
-        "gegrLat": "52.290864",
-        "gegrLon": "21.042458",
-        "id": 552,
-        "stationName": "Warszawa, ul. Kondratowicza"
     },
     {
         "addressStreet": "ul. Bolesława Śmiałego 5",
@@ -1824,22 +1824,6 @@
         "stationName": "Płock, ul. Królowej Jadwigi"
     },
     {
-        "addressStreet": "al. Niepodległości 227/233",
-        "city": {
-            "commune": {
-                "communeName": "Warszawa",
-                "districtName": "Warszawa",
-                "provinceName": "MAZOWIECKIE"
-            },
-            "id": 1006,
-            "name": "Warszawa"
-        },
-        "gegrLat": "52.219298",
-        "gegrLon": "21.004724",
-        "id": 530,
-        "stationName": "Warszawa, al. Niepodległości"
-    },
-    {
         "addressStreet": "Sikorskiego",
         "city": {
             "commune": {
@@ -2048,6 +2032,22 @@
         "stationName": "Guty Duże"
     },
     {
+        "addressStreet": "ul. Brzozowa 2",
+        "city": {
+            "commune": {
+                "communeName": "Otwock",
+                "districtName": "otwocki",
+                "provinceName": "MAZOWIECKIE"
+            },
+            "id": 662,
+            "name": "Otwock"
+        },
+        "gegrLat": "52.115725",
+        "gegrLon": "21.237297",
+        "id": 485,
+        "stationName": "Otwock, ul. Brzozowa"
+    },
+    {
         "addressStreet": "al. Jana Pawła II 15",
         "city": {
             "commune": {
@@ -2206,6 +2206,22 @@
         "gegrLon": "22.674772",
         "id": 631,
         "stationName": "Jarosław, ul. Pruchnicka"
+    },
+    {
+        "addressStreet": "ul. K.I.Gałczyńskiego 3",
+        "city": {
+            "commune": {
+                "communeName": "Zawiercie",
+                "districtName": "zawierciański",
+                "provinceName": "ŚLĄSKIE"
+            },
+            "id": 1086,
+            "name": "Zawiercie"
+        },
+        "gegrLat": "50.493045",
+        "gegrLon": "19.439012",
+        "id": 11455,
+        "stationName": "Zawiercie, ul. K.I.Gałczyńskiego"
     },
     {
         "addressStreet": "ul. Parkowa",
@@ -2675,6 +2691,22 @@
         "addressStreet": null,
         "city": {
             "commune": {
+                "communeName": "Wola Mysłowska",
+                "districtName": "łukowski",
+                "provinceName": "LUBELSKIE"
+            },
+            "id": 301,
+            "name": "Jarczew"
+        },
+        "gegrLat": "51.814367",
+        "gegrLon": "21.972375",
+        "id": 248,
+        "stationName": "Jarczew, IMGW"
+    },
+    {
+        "addressStreet": null,
+        "city": {
+            "commune": {
                 "communeName": "Głusk",
                 "districtName": "lubelski",
                 "provinceName": "LUBELSKIE"
@@ -3072,22 +3104,6 @@
         "stationName": "Lubliniec, ul. ks. Szymały"
     },
     {
-        "addressStreet": "Orkana",
-        "city": {
-            "commune": {
-                "communeName": "Rabka-Zdrój",
-                "districtName": "nowotarski",
-                "provinceName": "MAŁOPOLSKIE"
-            },
-            "id": 767,
-            "name": "Rabka-Zdrój"
-        },
-        "gegrLat": "49.608647",
-        "gegrLon": "19.966008",
-        "id": 10446,
-        "stationName": "Rabka-Zdrój, ul. Orkana"
-    },
-    {
         "addressStreet": "Wapienna",
         "city": {
             "commune": {
@@ -3310,21 +3326,5 @@
         "gegrLon": "19.564044",
         "id": 11301,
         "stationName": "Olkusz, ul. Cegielniana"
-    },
-    {
-        "addressStreet": "ul. Jurajska 7",
-        "city": {
-            "commune": {
-                "communeName": "Kielce",
-                "districtName": "Kielce",
-                "provinceName": "ŚWIĘTOKRZYSKIE"
-            },
-            "id": 360,
-            "name": "Kielce"
-        },
-        "gegrLat": "50.887606",
-        "gegrLon": "20.579965",
-        "id": 16497,
-        "stationName": "Kielce, ul. Jurajska"
     }
 ]
