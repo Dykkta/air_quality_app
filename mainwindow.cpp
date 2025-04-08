@@ -597,7 +597,7 @@ void MainWindow::updateSensorList(const nlohmann::json& data) {
  * oraz pokazuje statystyki takie jak wartość średnia, minimalna i maksymalna.
  */
 void MainWindow::processAndDisplayData(const nlohmann::json& data, const QString& paramName) {
-    // Najpierw czyścimy istniejący układ wykresu - poprawiona wersja
+    // Najpierw czyścimy istniejący układ wykresu
     QLayoutItem* item;
     while ((item = ui->chartLayout->takeAt(0)) != nullptr) {
         if (item->widget()) {
@@ -773,7 +773,7 @@ double GeoCoordinate::distanceTo(const GeoCoordinate& other) const {
 /**
  * @brief Pobiera położenie geograficzne na podstawie adresu IP
  *
- * Funkcja używa zewnętrznego API (ip-api.com) do określenia położenia geograficznego
+ * Funkcja używa zewnętrznego API GIOS do określenia położenia geograficznego
  * użytkownika na podstawie jego adresu IP. Wyniki są pobierane za pomocą polecenia curl
  * i zapisywane w pliku tymczasowym, który następnie jest przetwarzany.
  *
@@ -910,7 +910,7 @@ void MainWindow::onFindNearestStation() {
  * @brief Znajduje najbliższą stację pomiarową na podstawie współrzędnych geograficznych
  *
  * Funkcja analizuje listę stacji pomiarowych i znajduje tę, która jest najbliżej
- * podanej lokalizacji. Odległość jest obliczana za pomocą metody distanceTo klasy
+ * podanej lokalizacji. Odległość jest oblicq   zana za pomocą metody distanceTo klasy
  * GeoCoordinate. Po znalezieniu najbliższej stacji, jest ona wybierana w interfejsie
  * użytkownika.
  *

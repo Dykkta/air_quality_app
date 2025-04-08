@@ -1520,6 +1520,22 @@
         "stationName": "Brzeg, ul. Poprzeczna"
     },
     {
+        "addressStreet": "Diabla Góra",
+        "city": {
+            "commune": {
+                "communeName": "Kruklanki",
+                "districtName": "giżycki",
+                "provinceName": "WARMIŃSKO-MAZURSKIE"
+            },
+            "id": 167,
+            "name": "Diabla Góra"
+        },
+        "gegrLat": "54.124819",
+        "gegrLon": "22.038056",
+        "id": 882,
+        "stationName": "Diabla Góra, Puszcza Borecka"
+    },
+    {
         "addressStreet": "ul. Piłsudskiego 27",
         "city": {
             "commune": {
@@ -2192,22 +2208,6 @@
         "stationName": "Jarosław, ul. Pruchnicka"
     },
     {
-        "addressStreet": "ul. K.I.Gałczyńskiego 3",
-        "city": {
-            "commune": {
-                "communeName": "Zawiercie",
-                "districtName": "zawierciański",
-                "provinceName": "ŚLĄSKIE"
-            },
-            "id": 1086,
-            "name": "Zawiercie"
-        },
-        "gegrLat": "50.493045",
-        "gegrLon": "19.439012",
-        "id": 11455,
-        "stationName": "Zawiercie, ul. K.I.Gałczyńskiego"
-    },
-    {
         "addressStreet": "ul. Parkowa",
         "city": {
             "commune": {
@@ -2318,6 +2318,22 @@
         "gegrLon": "15.633250",
         "id": 16238,
         "stationName": "Sulechów, ul. Licealna"
+    },
+    {
+        "addressStreet": "Marii Dąbrowskiej",
+        "city": {
+            "commune": {
+                "communeName": "Tarnobrzeg",
+                "districtName": "Tarnobrzeg",
+                "provinceName": "PODKARPACKIE"
+            },
+            "id": 954,
+            "name": "Tarnobrzeg"
+        },
+        "gegrLat": "50.575742",
+        "gegrLon": "21.688367",
+        "id": 684,
+        "stationName": "Tarnobrzeg, ul. Dąbrowskiej"
     },
     {
         "addressStreet": "ul. Szwajcarska",
@@ -2990,22 +3006,6 @@
         "gegrLon": "19.923591",
         "id": 16753,
         "stationName": "Myślenice"
-    },
-    {
-        "addressStreet": "ul. 1 Maja 6",
-        "city": {
-            "commune": {
-                "communeName": "Wysokie Mazowieckie",
-                "districtName": "wysokomazowiecki",
-                "provinceName": "PODLASKIE"
-            },
-            "id": 2912,
-            "name": "Wysokie Mazowieckie"
-        },
-        "gegrLat": "52.913878",
-        "gegrLon": "22.509275",
-        "id": 20140,
-        "stationName": "Wysokie Mazowieckie, ul. 1 Maja"
     },
     {
         "addressStreet": "Kampinoski Park Narodowy",

@@ -39,9 +39,7 @@ struct qt_meta_tag_ZN12ChartManagerE_t {};
 static constexpr auto qt_meta_stringdata_ZN12ChartManagerE = QtMocHelpers::stringData(
     "ChartManager",
     "onParamCheckStateChanged",
-    "",
-    "QListWidgetItem*",
-    "item"
+    ""
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -61,10 +59,10 @@ Q_CONSTINIT static const uint qt_meta_data_ZN12ChartManagerE[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   20,    2, 0x08,    1 /* Private */,
+       1,    0,   20,    2, 0x08,    1 /* Private */,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -79,8 +77,7 @@ Q_CONSTINIT const QMetaObject ChartManager::staticMetaObject = { {
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<ChartManager, std::true_type>,
         // method 'onParamCheckStateChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QListWidgetItem *, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -90,10 +87,11 @@ void ChartManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     auto *_t = static_cast<ChartManager *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->onParamCheckStateChanged((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
+        case 0: _t->onParamCheckStateChanged(); break;
         default: ;
         }
     }
+    (void)_a;
 }
 
 const QMetaObject *ChartManager::metaObject() const

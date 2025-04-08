@@ -54,7 +54,7 @@ void ChartManager::connectParamCheckList(QListWidget* paramCheckList)
  * Odświeża wykres, jeśli wszystkie niezbędne dane są dostępne,
  * w reakcji na zmianę zaznaczenia parametrów przez użytkownika.
  */
-void ChartManager::onParamCheckStateChanged(QListWidgetItem* item)
+void ChartManager::onParamCheckStateChanged()
 {
     // Refresh chart if we have all necessary data
     if (m_currentChartLayout && m_currentParamCheckList &&

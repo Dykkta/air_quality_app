@@ -76,7 +76,7 @@ private slots:
      * @brief Slot wywoływany przy zmianie stanu zaznaczenia parametru
      * @param item Wskaźnik na element listy, którego stan się zmienił
      */
-    void onParamCheckStateChanged(QListWidgetItem* item);
+    void onParamCheckStateChanged();
 
 private:
     std::map<std::string, std::map<std::string, double>> m_allResults; ///< Mapa wszystkich wyników dla parametrów
